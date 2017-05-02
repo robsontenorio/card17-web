@@ -57,7 +57,7 @@ export default {
   },
 
   mounted() {
-    // console.log(this.$auth.redirect())
+    // console.log(this.$auth.redirect()) 
 
     // Can set query parameter here for auth redirect or just do it silently in login redirect.
   },
