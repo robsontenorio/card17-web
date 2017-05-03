@@ -34,19 +34,18 @@ export default {
   created() {
     let filtros = {
       user_id: this.$auth.user().id,
-      includes: 'dificuldade,modo',
-      "modo_chave": 'RANQUEADO'
+      includes: 'dificuldade,modo,matchup.cores,matchup.arquetipos,matchup.tipos,partidas',
+      'modo_chave': 'RANQUEADO'
     }
 
     deckAPI.all(filtros).then(response => {
       this.decks_ranqueado = response.data.data
     })
 
-
     let filtros2 = {
       user_id: this.$auth.user().id,
-      includes: 'dificuldade,modo',
-      "modo_chave": 'PANDORA'
+      includes: 'dificuldade,modo,matchup.cores,matchup.arquetipos,matchup.tipos,partidas',
+      'modo_chave': 'PANDORA'
     }
 
     deckAPI.all(filtros2).then(response => {

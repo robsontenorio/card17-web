@@ -1,9 +1,9 @@
 <template>
 <div id="app">
-  <nav class="nav has-shadow">
-    <div class="container">
+  <div class="container">
+    <nav class="nav">
       <div class="nav-left">
-        <a class="nav-item">
+        <a class="nav-item is-brand">
           <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">
         </a>
 
@@ -30,11 +30,23 @@
         </router-link>
         <a v-show="$auth.check()" @click="logout()" class="nav-item is-tab">Log out</a>
       </div>
-    </div>
-  </nav>
-  <div class="container is-fluid">
-    <router-view></router-view>
+    </nav>
   </div>
+
+  <section class="section">
+    <div class="container">
+      <router-view></router-view>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          <strong>CARD17</strong> &copy; 2017
+        </p>
+      </div>
+    </div>
+  </footer>
 </div>
 </template>
 

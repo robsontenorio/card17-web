@@ -1,39 +1,23 @@
 <template>
 <div>
-  <h1>Login</h1>
+  <div class="columns">
+    <div class="hero has-text-centered column  is-one-third  is-offset-one-third">
+      <h1 class="title">Olá :)</h1>
 
-  <b>Test users:</b> (admin / secret) &bull; (test / secret)
+      <p class="control has-icon">
+        <input v-model="creds.email" class="input" type="email" placeholder="E-mail">
+        <i class="fa fa-envelope"></i>
+      </p>
 
-  <hr/>
-
-  <form v-on:submit.prevent="login()">
-    <table>
-      <tr>
-        <td>email:</td>
-        <td><input v-model="data.body.email" /></td>
-      </tr>
-      <tr>
-        <td>Password:</td>
-        <td><input v-model="data.body.password" type="password" /></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><label><input v-model="data.rememberMe" type="checkbox" /> Remember Me</label></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><label><input v-model="data.fetchUser" type="checkbox" /> Fetch User (test)</label></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><button type="submit">Login</button></td>
-      </tr>
-    </table>
-
-    <hr/>
-
-    <div v-show="error" style="color:red; word-wrap:break-word;">{{ error }}</div>
-  </form>
+      <p class="control has-icon">
+        <input v-model="creds.password" class="input" type="password" placeholder="Senha">
+        <i class="fa fa-lock"></i>
+      </p>
+      <p class="control">
+        <button @click="login()" class="button is-primary is-fullwidth">Entrar</button>
+      </p>
+    </div>
+  </div>
 </div>
 </template>
 
@@ -41,18 +25,10 @@
 export default {
   data() {
     return {
-      context: 'login context',
-
-      data: {
-        body: {
-          email: '',
-          password: ''
-        },
-        rememberMe: false,
-        fetchUser: true
-      },
-
-      error: null
+      creds: {
+        email: '',
+        password: ''
+      }
     }
   },
 
@@ -65,18 +41,14 @@ export default {
       var redirect = this.$auth.redirect()
 
       this.$auth.login({
-        data: this.data.body,
-
-        rememberMe: this.data.rememberMe,
+        data: this.creds,
         redirect: redirect ? redirect.from.fullPath : '/home',
-        fetchUser: this.data.fetchUser,
-        success() {
-          console.log('success ' + this.context)
-        },
-        error(res) {
-          console.log('error ' + this.context)
-
-          this.error = res.data
+        fetchUser: true,
+        success() {},
+        error(error) {
+          this.$notify.danger({
+            content: error.response.data.error
+          })
         }
       })
     }
