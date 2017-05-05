@@ -28,21 +28,21 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      // proxy all requests starting with /api
-      '/api': {
-        target: "http://card17-api.dev",
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': ''
-        }
-      },
-      '/auth': {
-        target: "http://card17-api.dev/auth",
-        changeOrigin: true,
-        pathRewrite: {
-          '^/auth': ''
-        }
-      }
+      // // proxy all requests starting with /api
+      // '/api': {
+      //   target: "http://card17-api.dev",
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     '^/api': ''
+      //   }
+      // },
+      // '/auth': {
+      //   target: "http://card17-api.dev/auth",
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     '^/auth': ''
+      //   }
+      // }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

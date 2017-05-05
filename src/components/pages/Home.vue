@@ -1,14 +1,35 @@
 <template>
 <div>
+
+  <div class="columns">
+    <div class="column is-one-quarter has-text-centered">
+      <figure class="image is-128x128" style="display: inline-block">
+        <img src="static/images/3.jpg" style="border-radius: 50%">
+      </figure>
+      <p class="title">{{ $auth.user().username }}</p>
+    </div>
+    <div class="column">
+
+      <div class="columns">
+        <div class="column">
+          <div class="notification is-warning">
+            <p class="title">BATALHA</p>
+            <p><i class="fa fa-check"></i>14 vitórias</p>
+            <router-link to="/decks/battle">decks batalha</router-link>
+          </div>
+        </div>
+        <div class="column">
+          <div class="notification is-info">
+            <p class="title">PANDORA</p>
+            <p><i class="fa fa-check"></i>14 vitórias</p>
+            <router-link to="/decks/pandora">decks pandora</router-link>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- USer : {{ this.$auth.user().id }} - {{ $auth.user().nome }}<br> Token: {{ $auth.token() }} -->
-  <h1>DECKS RANQUEADOS</h1>
-
-  <deck-list :decks="decks_ranqueado"></deck-list>
-
-  <h1>DECKS PANDORA</h1>
-
-  <deck-list :decks="decks_pandora"></deck-list>
-
 
 </div>
 </template>

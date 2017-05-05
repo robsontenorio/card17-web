@@ -1,16 +1,11 @@
 <template>
 <div id="app">
-  <div class="container">
-    <nav class="nav">
+  <nav class="nav">
+    <div class="container">
       <div class="nav-left">
-        <a class="nav-item is-brand">
-          <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">
+        <a href="/" class="nav-item is-brand">
+          <img src="/static/images/card17.png" alt="CARD17">
         </a>
-
-        <router-link to="/" class="nav-item is-tab is-hidden-mobile"> Inicio </router-link>
-        <router-link to="/hello2" class="nav-item is-tab is-hidden-mobile"> hello2 </router-link>
-        <router-link v-show="!$auth.check()" to="/login" class="nav-item is-tab is-hidden-mobile"> Login </router-link>
-        <router-link v-show="!$auth.check()" to="/register" class="nav-item is-tab is-hidden-mobile"> Cadastrar </router-link>
       </div>
       <span class="nav-toggle">
       <span></span>
@@ -18,20 +13,21 @@
       <span></span>
       </span>
       <div class="nav-right nav-menu">
-        <a class="nav-item is-tab is-hidden-tablet is-active">Home</a>
-        <a class="nav-item is-tab is-hidden-tablet">Features</a>
-        <a class="nav-item is-tab is-hidden-tablet">Pricing</a>
-        <a class="nav-item is-tab is-hidden-tablet">About</a>
+        <router-link to="/hello2" class="nav-item is-tab is-hidden-mobile"> hello2 </router-link>
+        <router-link v-show="!$auth.check()" to="/register" class="nav-item is-tab is-hidden-mobile">Cadastrar</router-link>
+        <router-link v-show="!$auth.check()" to="/login" class="nav-item is-tab is-hidden-mobile">Entrar</router-link>
         <router-link to="/home" v-show="$auth.check()" class="nav-item is-tab">
-          <figure class="image is-16x16" style="margin-right: 8px;">
-            <img src="http://bulma.io/images/jgthms.png">
+          <figure class="image is-24x24" style="margin-right: 8px;">
+            <img src="/static/images/3.jpg" style="border-radius: 50%">
           </figure>
-          {{ $auth.user().nome }}
+          {{ $auth.user().username }}
         </router-link>
-        <a v-show="$auth.check()" @click="logout()" class="nav-item is-tab">Log out</a>
+        <a v-show="$auth.check()" @click="logout()" class="nav-item is-tab">
+            Sair
+        </a>
       </div>
-    </nav>
-  </div>
+    </div>
+  </nav>
 
   <section class="section">
     <div class="container">
@@ -63,3 +59,15 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.nav {
+  background-color: #3c81df;
+}
+
+
+a.nav-item {
+  color: white;
+  font-size: 1.3rem;
+}
+</style>

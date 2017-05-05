@@ -34,6 +34,14 @@ export default new Router({
       component: load('pages/Register')
     },
     {
+      path: '/decks/pandora',
+      component: load('pages/DecksPandora')
+    },
+    {
+      path: '/decks/battle',
+      component: load('pages/DecksBattle')
+    },
+    {
       path: '*',
       component: load('pages/404')
     }
