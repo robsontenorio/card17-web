@@ -1,0 +1,38 @@
+// $blue: #3c81df;
+// $turquoise: #00c0ef;
+// $red: #f56954;
+// $green: #6cc788;
+// $orange: #f2a654;
+// $purple: #926dde;
+// $yellow: #f39c12;
+//
+
+// import the entry file
+@import "~vue-blu/src/scss/blu";
+
+
+// TODO LAYOUT GERAL DA APLICACAO EM CSS AQUI
+
+.nav {
+  background-color: #3c81df;
+}
+
+a.nav-item {
+  color: white;
+  font-size: 1.3rem;
+}
+
+
+.faeria {
+    color: black;
+    font-weight: 600;
+    font-size: 12pt;
+    padding-top: 7px;
+    display: inline-block;
+    background-image: url("/static/images/faeria-ball.png");
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}

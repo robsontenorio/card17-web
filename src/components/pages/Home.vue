@@ -48,7 +48,7 @@ export default {
   },
   data() {
     return {
-      decks_ranqueado: [],
+      decks_batalha: [],
       decks_pandora: []
     }
   },
@@ -56,11 +56,11 @@ export default {
     let filtros = {
       user_id: this.$auth.user().id,
       includes: 'dificuldade,modo,matchup.cores,matchup.arquetipos,matchup.tipos,partidas',
-      'modo_chave': 'RANQUEADO'
+      'modo_chave': 'BATALHA'
     }
 
     deckAPI.all(filtros).then(response => {
-      this.decks_ranqueado = response.data.data
+      this.decks_batalha = response.data.data
     })
 
     let filtros2 = {

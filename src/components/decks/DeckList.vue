@@ -18,8 +18,7 @@
     <column label="Cores">
       <template scope="row">
         <span>
-            <!-- //TODO criar LAND COMPOENT -->
-            <img class="icon image is-24x24" :src="`/static/images/lands/icon_land_${cor.chave}.png`" v-for="cor in row.matchup.cores" v-if="cor.chave != 'PANDORA'"></span>
+            <deck-cores :cores="row.matchup.cores"></deck-cores>
         </span>
       </template>
     </column>
@@ -36,7 +35,7 @@
       <template scope="row">
         <span>
           <span class="icon" style="width: 10px; font-size: 8pt;" v-for="partida in row.partidas">
-            <i :style="`color: ${ partida.evento == 'V' ? 'GREEN' : 'RED' }`"  class="fa fa-circle"></i>
+            <i :style="`color: ${ partida.evento == '1' ? 'GREEN' : 'RED' }`"  class="fa fa-circle"></i>
           </span>
         </span>
       </template>
@@ -55,6 +54,8 @@
         <a @click="remover()" class="button is-danger is-outlined is-small"><span class="icon is-small"><i class="fa fa-trash"></i></span></a>
       </div>
     </div>
+
+    [colocar aqui WINRATE ]
     <div class="block"> {{ deck.descricao}}</div>
 
 
@@ -83,9 +84,14 @@
 </template>
 
 <script>
+import DeckCores from '@/components/decks/DeckCores'
+
 export default {
   name: 'deck-list',
   props: ['decks'],
+  components: {
+    DeckCores
+  },
   data() {
     return {
       isMostrar: false,

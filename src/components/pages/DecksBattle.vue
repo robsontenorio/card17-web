@@ -16,7 +16,7 @@
     <div class="column is-narrow">
 
       <figure class="image is-128x128">
-        <img src="/static/images/modo_batalha.png">
+        <img src="/static/images/modo_batalha.png" style="border-radius: 2%">
       </figure>
 
     </div>
@@ -90,7 +90,7 @@ export default {
     let filtros = {
       user_id: this.$auth.user().id,
       includes: 'dificuldade,modo,matchup.cores,matchup.arquetipos,matchup.tipos,partidas',
-      'modo_chave': 'RANQUEADO'
+      'modo_chave': 'BATALHA'
     }
 
     deckAPI.all(filtros).then(response => {

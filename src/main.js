@@ -13,7 +13,7 @@ import VueAuth from '@websanova/vue-auth'
 // import Buefy from 'buefy'
 // import 'buefy/lib/buefy.css'
 import VueBlu from 'vue-blu'
-import 'vue-blu/dist/css/vue-blu.min.css'
+import '../static/app.scss'
 
 import App from './App'
 import router from './router'

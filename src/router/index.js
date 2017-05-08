@@ -42,6 +42,10 @@ export default new Router({
       component: load('pages/DecksBattle')
     },
     {
+      path: '/decks/:id',
+      component: load('pages/Deck')
+    },
+    {
       path: '*',
       component: load('pages/404')
     }

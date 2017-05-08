@@ -59,15 +59,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.nav {
-  background-color: #3c81df;
-}
-
-
-a.nav-item {
-  color: white;
-  font-size: 1.3rem;
-}
-</style>
