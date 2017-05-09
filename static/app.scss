@@ -13,6 +13,31 @@
 
 // TODO LAYOUT GERAL DA APLICACAO EM CSS AQUI
 
+
+ // TJDFT
+
+//
+// .notification{
+//   background-color: #efefef !important;
+// }
+//
+// .nav {
+//   background-color: #efefef !important;
+// }
+//
+// .cover , img{
+//   opacity: 0.1;
+// }
+
+// TJDFT
+
+
+
+
+a{
+  color: #3c81df;
+}
+
 .nav {
   background-color: #3c81df;
 }
@@ -20,6 +45,12 @@
 a.nav-item {
   color: white;
   font-size: 1.3rem;
+}
+
+.tabs td a{
+  justify-content: inherit;
+  border-bottom: none;
+  color: #3c81df;
 }
 
 

@@ -2,10 +2,10 @@
 <div>
   <div class="columns ">
     <div class="column">
-      <estatistica-terrenos :terrenos="terrenos"></estatistica-terrenos>
+      <estatistica-terrenos v-if="terrenos" :terrenos="terrenos"></estatistica-terrenos>
     </div>
     <div class="column">
-      <estatistica-faerias :faerias="faerias"></estatistica-faerias>
+      <estatistica-faerias v-if="faerias" :faerias="faerias"></estatistica-faerias>
     </div>
     <div class="column">
 

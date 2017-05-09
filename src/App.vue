@@ -13,16 +13,15 @@
       <span></span>
       </span>
       <div class="nav-right nav-menu">
-        <router-link to="/hello2" class="nav-item is-tab is-hidden-mobile"> hello2 </router-link>
-        <router-link v-show="!$auth.check()" to="/register" class="nav-item is-tab is-hidden-mobile">Cadastrar</router-link>
-        <router-link v-show="!$auth.check()" to="/login" class="nav-item is-tab is-hidden-mobile">Entrar</router-link>
-        <router-link to="/home" v-show="$auth.check()" class="nav-item is-tab">
+        <router-link v-if="!$auth.check()" to="/register" class="nav-item is-tab is-hidden-mobile">Cadastrar</router-link>
+        <router-link v-if="!$auth.check()" to="/login" class="nav-item is-tab is-hidden-mobile">Entrar</router-link>
+        <router-link to="/home" v-if="$auth.check()" class="nav-item is-tab">
           <figure class="image is-24x24" style="margin-right: 8px;">
-            <img src="/static/images/3.jpg" style="border-radius: 50%">
+            <img :src="`/static/images/users/${$auth.user().id}.jpg`" style="border-radius: 50%">
           </figure>
           {{ $auth.user().username }}
         </router-link>
-        <a v-show="$auth.check()" @click="logout()" class="nav-item is-tab">
+        <a v-if="$auth.check()" @click="logout()" class="nav-item is-tab">
             Sair
         </a>
       </div>

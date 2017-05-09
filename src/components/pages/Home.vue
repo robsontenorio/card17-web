@@ -1,33 +1,24 @@
 <template>
 <div>
+  <h1 class="title"> {{ $auth.user().username }}</h1>
 
-  <div class="columns">
-    <div class="column is-one-quarter has-text-centered">
-      <figure class="image is-128x128" style="display: inline-block">
-        <img src="static/images/3.jpg" style="border-radius: 50%">
-      </figure>
-      <p class="title">{{ $auth.user().username }}</p>
-    </div>
-    <div class="column">
+  <br><br>
+  <tabs>
+    <tab-item label="MODO BATALHA">
+      <br><br>
+      <estatistica-geral cover="/static/images/modo_batalha.png" :winrate="estatisticas.batalha.winrate" :vitorias="estatisticas.batalha.vitorias" :derrotas="estatisticas.batalha.derrotas" :progresso="estatisticas.batalha.progresso"></estatistica-geral>
+      <br><br>
+      <deck-list :decks="decks.batalha"></deck-list>
 
-      <div class="columns">
-        <div class="column">
-          <div class="notification is-warning">
-            <p class="title">BATALHA</p>
-            <p><i class="fa fa-check"></i>14 vitórias</p>
-            <router-link to="/decks/battle">decks batalha</router-link>
-          </div>
-        </div>
-        <div class="column">
-          <div class="notification is-info">
-            <p class="title">PANDORA</p>
-            <p><i class="fa fa-check"></i>14 vitórias</p>
-            <router-link to="/decks/pandora">decks pandora</router-link>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
+    </tab-item>
+    <tab-item label="MODO PANDORA">
+      <br><br>
+      <estatistica-geral cover="/static/images/modo_pandora.png" :winrate="estatisticas.pandora.winrate" :vitorias="estatisticas.pandora.vitorias" :derrotas="estatisticas.pandora.derrotas"></estatistica-geral>
+      <br><br>
+      <deck-list :decks="decks.pandora"></deck-list>
+    </tab-item>
+  </tabs>
 
   <!-- USer : {{ this.$auth.user().id }} - {{ $auth.user().nome }}<br> Token: {{ $auth.token() }} -->
 
@@ -36,41 +27,66 @@
 
 <script>
 import {
-  deckAPI
+  deckAPI,
+  userAPI
 } from '@/api'
 
 import DeckList from '@/components/decks/DeckList'
+import EstatisticaGeral from '@/components/estatisticas/EstatisticaGeral'
 
 export default {
   name: 'pages-home',
   components: {
-    DeckList
+    DeckList,
+    EstatisticaGeral
   },
   data() {
     return {
-      decks_batalha: [],
-      decks_pandora: []
+      decks: {
+        batalha: [],
+        pandora: []
+      },
+      estatisticas: {
+        batalha: {
+          winrate: '-',
+          vitorias: '-',
+          derrotas: '-'
+        },
+        pandora: {
+          winrate: '-',
+          vitorias: '-',
+          derrotas: '-'
+        }
+      }
     }
   },
   created() {
-    let filtros = {
+    let filtrosBatalha = {
       user_id: this.$auth.user().id,
       includes: 'dificuldade,modo,matchup.cores,matchup.arquetipos,matchup.tipos,partidas',
-      'modo_chave': 'BATALHA'
+      modo_chave: 'BATALHA'
     }
 
-    deckAPI.all(filtros).then(response => {
-      this.decks_batalha = response.data.data
+    let filtrosPandora = {
+      user_id: this.$auth.user().id,
+      includes: 'dificuldade,modo,matchup.cores,matchup.arquetipos,matchup.tipos,partidas',
+      modo_chave: 'PANDORA'
+    }
+
+    let filtrosEstatisticas = {
+      appends: 'estatisticas'
+    }
+
+    userAPI.get(this.$auth.user().id, filtrosEstatisticas).then(response => {
+      this.estatisticas = response.data.estatisticas
     })
 
-    let filtros2 = {
-      user_id: this.$auth.user().id,
-      includes: 'dificuldade,modo,matchup.cores,matchup.arquetipos,matchup.tipos,partidas',
-      'modo_chave': 'PANDORA'
-    }
+    deckAPI.all(filtrosBatalha).then(response => {
+      this.decks.batalha = response.data.data
+    })
 
-    deckAPI.all(filtros2).then(response => {
-      this.decks_pandora = response.data.data
+    deckAPI.all(filtrosPandora).then(response => {
+      this.decks.pandora = response.data.data
     })
   }
 }
