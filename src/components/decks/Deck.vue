@@ -20,17 +20,11 @@
       <!-- DISTRIBUICAO DAS CARTAS -->
       <deck-distribuicao :terrenos="deck.distribuicao.terrenos" :faerias="deck.distribuicao.faerias" :tipos="deck.distribuicao.tipos"></deck-distribuicao>
 
-      <!-- MATCHUPS -->
+      <!-- PARTIDAS -->
       <br><br><br>
-      <h2 class="subtitle">RESULTADOS</h2>
+      <h2 class="subtitle">PARTIDAS</h2>
       <div class="notification is-default ">
-        <!-- //TODO componente tudo junto com tabela?  -->
-        <div v-for="partida in deck.partidas">
-          {{ partida.evento }} :
-          <deck-cores :cores="partida.matchup.cores"></deck-cores>
-          <deck-arquetipos :arquetipos="partida.matchup.arquetipos"></deck-arquetipos>
-          <deck-tipos :tipos="partida.matchup.tipos"></deck-tipos>
-        </div>
+        <deck-partidas :partidas="deck.partidas"></deck-partidas>
       </div>
 
     </div>
@@ -48,6 +42,7 @@
 
 <script>
 import DeckDistribuicao from '@/components/decks/DeckDistribuicao'
+import DeckPartidas from '@/components/decks/DeckPartidas'
 import DeckCartas from '@/components/decks/DeckCartas'
 import DeckCores from '@/components/decks/DeckCores'
 import DeckArquetipos from '@/components/decks/DeckArquetipos'
@@ -63,6 +58,7 @@ export default {
     DeckCores,
     DeckArquetipos,
     DeckTipos,
+    DeckPartidas,
     EstatisticaGeral
   },
   data() {

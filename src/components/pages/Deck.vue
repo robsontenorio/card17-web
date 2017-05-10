@@ -1,6 +1,6 @@
 <template>
 <div>
-  <deck :deck="deck"></deck>
+  <deck v-loading="!deck.descricao" :deck="deck"></deck>
 </div>
 </template>
 

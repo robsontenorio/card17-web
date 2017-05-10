@@ -11,7 +11,7 @@
         <span class="title">{{ user.username }}</span>
 
       </p>
-      <p class="tagline"><strong>ADORA</strong> {{ adora }}</p>
+      <p class="tagline"><strong>CURTE</strong> {{ adora }}</p>
       <p class="social">
         <span class="icon"><i class="fa fa-twitch"></i></span>
         <span class="icon"><i class="fa fa-facebook"></i></span>
@@ -24,7 +24,7 @@
     </div>
     <div class="column is-2 followers has-text-centered">
       <p class="stat-val">{{ vitorias }}</p>
-      <p class="stat-key">vitorias</p>
+      <p class="stat-key">vitórias</p>
     </div>
     <div class="column is-2 followers has-text-centered">
       <p class="stat-val">{{ derrotas }}</p>

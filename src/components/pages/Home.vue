@@ -1,41 +1,45 @@
 <template>
-<div>
+<div v-loading="!user">
 
-  <profile v-if="user" :user="user"></profile>
-
-  <br><br>
-  <tabs :on-tab-click="show">
-    <tab-item label="MODO BATALHA">
-      <br>
-      <transition name="fade">
-        <div v-if="tab == 0 && estatisticas.batalha.progresso">
-
-          <estatistica-geral cover="/static/images/modo_batalha.png" :winrate="estatisticas.batalha.winrate" :vitorias="estatisticas.batalha.vitorias" :derrotas="estatisticas.batalha.derrotas" :progresso="estatisticas.batalha.progresso"></estatistica-geral>
-
-        </div>
-      </transition>
-
-      <br><br>
-      <deck-list v-loading.body="carregando" @selecionado="mostrar" :decks="decks.batalha"></deck-list>
+  <div v-if="user">
 
 
-    </tab-item>
-    <tab-item label="MODO PANDORA">
-      <br>
-      <transition name="fade">
-        <div v-if="tab == 1 && estatisticas.pandora.progresso">
+    <profile :user="user"></profile>
 
-          <estatistica-geral cover="/static/images/modo_pandora.png" :winrate="estatisticas.pandora.winrate" :vitorias="estatisticas.pandora.vitorias" :derrotas="estatisticas.pandora.derrotas" :progresso="estatisticas.pandora.progresso"></estatistica-geral>
+    <br><br>
+    <tabs :on-tab-click="show">
+      <tab-item label="MODO BATALHA">
+        <br>
+        <transition name="fade">
+          <div v-if="tab == 0 && estatisticas.batalha.progresso">
 
-        </div>
-      </transition>
-      <br><br>
-      <deck-list v-loading.body="carregando" @selecionado="mostrar" :decks="decks.pandora"></deck-list>
+            <estatistica-geral cover="/static/images/modo_batalha.png" :winrate="estatisticas.batalha.winrate" :vitorias="estatisticas.batalha.vitorias" :derrotas="estatisticas.batalha.derrotas" :progresso="estatisticas.batalha.progresso"></estatistica-geral>
+
+          </div>
+        </transition>
+
+        <br><br>
+        <deck-list @selecionado="mostrar" :decks="decks.batalha"></deck-list>
 
 
-    </tab-item>
-  </tabs>
+      </tab-item>
+      <tab-item label="MODO PANDORA">
+        <br>
+        <transition name="fade">
+          <div v-if="tab == 1 && estatisticas.pandora.progresso">
 
+            <estatistica-geral cover="/static/images/modo_pandora.png" :winrate="estatisticas.pandora.winrate" :vitorias="estatisticas.pandora.vitorias" :derrotas="estatisticas.pandora.derrotas" :progresso="estatisticas.pandora.progresso"></estatistica-geral>
+
+          </div>
+        </transition>
+        <br><br>
+        <deck-list @selecionado="mostrar" :decks="decks.pandora"></deck-list>
+
+
+      </tab-item>
+    </tabs>
+
+  </div>
 </div>
 </template>
 
@@ -59,7 +63,6 @@ export default {
   data() {
     return {
       tab: 0,
-      carregando: true,
       user: null,
       decks: {
         batalha: [],
@@ -80,8 +83,6 @@ export default {
     }
   },
   created() {
-    this.carregando = true
-
     let filtrosBatalha = {
       user_id: this.$auth.user().id,
       includes: 'dificuldade,modo,matchup.cores,matchup.arquetipos,matchup.tipos,partidas',
@@ -105,12 +106,10 @@ export default {
 
     deckAPI.all(filtrosBatalha).then(response => {
       this.decks.batalha = response.data.data
-      this.carregando = false
     })
 
     deckAPI.all(filtrosPandora).then(response => {
       this.decks.pandora = response.data.data
-      this.carregando = false
     })
   },
   methods: {
