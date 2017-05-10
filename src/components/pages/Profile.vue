@@ -69,6 +69,7 @@ export default {
   font-weight: bold;
   font-size: 40pt;
   padding-right: 20px;
+  color: #363636;
 }
 
 .avatar {
@@ -82,6 +83,7 @@ export default {
 
 .social {
   margin-top: 10px;
+  color: #616161;
 }
 
 .avatar img {
@@ -91,10 +93,12 @@ export default {
 .stat-val {
   font-size: 35px;
   font-weight: bold;
+  color: #363636;
 }
 
 .stat-key {
   font-size: 20px;
   font-weight: 200;
+  color: #363636;
 }
 </style>
