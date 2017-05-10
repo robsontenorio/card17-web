@@ -25,8 +25,13 @@
 //   background-color: #efefef !important;
 // }
 //
-// .cover , img{
-//   opacity: 0.1;
+// .cover , img, .carta-mini, .notification{
+//   opacity: 0.4 !important;
+// }
+//
+// .tabs li.is-active a
+// {
+//   color: #c0c0c0 !important;
 // }
 
 // TJDFT
@@ -53,6 +58,21 @@ a.nav-item {
   color: #3c81df;
 }
 
+
+.tabs li span{
+  font-size: 20pt;
+  font-weight: 300;
+}
+
+.tabs li a{
+  color: $grey-lighter;
+}
+
+.tabs li.is-active a
+{
+  color: $info;
+  border-bottom-color: $info;
+}
 
 .faeria {
     color: black;

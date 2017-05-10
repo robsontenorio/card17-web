@@ -10,6 +10,10 @@ import VueAuth from '@websanova/vue-auth'
 // Vue.component(Table.name, Table)
 // Vue.component(TableColumn.name, TableColumn)
 
+import { Loading } from 'element-ui'
+import 'element-ui/lib/theme-default/loading.css'
+Vue.use(Loading.directive)
+
 // import Buefy from 'buefy'
 // import 'buefy/lib/buefy.css'
 import VueBlu from 'vue-blu'

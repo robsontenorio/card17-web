@@ -31,7 +31,10 @@
     </div>
     <div class="column is-half">
       <div class="notification">
-        <estatistica-progresso :height="72" :options="options" :chart-data="datacollection"></estatistica-progresso>
+        <span>progresso</span>
+        <div class="grafico">
+          <estatistica-progresso :height="72" :options="options" :chart-data="datacollection"></estatistica-progresso>
+        </div>
       </div>
     </div>
   </div>
@@ -49,22 +52,21 @@ export default {
   },
   data() {
     return {
-      options: {},
-      datacollection: {}
+      options: {}
     }
   },
   methods: {},
-  watch: {
-    progresso(val) {
-      this.datacollection = {
-        labels: val,
+  computed: {
+    datacollection(val) {
+      return {
+        labels: this.progresso,
         datasets: [{
           fill: false,
           lineTension: 0,
           borderColor: 'rgba(75,192,192,1)',
           pointBorderColor: 'rgba(75,192,192,1)',
           pointRadius: 2,
-          data: val
+          data: this.progresso
         }]
       }
     }
@@ -74,7 +76,7 @@ export default {
 
 <style scoped>
 .notification {
-  height: 100%;
+  height: 120px;
 }
 
 .estatistica-number {

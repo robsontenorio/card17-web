@@ -33,8 +33,6 @@ export default Line.extend({
     }
 
     options = Object.assign(this.options, options)
-
-    // this.chartData is created in the mixin
     this.renderChart(this.chartData, options)
   }
 })

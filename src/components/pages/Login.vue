@@ -4,6 +4,10 @@
     <div class="hero has-text-centered column  is-one-third  is-offset-one-third">
       <h1 class="title">Olá :)</h1>
 
+      <alert v-if="erro" type="danger">
+        {{ erro }}
+      </alert>
+
       <p class="control has-icon">
         <input v-model="creds.email" class="input" type="email" placeholder="E-mail">
         <i class="fa fa-envelope"></i>
@@ -28,7 +32,8 @@ export default {
       creds: {
         email: '',
         password: ''
-      }
+      },
+      erro: null
     }
   },
 
@@ -46,6 +51,7 @@ export default {
         fetchUser: true,
         success() {},
         error(error) {
+          this.erro = error.response.data.error
           this.$notify.danger({
             content: error.response.data.error
           })

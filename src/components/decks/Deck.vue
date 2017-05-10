@@ -3,11 +3,13 @@
   <div class="columns">
     <!-- COLUNA ESQUERDA -->
     <div class="column">
-      <h1 class="title ">{{ deck.nome }}</h1>
+      <h1 class="title">{{ deck.nome }}&nbsp;</h1>
 
       <!-- BLOCO ESTATISTICA GERAL -->
       <estatistica-geral :winrate="deck.winrate" :vitorias="deck.vitorias" :derrotas="deck.derrotas" :progresso="deck.progresso"></estatistica-geral>
       <!-- DESCRICAO -->
+
+
       <br><br>
       <h2 class="subtitle">DESCRIÇÃO</h2>
       <div class="block">
@@ -34,6 +36,7 @@
     </div>
 
     <!-- CARTAS -->
+
     <div class="column is-one-quarter" style="padding-top: 60px;">
       <deck-cartas :cartas="deck.cartas"></deck-cartas>
     </div>

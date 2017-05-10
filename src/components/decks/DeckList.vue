@@ -65,12 +65,10 @@ export default {
   },
   methods: {
     mostrar(row) {
-      console.log(row)
-      // TODO fazer com EVENT EMMIT
-      this.$router.push(`/decks/${row.id}`)
+      this.$emit('selecionado', row.id)
     },
     apagar() {
-      console.log(this.deck.id)
+
     }
   }
 
