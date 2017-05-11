@@ -10,11 +10,9 @@
 </template>
 
 <script>
-import {
-  DeckCores,
-  DeckArquetipos,
-  DeckTipos
-} from '@/components/decks'
+import DeckCores from './DeckCores'
+import DeckArquetipos from './DeckArquetipos'
+import DeckTipos from './DeckTipos'
 
 export default {
   name: 'deck-partidas',

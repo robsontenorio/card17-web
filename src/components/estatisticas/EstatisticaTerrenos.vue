@@ -50,6 +50,7 @@
 
 <script>
 import DeckCor from '@/components/decks/DeckCor'
+
 export default {
   name: 'estatistica-terrenos',
   props: ['terrenos'],

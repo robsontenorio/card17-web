@@ -50,8 +50,8 @@ import {
 } from '@/api'
 
 import Profile from '@/components/pages/Profile'
-import DeckList from '@/components/decks/DeckList'
-import EstatisticaGeral from '@/components/estatisticas/EstatisticaGeral'
+import { DeckList } from '@/components/decks'
+import { EstatisticaGeral } from '@/components/estatisticas'
 
 export default {
   name: 'pages-home',
@@ -62,7 +62,7 @@ export default {
   },
   data() {
     return {
-      tab: 0,
+      tab: null,
       user: null,
       decks: {
         batalha: [],

@@ -41,13 +41,10 @@
 </template>
 
 <script>
+import { DeckPartidas, DeckCartas } from '@/components/decks'
 import DeckDistribuicao from '@/components/decks/DeckDistribuicao'
-import DeckPartidas from '@/components/decks/DeckPartidas'
-import DeckCartas from '@/components/decks/DeckCartas'
-import DeckCores from '@/components/decks/DeckCores'
-import DeckArquetipos from '@/components/decks/DeckArquetipos'
-import DeckTipos from '@/components/decks/DeckTipos'
-import EstatisticaGeral from '@/components/estatisticas/EstatisticaGeral'
+
+import { EstatisticaGeral } from '@/components/estatisticas'
 
 export default {
   name: 'deck',
@@ -55,9 +52,6 @@ export default {
   components: {
     DeckDistribuicao,
     DeckCartas,
-    DeckCores,
-    DeckArquetipos,
-    DeckTipos,
     DeckPartidas,
     EstatisticaGeral
   },

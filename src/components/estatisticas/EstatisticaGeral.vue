@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import EstatisticaProgresso from '@/components/estatisticas/EstatisticaProgresso'
+import EstatisticaProgresso from './EstatisticaProgresso'
 
 export default {
   name: 'estatistica-geral',

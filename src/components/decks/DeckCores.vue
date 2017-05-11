@@ -1,7 +1,6 @@
 <template>
 <span>
   <deck-cor key="cor.chave" :chave="cor.chave" v-for="cor in cores" v-if="cor.chave != 'PANDORA'"></deck-cor>
-
 </span>
 </template>
 

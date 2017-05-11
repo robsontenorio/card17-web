@@ -81,13 +81,9 @@
 </template>
 
 <script>
-import DeckCor from '@/components/decks/DeckCor'
 export default {
   name: 'estatistica-faerias',
   props: ['faerias'],
-  components: {
-    DeckCor
-  },
   computed: {
     total() {
       return 1

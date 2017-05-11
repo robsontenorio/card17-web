@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import EstatisticaTerrenos from '@/components/estatisticas/EstatisticaTerrenos'
-import EstatisticaFaerias from '@/components/estatisticas/EstatisticaFaerias'
+import { EstatisticaTerrenos, EstatisticaFaerias } from '@/components/estatisticas'
+
 export default {
   name: 'deck-distribuicao',
   props: ['terrenos', 'faerias', 'tipos'],
