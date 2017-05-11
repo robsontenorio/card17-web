@@ -8,13 +8,6 @@
         </span>
       </template>
     </column>
-    <column label="Tipo">
-      <template scope="row">
-        <span>
-            <span v-for="arquetipo in row.matchup.arquetipos">{{ arquetipo.nome }} </span>
-        </span>
-      </template>
-    </column>
     <column label="Cores">
       <template scope="row">
         <span>
@@ -22,7 +15,15 @@
         </span>
       </template>
     </column>
-    <column label="Winrate">
+    <column label="Tipo">
+      <template scope="row">
+        <span>
+            <deck-arquetipos :arquetipos="row.matchup.arquetipos"></deck-arquetipos>
+            <deck-tipos :tipos="row.matchup.tipos"></deck-tipos>
+        </span>
+      </template>
+    </column>
+    <column label="%">
       <template scope="row">
         <span>
               <span class="tag is-default is-small">{{row.winrate}} %</span>
@@ -34,9 +35,7 @@
     <column label="Recente">
       <template scope="row">
         <span>
-          <span class="icon" style="width: 10px; font-size: 8pt;" v-for="partida in row.partidas">
-            <i :style="`color: ${ partida.evento == '1' ? 'GREEN' : 'RED' }`"  class="fa fa-circle"></i>
-          </span>
+          <deck-evento key="partida.id" :evento="partida.evento" v-for="partida in row.partidas"></deck-evento>
         </span>
       </template>
     </column>
@@ -51,12 +50,18 @@
 
 <script>
 import DeckCores from '@/components/decks/DeckCores'
+import DeckArquetipos from '@/components/decks/DeckArquetipos'
+import DeckTipos from '@/components/decks/DeckTipos'
+import DeckEvento from '@/components/decks/DeckEvento'
 
 export default {
   name: 'deck-list',
   props: ['decks'],
   components: {
-    DeckCores
+    DeckCores,
+    DeckArquetipos,
+    DeckEvento,
+    DeckTipos
   },
   data() {
     return {

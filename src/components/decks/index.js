@@ -19,6 +19,7 @@ import DeckDistribuicao from './DeckDistribuicao'
 import DeckList from './DeckList'
 import DeckPartidas from './DeckPartidas'
 import DeckTipos from './DeckTipos'
+import DeckEvento from './DeckEvento'
 
 export {
   Deck,
@@ -30,5 +31,6 @@ export {
   DeckDistribuicao,
   DeckList,
   DeckPartidas,
-  DeckTipos
+  DeckTipos,
+  DeckEvento
 }

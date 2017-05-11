@@ -3,6 +3,9 @@
   <div v-for="carta in cartas">
     <deck-carta :carta="carta"></deck-carta>
   </div>
+  <div class="cartas-empty" v-if="cartas.length == 0">
+    Nenhuma carta registrada para este deck
+  </div>
 </div>
 </template>
 
@@ -19,4 +22,12 @@ export default {
 </script>
 
 <style scoped>
+.cartas-empty {
+  border: 3px dashed whitesmoke;
+  text-align: center;
+  padding: 20px;
+  font-size: 20pt;
+  color: #c3c3c3;
+  height: 600px;
+}
 </style>

@@ -72,6 +72,10 @@ a.nav-item {
   border-bottom-color: #616161;
 }
 
+.tabs .icon:last-child, .tabs .icon:first-child{
+  margin: 0;
+}
+
 .faeria {
     color: black;
     font-weight: 600;

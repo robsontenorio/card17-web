@@ -1,11 +1,44 @@
 <template>
-<div>
-  <div v-for="partida in partidas">
-    {{ partida.evento }} :
-    <deck-cores :cores="partida.matchup.cores"></deck-cores>
-    <deck-arquetipos :arquetipos="partida.matchup.arquetipos"></deck-arquetipos>
-    <deck-tipos :tipos="partida.matchup.tipos"></deck-tipos>
-  </div>
+<div v-if="partidas">
+  <data-table :data="partidas">
+    <column label="R">
+      <template scope="row">
+        <div class="">
+            <deck-evento :evento="row.evento"></deck-evento>
+        </div>
+      </template>
+    </column>
+    <column label="P">
+      <template scope="row">
+        <div class="">
+            <span v-if="row.evento == 1" class="icon is-small"><i class="fa fa-check"></i></span>
+        </div>
+      </template>
+    </column>
+    <column label="Cores">
+      <template scope="row">
+        <div class="">
+            <deck-cores :cores="row.matchup.cores"></deck-cores>
+        </div>
+      </template>
+    </column>
+    <column label="Tipo">
+      <template scope="row">
+        <div>
+            <deck-arquetipos :arquetipos="row.matchup.arquetipos"></deck-arquetipos>
+            <deck-tipos :tipos="row.matchup.tipos"></deck-tipos>
+        </div>
+      </template>
+    </column>
+  </data-table>
+
+  <p>
+    R = Resultado
+  </p>
+  <p>
+    P = Joguei primeiro
+  </p>
+
 </div>
 </template>
 
@@ -13,6 +46,7 @@
 import DeckCores from './DeckCores'
 import DeckArquetipos from './DeckArquetipos'
 import DeckTipos from './DeckTipos'
+import DeckEvento from './DeckEvento'
 
 export default {
   name: 'deck-partidas',
@@ -20,7 +54,8 @@ export default {
   components: {
     DeckCores,
     DeckArquetipos,
-    DeckTipos
+    DeckTipos,
+    DeckEvento
   }
 }
 </script>

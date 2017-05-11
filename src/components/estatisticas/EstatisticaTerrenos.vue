@@ -74,7 +74,9 @@ export default {
       return (this.terrenos.HUMAN) ? this.terrenos.HUMAN : 0
     },
     total() {
-      return this.blue + this.red + this.green + this.human
+      let t = this.blue + this.red + this.green + this.human
+      t = (t === 0) ? 1 : t
+      return t
     },
     yellow_height() {
       return 100 - ((this.yellow / this.total) * 100)
