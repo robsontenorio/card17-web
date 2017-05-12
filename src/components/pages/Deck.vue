@@ -5,9 +5,7 @@
 </template>
 
 <script>
-import {
-  deckAPI
-} from '@/api'
+import { deckAPI } from '@/api'
 
 import Deck from '@/components/decks/Deck'
 
@@ -30,7 +28,7 @@ export default {
   },
   created() {
     let filtros = {
-      includes: 'cartas,partidas,matchup,partidas.matchup.tipos,partidas.matchup.arquetipos,partidas.matchup.cores',
+      includes: 'cartas,partidas,matchup.cores,matchup.arquetipos,matchup.tipos,partidas.matchup.tipos,partidas.matchup.arquetipos,partidas.matchup.cores',
       appends: 'distribuicao,progresso'
     }
 

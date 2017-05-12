@@ -15,7 +15,7 @@
 
 
  // TJDFT
-
+//
 //
 // .notification{
 //   background-color: #efefef !important;
@@ -32,6 +32,10 @@
 // .tabs li.is-active a
 // {
 //   color: #c0c0c0 !important;
+// }
+//
+// footer{
+//   display: none;
 // }
 
 // TJDFT
@@ -74,6 +78,38 @@ a.nav-item {
 
 .tabs .icon:last-child, .tabs .icon:first-child{
   margin: 0;
+}
+
+
+.blu-checkbox{
+  padding-left: 5px;
+  margin-bottom: 10px;
+}
+
+.blu-checkbox img{
+  opacity: 0.2;
+}
+
+.blu-checkbox.on img{
+  opacity: 1;
+}
+
+.blu-checkbox .tag{
+  background-color: white;
+  border: 1px solid #c0c0c0;
+}
+
+.blu-checkbox.on .tag{
+  background-color: $info;
+  color: white;
+}
+
+.blu-checkbox.on:after, .blu-checkbox.is-primary.on:before, .blu-checkbox:before{
+  display: none;
+}
+
+.step-content .button.is-primary{
+    background-color: $info;
 }
 
 .faeria {

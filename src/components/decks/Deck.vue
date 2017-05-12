@@ -3,7 +3,12 @@
   <div class="columns">
     <!-- COLUNA ESQUERDA -->
     <div class="column">
-      <h1 class="title">{{ deck.nome }}&nbsp;</h1> //TODO cores, arquetipos, tipo
+      <h1 class="title">{{ deck.nome }}&nbsp;</h1>
+      <div class="block" v-if="deck.matchup">
+        <deck-cores :cores="deck.matchup.cores"></deck-cores>
+        <deck-arquetipos :arquetipos="deck.matchup.arquetipos"></deck-arquetipos>
+        <deck-tipos :tipos="deck.matchup.tipos"></deck-tipos>
+      </div>
 
       <!-- BLOCO ESTATISTICA GERAL -->
       <estatistica-geral :winrate="deck.winrate" :vitorias="deck.vitorias" :derrotas="deck.derrotas" :progresso="deck.progresso"></estatistica-geral>
@@ -11,6 +16,8 @@
 
 
       <br><br>
+
+
       <div class="block">
         {{ deck.descricao }}
       </div>
@@ -33,7 +40,7 @@
 
     <!-- CARTAS -->
 
-    <div class="column is-one-quarter" style="padding-top: 60px;">
+    <div class="column is-one-quarter" style="padding-top: 100px;">
       <deck-cartas :cartas="deck.cartas"></deck-cartas>
     </div>
 
@@ -45,6 +52,9 @@
 <script>
 import DeckPartidas from '@/components/decks/DeckPartidas'
 import DeckCartas from '@/components/decks/DeckCartas'
+import DeckCores from '@/components/decks/DeckCores'
+import DeckTipos from '@/components/decks/DeckTipos'
+import DeckArquetipos from '@/components/decks/DeckArquetipos'
 import DeckDistribuicao from '@/components/decks/DeckDistribuicao'
 
 import { EstatisticaGeral } from '@/components/estatisticas'
@@ -55,7 +65,10 @@ export default {
   components: {
     DeckDistribuicao,
     DeckCartas,
+    DeckCores,
     DeckPartidas,
+    DeckTipos,
+    DeckArquetipos,
     EstatisticaGeral
   },
   data() {
