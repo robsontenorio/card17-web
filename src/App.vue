@@ -46,9 +46,17 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'app',
+  mounted() {
+    this.carregar()
+  },
   methods: {
+    ...mapActions({
+      carregar: 'LOAD_COMUM'
+    }),
     logout() {
       this.$auth.logout({
         makeRequest: true,

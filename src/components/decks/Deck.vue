@@ -11,13 +11,10 @@
       </div>
 
       <!-- BLOCO ESTATISTICA GERAL -->
-      <estatistica-geral :winrate="deck.winrate" :vitorias="deck.vitorias" :derrotas="deck.derrotas" :progresso="deck.progresso"></estatistica-geral>
+      <estatistica-geral :winrate="winrate" :vitorias="vitorias" :derrotas="derrotas" :progresso="progresso"></estatistica-geral>
+
       <!-- DESCRICAO -->
-
-
       <br><br>
-
-
       <div class="block">
         {{ deck.descricao }}
       </div>
@@ -33,7 +30,7 @@
       <!-- PARTIDAS -->
       <br><br><br>
       <h2 class="subtitle">PARTIDAS</h2>
-      <deck-partidas :partidas="deck.partidas"></deck-partidas>
+      <deck-partidas></deck-partidas>
 
 
     </div>
@@ -50,6 +47,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import DeckPartidas from '@/components/decks/DeckPartidas'
 import DeckCartas from '@/components/decks/DeckCartas'
 import DeckCores from '@/components/decks/DeckCores'
@@ -61,7 +60,6 @@ import { EstatisticaGeral } from '@/components/estatisticas'
 
 export default {
   name: 'deck',
-  props: ['deck'],
   components: {
     DeckDistribuicao,
     DeckCartas,
@@ -72,9 +70,16 @@ export default {
     EstatisticaGeral
   },
   data() {
-    return {
-      periodo: 'temporada'
-    }
+    return {}
+  },
+  computed: {
+    ...mapState({
+      deck: 'deck',
+      winrate: state => state.deck.winrate,
+      derrotas: state => state.deck.derrotas,
+      vitorias: state => state.deck.vitorias,
+      progresso: state => state.deck.progresso
+    })
   }
 }
 </script>

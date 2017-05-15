@@ -1,11 +1,14 @@
 <template>
 <div>
-  <deck v-loading="!deck.descricao" :deck="deck"></deck>
+
+  <!-- //TODO PROFILE AQUI EM CIMA CASO NÃO SEJA O DONO -->
+  <deck v-loading="carregando"></deck>
+
 </div>
 </template>
 
 <script>
-import { deckAPI } from '@/api'
+import { mapActions } from 'vuex'
 
 import Deck from '@/components/decks/Deck'
 
@@ -15,25 +18,17 @@ export default {
   },
   data() {
     return {
-      deck: {
-        id: this.$route.params.id,
-        cartas: {},
-        distribuicao: {
-          terrenos: {},
-          ferias: {},
-          tipos: {}
-        }
-      }
+      carregando: true
     }
   },
-  created() {
-    let filtros = {
-      includes: 'cartas,partidas,matchup.cores,matchup.arquetipos,matchup.tipos,partidas.matchup.tipos,partidas.matchup.arquetipos,partidas.matchup.cores',
-      appends: 'distribuicao,progresso'
-    }
-
-    deckAPI.get(this.deck.id, filtros).then(response => {
-      this.deck = response.data
+  mounted() {
+    this.carregar(this.$route.params.id).then(response => {
+      this.carregando = false
+    })
+  },
+  methods: {
+    ...mapActions({
+      carregar: 'LOAD_DECK'
     })
   }
 }

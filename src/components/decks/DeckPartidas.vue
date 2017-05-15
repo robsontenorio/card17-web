@@ -1,8 +1,7 @@
 <template>
 <div v-if="partidas">
-
   <div class="block">
-    <button @click="add()" class="button is-primary">
+    <button @click="adding = true" class="button is-primary">
       <span class="icon">
         <i class="fa fa-plus"></i>
       </span>
@@ -116,7 +115,7 @@
 </template>
 
 <script>
-import { comumAPI, partidaAPI } from '@/api'
+import { mapState, mapActions } from 'vuex'
 
 import DeckCores from './DeckCores'
 import DeckCor from './DeckCor'
@@ -126,7 +125,6 @@ import DeckEvento from './DeckEvento'
 
 export default {
   name: 'deck-partidas',
-  props: ['partidas'],
   components: {
     DeckCores,
     DeckArquetipos,
@@ -141,10 +139,9 @@ export default {
       currentStep: 0,
       showFooter: true,
       adding: false,
-      comum: {},
       partida: {
         id: 0,
-        deck_id: 28, // <-------------------------
+        deck_id: null,
         primeiro: null,
         evento: null,
         matchup: {
@@ -155,7 +152,17 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapState({
+      partidas: state => state.deck.partidas,
+      deck_id: state => state.deck.id,
+      comum: state => state.comum
+    })
+  },
   methods: {
+    ...mapActions({
+      add: 'ADD_PARTIDA'
+    }),
     next() {
       this.currentStep++
     },
@@ -165,23 +172,17 @@ export default {
     filtrar(nome) {
       return nome.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1
     },
-    add() {
-      // TODO mover para mounted()
-      this.adding = true
-      comumAPI.all().then(response => {
-        this.comum = response.data
-      })
-    },
     salvar() {
       let self = this
 
-      partidaAPI.salvar(this.partida).then(response => {
+      this.partida.deck_id = this.deck_id
+
+      this.add(this.partida).then(response => {
         self.reset()
         self.$notify.success({
           content: 'partida adicionada'
         })
       }).catch(function (error) {
-        console.log(error)
         self.erro = error.response.data
         self.$notify.danger({
           content: error.response.data.message,
@@ -190,6 +191,7 @@ export default {
       })
     },
     reset() {
+      // TODO parece que não está zerando corretamente
       Object.assign(this.$data, this.$options.data())
     }
 

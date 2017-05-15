@@ -1,5 +1,6 @@
 <template>
 <div>
+  <!--  // TODO CSS  ANIMACAO BARRAS (EASY TRANSLATION?) -->
   <div class="notification">
     <div class="columns">
       <div class="column has-text-centered">
