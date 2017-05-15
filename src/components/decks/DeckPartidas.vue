@@ -55,7 +55,7 @@
   </p>
 
   <b-aside :is-show="adding" :show-footer="false" title="PARTIDA" placement="right" @close="adding=false">
-    <steps :current="0" type="line" prev-text="voltar" next-text="avançar">
+    <steps :current="currentStep" type="line" :show-footer="false" prev-text="voltar" next-text="avançar">
       <step>
         <h2 class="subtitle">QUEM COMEÇOU?</h2>
         <radio-group v-model="partida.primeiro">
@@ -99,13 +99,24 @@
         </checkbox-group>
       </step>
     </steps>
+    <alert :title="erro.message" type="danger" v-if="erro">
+      <erros :itens="erro.errors"></erros>
+    </alert>
+    <div v-if="showFooter" class="step-footer has-text-right">
+      <button class="button is-primary" @click="back()" v-show="this.currentStep === 1">voltar</button>
+      <button class="button is-primary" @click="next()" v-show="this.currentStep === 0">avançar</button>
+      <button class="button is-primary" @click="salvar()" v-show="this.currentStep === 1">
+        <span class="icon"><i class="fa fa-check"></i></span>
+        <span>salvar</span>
+      </button>
+    </div>
   </b-aside>
 
 </div>
 </template>
 
 <script>
-import { comumAPI } from '@/api'
+import { comumAPI, partidaAPI } from '@/api'
 
 import DeckCores from './DeckCores'
 import DeckCor from './DeckCor'
@@ -125,8 +136,15 @@ export default {
   },
   data() {
     return {
+      erro: null,
       filtro: '',
+      currentStep: 0,
+      showFooter: true,
+      adding: false,
+      comum: {},
       partida: {
+        id: 0,
+        deck_id: 28, // <-------------------------
         primeiro: null,
         evento: null,
         matchup: {
@@ -134,22 +152,47 @@ export default {
           cores: null,
           tipos: null
         }
-
-      },
-      adding: false,
-      comum: {}
+      }
     }
   },
   methods: {
+    next() {
+      this.currentStep++
+    },
+    back() {
+      this.currentStep--
+    },
     filtrar(nome) {
       return nome.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1
     },
     add() {
+      // TODO mover para mounted()
       this.adding = true
       comumAPI.all().then(response => {
         this.comum = response.data
       })
+    },
+    salvar() {
+      let self = this
+
+      partidaAPI.salvar(this.partida).then(response => {
+        self.reset()
+        self.$notify.success({
+          content: 'partida adicionada'
+        })
+      }).catch(function (error) {
+        console.log(error)
+        self.erro = error.response.data
+        self.$notify.danger({
+          content: error.response.data.message,
+          placement: 'top-left'
+        })
+      })
+    },
+    reset() {
+      Object.assign(this.$data, this.$options.data())
     }
+
   }
 
 }
