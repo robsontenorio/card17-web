@@ -63,7 +63,7 @@
         </radio-group>
         <br />
         <h2 class="subtitle">CORES DO OPONENTE</h2>
-        <checkbox-group v-model="partida.matchup.cores">
+        <checkbox-group ref="checkCores" v-model="partida.matchup.cores">
           <checkbox key="cor.id" :val="cor.id" v-for="cor in comum.cores" v-if="cor.chave != 'HUMAN' && cor.chave != 'PANDORA'">
             <deck-cor size="32x32" :chave="cor.chave"></deck-cor>
           </checkbox>
@@ -91,13 +91,14 @@
           <i class="fa fa-search"></i>
         </p>
         <br>
-        <checkbox-group v-model="partida.matchup.tipos">
+        <checkbox-group ref="checkTipos" v-model="partida.matchup.tipos">
           <checkbox :key="tipo.id" :val="tipo.id" v-for="tipo in comum.tipos" v-show="filtrar(tipo.nome)">
             <span class="tag">{{ tipo.nome }}</span>
           </checkbox>
         </checkbox-group>
       </step>
     </steps>
+    <!-- // TODO criar componente para encapsular <alert-erros></alert-erros> que recebe titulo opcional, e uma lista de erros -->
     <alert :title="erro.message" type="danger" v-if="erro">
       <erros :itens="erro.errors"></erros>
     </alert>
@@ -146,8 +147,8 @@ export default {
         evento: null,
         matchup: {
           arquetipos: null,
-          cores: null,
-          tipos: null
+          cores: [],
+          tipos: []
         }
       }
     }
@@ -182,7 +183,7 @@ export default {
         self.$notify.success({
           content: 'partida adicionada'
         })
-      }).catch(function (error) {
+      }).catch(function(error) {
         self.erro = error.response.data
         self.$notify.danger({
           content: error.response.data.message,
@@ -191,7 +192,22 @@ export default {
       })
     },
     reset() {
-      // TODO parece que não está zerando corretamente
+      // TODO o component checkboxgroup deveria ser reativo (issue aberta)
+
+      this.$refs.checkTipos.checkedList = []
+      this.$refs.checkCores.checkedList = []
+
+      this.$refs.checkTipos.$children.map(c => {
+        c.isChecked = false
+        c.realVal = null
+      })
+      this.$refs.checkCores.$children.map(c => {
+        c.isChecked = false
+        c.realVal = null
+      })
+
+      // END
+
       Object.assign(this.$data, this.$options.data())
     }
 

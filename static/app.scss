@@ -17,26 +17,30 @@
  // TJDFT
 //
 //
-// .notification{
-//   background-color: #efefef !important;
-// }
-//
-// .nav {
-//   background-color: #efefef !important;
-// }
-//
-// .cover , img, .carta-mini, .notification, .title, .column{
-//   opacity: 0.4 !important;
-// }
-//
-// .tabs li.is-active a
-// {
-//   color: #c0c0c0 !important;
-// }
-//
-// footer{
-//   display: none;
-// }
+.notification{
+  background-color: #efefef !important;
+}
+
+.nav {
+  background-color: #efefef !important;
+}
+
+h2, .cover , img, .carta-mini, .notification, .title, .column{
+  opacity: 0.4 !important;
+}
+
+.blu-checkbox.on img{
+  opacity: 1 !important;
+}
+
+.tabs li.is-active a
+{
+  color: #c0c0c0 !important;
+}
+
+footer{
+  display: none;
+}
 
 // TJDFT
 
