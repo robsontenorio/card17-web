@@ -39,7 +39,7 @@
     <column label="Tipo">
       <template scope="row">
         <div>
-            <deck-arquetipos :arquetipos="row.matchup.arquetipos"></deck-arquetipos>
+            <deck-arquetipo :arquetipo="row.matchup.arquetipo"></deck-arquetipo>
             <deck-tipos :tipos="row.matchup.tipos"></deck-tipos>
         </div>
       </template>
@@ -71,8 +71,8 @@
 
         <br />
         <h2 class="subtitle">ARQUÉTIPO DO OPONENTE</h2>
-        <radio-group v-model="partida.matchup.arquetipos">
-          <radio-button key="arquetipo.id" :val="arquetipo.id" v-for="arquetipo in comum.arquetipos">{{ arquetipo.nome }}</radio-button>
+        <radio-group v-model="partida.matchup.arquetipo_id">
+          <radio-button key="arquetipo.id" :val="arquetipo.id.toString()" v-for="arquetipo in comum.arquetipos">{{ arquetipo.nome }}</radio-button>
         </radio-group>
 
         <br />
@@ -98,10 +98,9 @@
         </checkbox-group>
       </step>
     </steps>
-    <!-- // TODO criar componente para encapsular <alert-erros></alert-erros> que recebe titulo opcional, e uma lista de erros -->
-    <alert :title="erro.message" type="danger" v-if="erro">
-      <erros :itens="erro.errors"></erros>
-    </alert>
+
+    <alert-erros :titulo="erro.message" :itens="erro.errors" v-if="erro"></alert-erros>
+    <br>
     <div v-if="showFooter" class="step-footer has-text-right">
       <button class="button is-primary" @click="back()" v-show="this.currentStep === 1">voltar</button>
       <button class="button is-primary" @click="next()" v-show="this.currentStep === 0">avançar</button>
@@ -120,7 +119,7 @@ import { mapState, mapActions } from 'vuex'
 
 import DeckCores from './DeckCores'
 import DeckCor from './DeckCor'
-import DeckArquetipos from './DeckArquetipos'
+import DeckArquetipo from './DeckArquetipo'
 import DeckTipos from './DeckTipos'
 import DeckEvento from './DeckEvento'
 
@@ -128,7 +127,7 @@ export default {
   name: 'deck-partidas',
   components: {
     DeckCores,
-    DeckArquetipos,
+    DeckArquetipo,
     DeckTipos,
     DeckEvento,
     DeckCor
@@ -146,7 +145,7 @@ export default {
         primeiro: null,
         evento: null,
         matchup: {
-          arquetipos: null,
+          arquetipo_id: null,
           cores: [],
           tipos: []
         }
@@ -183,7 +182,7 @@ export default {
         self.$notify.success({
           content: 'partida adicionada'
         })
-      }).catch(function(error) {
+      }).catch(function (error) {
         self.erro = error.response.data
         self.$notify.danger({
           content: error.response.data.message,

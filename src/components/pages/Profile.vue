@@ -46,11 +46,11 @@ export default {
       return w + '%'
     },
     vitorias() {
-      let v = ((this.user.estatisticas.pandora.vitorias + this.user.estatisticas.batalha.vitorias) / 2)
+      let v = ((this.user.estatisticas.pandora.vitorias + this.user.estatisticas.batalha.vitorias))
       return v
     },
     derrotas() {
-      let d = ((this.user.estatisticas.pandora.derrotas + this.user.estatisticas.batalha.derrotas) / 2)
+      let d = ((this.user.estatisticas.pandora.derrotas + this.user.estatisticas.batalha.derrotas))
       return d
     },
     adora() {

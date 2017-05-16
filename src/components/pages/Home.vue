@@ -85,13 +85,13 @@ export default {
   created() {
     let filtrosBatalha = {
       user_id: this.$auth.user().id,
-      includes: 'dificuldade,modo,matchup.cores,matchup.arquetipos,matchup.tipos,partidas',
+      includes: 'dificuldade,modo,matchup.cores,matchup.arquetipo,matchup.tipos,partidas',
       modo_chave: 'BATALHA'
     }
 
     let filtrosPandora = {
       user_id: this.$auth.user().id,
-      includes: 'dificuldade,modo,matchup.cores,matchup.arquetipos,matchup.tipos,partidas',
+      includes: 'dificuldade,modo,matchup.cores,matchup.arquetipo,matchup.tipos,partidas',
       modo_chave: 'PANDORA'
     }
 

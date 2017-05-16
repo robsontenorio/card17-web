@@ -6,7 +6,7 @@
       <h1 class="title">{{ deck.nome }}&nbsp;</h1>
       <div class="block" v-if="deck.matchup">
         <deck-cores :cores="deck.matchup.cores"></deck-cores>
-        <deck-arquetipos :arquetipos="deck.matchup.arquetipos"></deck-arquetipos>
+        <deck-arquetipo :arquetipo="deck.matchup.arquetipo"></deck-arquetipo>
         <deck-tipos :tipos="deck.matchup.tipos"></deck-tipos>
       </div>
 
@@ -38,6 +38,7 @@
     <!-- CARTAS -->
 
     <div class="column is-one-quarter" style="padding-top: 100px;">
+      <button v-if="deck.user_id === this.$auth.user().id" class="button is-primary" @click="editar()">editar deck</button>
       <deck-cartas :cartas="deck.cartas"></deck-cartas>
     </div>
 
@@ -53,7 +54,7 @@ import DeckPartidas from '@/components/decks/DeckPartidas'
 import DeckCartas from '@/components/decks/DeckCartas'
 import DeckCores from '@/components/decks/DeckCores'
 import DeckTipos from '@/components/decks/DeckTipos'
-import DeckArquetipos from '@/components/decks/DeckArquetipos'
+import DeckArquetipo from '@/components/decks/DeckArquetipo'
 import DeckDistribuicao from '@/components/decks/DeckDistribuicao'
 
 import { EstatisticaGeral } from '@/components/estatisticas'
@@ -66,7 +67,7 @@ export default {
     DeckCores,
     DeckPartidas,
     DeckTipos,
-    DeckArquetipos,
+    DeckArquetipo,
     EstatisticaGeral
   },
   data() {
@@ -80,7 +81,14 @@ export default {
       vitorias: state => state.deck.vitorias,
       progresso: state => state.deck.progresso
     })
+  },
+  methods: {
+    editar() {
+      let id = this.$route.params.id
+      this.$router.push(`/decks/${id}/edit`)
+    }
   }
+
 }
 </script>
 

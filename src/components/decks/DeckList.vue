@@ -18,7 +18,7 @@
     <column label="Tipo">
       <template scope="row">
         <span>
-            <deck-arquetipos :arquetipos="row.matchup.arquetipos"></deck-arquetipos>
+            <deck-arquetipo :arquetipo="row.matchup.arquetipo"></deck-arquetipo>
             <deck-tipos :tipos="row.matchup.tipos"></deck-tipos>
         </span>
       </template>
@@ -50,7 +50,7 @@
 
 <script>
 import DeckCores from '@/components/decks/DeckCores'
-import DeckArquetipos from '@/components/decks/DeckArquetipos'
+import DeckArquetipo from '@/components/decks/DeckArquetipo'
 import DeckTipos from '@/components/decks/DeckTipos'
 import DeckEvento from '@/components/decks/DeckEvento'
 
@@ -59,7 +59,7 @@ export default {
   props: ['decks'],
   components: {
     DeckCores,
-    DeckArquetipos,
+    DeckArquetipo,
     DeckEvento,
     DeckTipos
   },

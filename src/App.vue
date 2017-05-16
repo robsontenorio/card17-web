@@ -33,7 +33,7 @@
       <router-view></router-view>
     </div>
   </section>
-  <footer class="footer sticky">
+  <!-- <footer class="footer sticky">
     <div class="container">
       <div class="content has-text-centered">
         <p>
@@ -41,7 +41,7 @@
         </p>
       </div>
     </div>
-  </footer>
+  </footer> -->
 </div>
 </template>
 

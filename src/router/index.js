@@ -10,7 +10,7 @@ function load(name) {
 export default new Router({
   mode: 'history',
   // linkActiveClass: 'is-active',
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
     return { x: 0, y: 0 }
   },
   routes: [
@@ -19,14 +19,9 @@ export default new Router({
       component: load('pages/Hello')
     },
     {
-      path: '/hello2',
-      component: load('pages/Hello2'),
-      meta: {auth: true}
-    },
-    {
       path: '/home',
       component: load('pages/Home'),
-      meta: {auth: true}
+      meta: { auth: true }
     },
     {
       path: '/login',
@@ -47,6 +42,10 @@ export default new Router({
     {
       path: '/decks/:id',
       component: load('pages/Deck')
+    },
+    {
+      path: '/decks/:id/edit',
+      component: load('decks/DeckEdit')
     },
     {
       path: '*',

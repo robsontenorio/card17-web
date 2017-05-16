@@ -10,7 +10,7 @@
 // export { default as DeckTipos } from './DeckTipos'
 
 import Deck from './Deck'
-import DeckArquetipos from './DeckArquetipos'
+import DeckArquetipo from './DeckArquetipo'
 import DeckCartas from './DeckCartas'
 import DeckCarta from './DeckCarta'
 import DeckCores from './DeckCores'
@@ -23,7 +23,7 @@ import DeckEvento from './DeckEvento'
 
 export {
   Deck,
-  DeckArquetipos,
+  DeckArquetipo,
   DeckCartas,
   DeckCarta,
   DeckCores,

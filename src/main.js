@@ -14,13 +14,13 @@ import VueBlu from 'vue-blu'
 import '../static/app.scss'
 
 import App from './App'
-import Erros from '@/components/html/Erros'
+import AlertErros from '@/components/html/AlertErros'
 import router from './router'
 
 Vue.config.productionTip = true
 Vue.router = router // VueAuth precisa disso
 
-Vue.component('erros', Erros)
+Vue.component('alert-erros', AlertErros)
 Vue.use(VueBlu)
 Vue.use(VueAxios, axios)
 Vue.use(VueAuth, {

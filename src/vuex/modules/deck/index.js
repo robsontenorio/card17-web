@@ -24,7 +24,7 @@ const getters = {
 const actions = {
   LOAD_DECK({ commit }, id) {
     let filtros = {
-      includes: 'cartas,partidas,matchup.cores,matchup.arquetipos,matchup.tipos,partidas.matchup.tipos,partidas.matchup.arquetipos,partidas.matchup.cores',
+      includes: 'cartas,partidas,matchup.cores,matchup.arquetipo,matchup.tipos,partidas.matchup.tipos,partidas.matchup.arquetipo,partidas.matchup.cores',
       appends: 'distribuicao,progresso'
     }
 
