@@ -36,16 +36,15 @@ export default {
       arquivo: 'ativos'
     }
   },
-  created() {
+  async created() {
     let filtros = {
       user_id: this.$auth.user().id,
       includes: 'dificuldade,modo,matchup.cores,matchup.arquetipos,matchup.tipos,partidas',
       'modo_chave': 'BATALHA'
     }
 
-    deckAPI.all(filtros).then(response => {
-      this.decks = response.data.data
-    })
+    const response = await deckAPI.all(filtros)
+    this.decks = response.data.data
   }
 }
 </script>

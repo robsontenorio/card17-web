@@ -22,21 +22,19 @@ const getters = {
 
 // actions
 const actions = {
-  LOAD_DECK({ commit }, id) {
+  async LOAD_DECK({ commit }, id) {
     let filtros = {
-      includes: 'cartas,partidas,matchup.cores,matchup.arquetipo,matchup.tipos,partidas.matchup.tipos,partidas.matchup.arquetipo,partidas.matchup.cores',
+      includes: 'cartas,partidas,modo,matchup.cores,matchup.arquetipo,matchup.tipos,partidas.matchup.tipos,partidas.matchup.arquetipo,partidas.matchup.cores',
       appends: 'distribuicao,progresso'
     }
 
-    return deckAPI.get(id, filtros).then(response => {
-      commit('SET_DECK_FULL', { deck: response.data })
-    })
+    const response = await deckAPI.get(id, filtros)
+    commit('SET_DECK_FULL', { deck: response.data })
   },
-  ADD_PARTIDA({ commit, dispatch }, partida) {
-    return partidaAPI.post(partida).then(response => {
-      commit('ADD_PARTIDA', { partida: response.data })
-      dispatch('LOAD_DECK', state.id) // TODO ? LOAD_PARTIDAS
-    })
+  async ADD_PARTIDA({ commit, dispatch }, partida) {
+    const response = await partidaAPI.post(partida)
+    commit('ADD_PARTIDA', { partida: response.data })
+    dispatch('LOAD_DECK', state.id) // TODO ? LOAD_PARTIDAS
   }
 
 }

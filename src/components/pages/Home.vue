@@ -82,7 +82,7 @@ export default {
       }
     }
   },
-  created() {
+  async created() {
     let filtrosBatalha = {
       user_id: this.$auth.user().id,
       includes: 'dificuldade,modo,matchup.cores,matchup.arquetipo,matchup.tipos,partidas',
@@ -99,18 +99,16 @@ export default {
       appends: 'estatisticas'
     }
 
-    userAPI.get(this.$auth.user().id, filtrosEstatisticas).then(response => {
-      this.estatisticas = response.data.estatisticas
-      this.user = response.data
-    })
+    // TODO aqui poderia ser com THEN mesmo , para que as chamadas fossem paralelas. Com await parecem ser serial
+    let response = await userAPI.get(this.$auth.user().id, filtrosEstatisticas)
+    this.estatisticas = response.data.estatisticas
+    this.user = response.data
 
-    deckAPI.all(filtrosBatalha).then(response => {
-      this.decks.batalha = response.data.data
-    })
+    response = await deckAPI.all(filtrosBatalha)
+    this.decks.batalha = response.data.data
 
-    deckAPI.all(filtrosPandora).then(response => {
-      this.decks.pandora = response.data.data
-    })
+    response = await deckAPI.all(filtrosPandora)
+    this.decks.pandora = response.data.data
   },
   methods: {
     show(i) {

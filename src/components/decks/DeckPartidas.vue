@@ -172,23 +172,17 @@ export default {
     filtrar(nome) {
       return nome.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1
     },
-    salvar() {
-      let self = this
+    async salvar() {
+      this.partida.deck_id = this.deck_id // TODO
 
-      this.partida.deck_id = this.deck_id
-
-      this.add(this.partida).then(response => {
-        self.reset()
-        self.$notify.success({
-          content: 'partida adicionada'
-        })
-      }).catch(function (error) {
-        self.erro = error.response.data
-        self.$notify.danger({
-          content: error.response.data.message,
-          placement: 'top-left'
-        })
-      })
+      try {
+        await this.add(this.partida)
+        this.reset()
+        this.$notify.success({ content: 'partida adicionada' })
+      } catch (error) {
+        this.erro = error.response.data
+        this.$notify.danger({ content: error.response.data.message, placement: 'top-left' })
+      }
     },
     reset() {
       // TODO o component checkboxgroup deveria ser reativo (issue aberta)

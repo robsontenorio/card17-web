@@ -21,10 +21,9 @@ export default {
       carregando: true
     }
   },
-  mounted() {
-    this.carregar(this.$route.params.id).then(response => {
-      this.carregando = false
-    })
+  async mounted() {
+    await this.carregar(this.$route.params.id)
+    this.carregando = false
   },
   methods: {
     ...mapActions({

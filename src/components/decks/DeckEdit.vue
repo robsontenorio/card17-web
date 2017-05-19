@@ -12,7 +12,6 @@
       </div>
     </div>
 
-
     <div class="block">
       <label class="label">Nome do deck</label>
       <p class="control">
@@ -27,25 +26,39 @@
         </p>
         <label class="label">Tipos</label>
         <p class="control">
-          <deck-tipos :tipos="deck.matchup.tiposList"></deck-tipos>
+          <deck-tipos :tipos="tiposSelected"></deck-tipos>
+          <button class="button is-default" @click="addingtipo = true">editar</button>
         </p>
         <label class="label">Descrição</label>
         <p class="control">
           <textarea v-model="deck.descricao" class="textarea" placeholder="Diga algo sobre este deck. Visão geral, muligans, estratégias ..."></textarea>
         </p>
       </div>
-      // TODO descricao
 
     </div>
     <div class="columns">
       <div class="column">
-        pesquisar cartas {{ this.deck.matchup.cores }}
+        pesquisar cartas {{ cartasSelected }}
       </div>
       <div class="column is-one-quarter">
-        <deck-cartas :cartas="deck.cartasList"></deck-cartas>
+
+        <deck-cartas :cartas="cartasSelected"></deck-cartas>
       </div>
     </div>
   </div>
+
+  <b-aside v-if="deck" :is-show="addingtipo" :show-footer="false" title="TIPOS" placement="right" @close="addingtipo=false">
+
+    <p class="control has-icon">
+      <input v-model="filtro" class="input" type="text" placeholder="filtrar...">
+      <i class="fa fa-search"></i>
+    </p>
+    <checkbox-group v-model="deck.matchup.tipos">
+      <checkbox :key="tipo.id" :val="tipo.id" v-for="tipo in comum.tipos" v-show="filtrar(tipo.nome)">
+        <span class="tag">{{ tipo.nome }}</span>
+      </checkbox>
+    </checkbox-group>
+  </b-aside>
 </div>
 </template>
 
@@ -62,29 +75,60 @@ export default {
   },
   data() {
     return {
-      deck: null
+      deck: null,
+      filtro: '',
+      addingtipo: false
     }
   },
-  mounted() {
+  async mounted() {
     let params = {
       includes: 'cartas,matchup.cores,matchup.arquetipo,matchup.tipos'
     }
-    deckAPI.get(this.$route.params.id, params).then(response => {
-      this.deck = response.data
-      // this.deck = Object.assign(this.deck, response.data)
-      this.deck.cartasList = this.deck.cartas
-      this.deck.matchup.tiposList = this.deck.matchup.tipos
-      this.deck.matchup.coresList = this.deck.matchup.cores
-      this.deck.matchup.arquetipo_id = this.deck.matchup.arquetipo_id.toString() // TODO
+
+    const response = await deckAPI.get(this.$route.params.id, params)
+    this.deck = response.data
+    // this.deck = Object.assign(this.deck, response.data)
+
+    this.deck.cartas = this.deck.cartas.map(c => {
+      return {
+        [c.id]: c.total
+      }
     })
+
+    // TODO trazer do backend formatado? appdends? todos aqui...
+    this.deck.matchup.tipos = this.deck.matchup.tipos.map(t => t.id)
+    this.deck.matchup.cores = this.deck.matchup.cores.map(c => c.id)
+    this.deck.matchup.arquetipo_id = this.deck.matchup.arquetipo_id.toString() // TODO
   },
   computed: {
     ...mapState({
       comum: state => state.comum
-    })
+    }),
+    tiposSelected() {
+      return this.comum.tipos.filter(t =>
+        this.deck.matchup.tipos.includes(t.id)
+      )
+    },
+    cartasSelected() {
+      let cartas = this.comum.cartas.filter(c => {
+        return this.deck.cartas.map(c =>
+          Number.parseInt(Object.keys(c)[0])
+        ).includes(c.id)
+      })
+
+      for (let carta of this.deck.cartas) {
+        console.log(cartas[1])
+        // console.log(cartas[Object.keys(carta)[0]])
+        // cartas[Object.keys(carta)[0]] = Object.values(carta)[0]
+      }
+
+      return cartas
+    }
   },
   methods: {
-
+    filtrar(nome) {
+      return nome.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1
+    },
     // converte um array de objetos em string json {carta_id : total, carta_id : total ...}
     cartasToJson(lista) {
       let cartas
@@ -103,24 +147,16 @@ export default {
 
       return JSON.stringify(cartas)
     },
-    salvar() {
-      let self = this
-
-      self.deck.cartas = this.cartasToJson(self.deck.cartasList)
-      self.deck.matchup.cores = this.deck.matchup.coresList.map(c => c.id)
-      self.deck.matchup.tipos = this.deck.matchup.tiposList.map(c => c.id)
-
-      deckAPI.salvar(this.deck).then(response => {
-        self.$router.push(`/decks/${self.deck.id}`)
-        self.$notify.success({
-          content: 'deck registrado'
-        })
-      }).catch(error => {
-        self.erro = error.response.data
-        self.$notify.danger({
-          content: error.response.data.message
-        })
-      })
+    async salvar() {
+      // TODO ao salvar cartas user stringfy... mas perco a referencia?
+      try {
+        const response = await deckAPI.salvar(this.deck)
+        this.$router.push(`/decks/${response.data.id}`)
+        this.$notify.success({ content: 'deck registrado' })
+      } catch (error) {
+        this.erro = error.response.data
+        this.$notify.danger({ content: error.response.data.message })
+      }
     },
     cancelar() {
       let id = this.$route.params.id
