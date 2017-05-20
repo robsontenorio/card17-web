@@ -38,7 +38,10 @@
     </div>
     <div class="columns">
       <div class="column">
-        pesquisar cartas {{ cartasSelected }}
+        <button class="button is-primary" @click="addcarta()">add</button> {{ this.deck.cartas }}
+        <br><br><br> pesquisar cartas {{ cartasSelected }}
+
+
       </div>
       <div class="column is-one-quarter">
 
@@ -87,15 +90,13 @@ export default {
 
     const response = await deckAPI.get(this.$route.params.id, params)
     this.deck = response.data
-    // this.deck = Object.assign(this.deck, response.data)
-
     this.deck.cartas = this.deck.cartas.map(c => {
       return {
-        [c.id]: c.total
+        id: c.id,
+        total: c.total
       }
     })
 
-    // TODO trazer do backend formatado? appdends? todos aqui...
     this.deck.matchup.tipos = this.deck.matchup.tipos.map(t => t.id)
     this.deck.matchup.cores = this.deck.matchup.cores.map(c => c.id)
     this.deck.matchup.arquetipo_id = this.deck.matchup.arquetipo_id.toString() // TODO
@@ -105,22 +106,17 @@ export default {
       comum: state => state.comum
     }),
     tiposSelected() {
-      return this.comum.tipos.filter(t =>
-        this.deck.matchup.tipos.includes(t.id)
-      )
+      return this.comum.tipos.filter(t => this.deck.matchup.tipos.includes(t.id))
     },
     cartasSelected() {
       let cartas = this.comum.cartas.filter(c => {
-        return this.deck.cartas.map(c =>
-          Number.parseInt(Object.keys(c)[0])
-        ).includes(c.id)
+        return this.deck.cartas.map(x => x.id).includes(c.id)
+      }).map(y => {
+        y.total = this.deck.cartas.find(x => x.id === y.id).total
+        return y
       })
 
-      for (let carta of this.deck.cartas) {
-        console.log(cartas[1])
-        // console.log(cartas[Object.keys(carta)[0]])
-        // cartas[Object.keys(carta)[0]] = Object.values(carta)[0]
-      }
+      cartas.splice()
 
       return cartas
     }
@@ -129,23 +125,13 @@ export default {
     filtrar(nome) {
       return nome.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1
     },
-    // converte um array de objetos em string json {carta_id : total, carta_id : total ...}
-    cartasToJson(lista) {
-      let cartas
+    addcarta() {
+      this.deck.cartas.find(c => c.id === 6).total = 5
+      this.deck.cartas.splice()
 
-      cartas = lista.map(c => {
-        return {
-          [c.id]: c.total
-        }
-      })
-
-      cartas = cartas.reduce(function (result, item) {
-        var key = Object.keys(item)[0]
-        result[key] = item[key]
-        return result
-      }, {})
-
-      return JSON.stringify(cartas)
+      // this.deck.cartas = Object.assign(this.deck.cartas, {})
+      //
+      // console.log(this.deck.cartas)
     },
     async salvar() {
       // TODO ao salvar cartas user stringfy... mas perco a referencia?
