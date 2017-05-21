@@ -4,9 +4,14 @@
     <input v-model="filtro" class="input" type="text" placeholder="Nome, texto, raridade ou tipo da carta ...">
     <i class="fa fa-search"></i>
   </p>
-  <figure class="image carta" v-for="carta in cartas" v-show="filtrar(carta)">
-    <img @click="$emit('addcarta', carta)" :src="`/static/images/cards/en/${carta.metadata.card_id}.png`">
-  </figure>
+  <div class="cartas">
+    <figure class="image carta" v-for="carta in cartas" v-show="filtrar(carta)">
+      <img @click="$emit('addcarta', carta)" :src="`/static/images/cards/en/${carta.metadata.card_id}.png`">
+    </figure>
+    <!-- <div class="cartas-empty has-text-centered">
+      Nenhuma carta encontrada
+    </div> -->
+  </div>
 </div>
 </template>
 
@@ -39,5 +44,17 @@ export default {
 .carta {
   width: 200px;
   cursor: pointer;
+}
+
+.cartas {
+  /*height: 500px;
+  overflow-y: scroll;
+  border: 2px solid #c0c0c0;*/
+}
+
+.cartas-empty {
+  font-size: 20pt;
+  color: #c0c0c0;
+  margin-top: 50px;
 }
 </style>

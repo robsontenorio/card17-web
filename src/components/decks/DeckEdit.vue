@@ -41,8 +41,10 @@
         <deck-pesquisar :cartas="cartas_modo" @addcarta="addcarta" @removecarta="removecarta"></deck-pesquisar>
       </div>
       <div class="column is-one-quarter">
+        <!-- <affix> -->
         <button class="button is-default" @click="deck.cartas = []">limpar deck</button>
         <deck-cartas :edit="true" @removecarta="removecarta" :cartas="deck.cartas"></deck-cartas>
+        <!-- </affix> -->
       </div>
     </div>
   </div>
@@ -117,19 +119,19 @@ export default {
     },
     validar_batalha(carta) {
       if (carta.total === 3) {
-        this.$notify.danger({ content: 'Máximo de 3 cópias por carta' })
+        this.$notify.danger({ content: 'DECK BATALHA: Máximo de 3 cópias por carta' })
         return false
       }
 
       if (carta.metadata.rarity === 'LEGENDARY' && carta.total === 1) {
-        this.$notify.danger({ content: 'Máximo de 1 cópia por carta LENDÁRIA' })
+        this.$notify.danger({ content: 'DECK BATALHA: Máximo de 1 cópia por carta LENDÁRIA' })
         return false
       }
     },
     validar_pandora(carta) {
       // Carta não permitida
       if (carta.metadata.card_id === '350') {
-        this.$notify.danger({ content: 'Carta "3 Desejos" não é permitida no MODO PANDORA' })
+        this.$notify.danger({ content: 'DECK PANDORA: Carta "3 Desejos" não é permitida' })
         return false
       }
 
@@ -142,18 +144,17 @@ export default {
         })
 
         let soma = totais.reduce((a, b) => a + b, 0)
-        let max = Math.max(...totais)
 
+        // TODO o calculo de duplicidade do tesouro está sendo feito no backend
         if (soma === 3) {
-          this.$notify.danger({ content: 'O deck PANDORA deve conter EXTAMENTE 3 tesouros diferentes entre si' })
+          this.$notify.danger({ content: 'DECK PANDORA: deve conter EXTAMENTE 3 tesouros diferentes entre si' })
           return false
         }
       }
     },
     addcarta(carta) {
-
       if (this.deck.cartas.map(c => c.total).reduce((a, b) => a + b, 0) === 30) {
-        this.$notify.danger({ content: 'O deck deve conter exatamente 30 cartas' })
+        this.$notify.danger({ content: '30 cartas ;)' })
         return
       }
 
@@ -174,7 +175,6 @@ export default {
 
         c.total++
       } else {
-
         if (this.deck.modo.chave === 'PANDORA') {
           if (this.validar_pandora(carta) === false) {
             return
