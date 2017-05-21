@@ -1,7 +1,7 @@
 <template>
 <div>
   <div v-for="carta in cartas">
-    <deck-carta :carta="carta"></deck-carta>
+    <deck-carta :edit="edit" @removecarta="$emit('removecarta', carta)" :carta="carta"></deck-carta>
   </div>
   <div class="cartas-empty" v-if="cartas.length == 0">
     Nenhuma carta registrada para este deck
@@ -14,7 +14,7 @@ import DeckCarta from '@/components/decks/DeckCarta'
 
 export default {
   name: 'deck-cartas',
-  props: ['cartas'],
+  props: ['cartas', 'edit'],
   components: {
     DeckCarta
   }

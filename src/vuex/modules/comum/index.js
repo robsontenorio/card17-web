@@ -6,7 +6,8 @@ const state = {
 
 // getters
 const getters = {
-  // checkoutStatus: state => state.checkoutStatus
+  cartas_pandora: state => state.cartas,
+  cartas_batalha: state => state.cartas.filter(c => c.metadata.color !== 'PANDORA')
 }
 
 // actions

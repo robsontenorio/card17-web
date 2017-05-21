@@ -1,7 +1,7 @@
 <template>
 <div>
 
-  <div class="carta-mini" :style="`background-image: url(/static/images/cards/mini/${carta.metadata.card_id}_minicard.png)`">
+  <div @click="removecarta" class="carta-mini" :style="`background-image: url(/static/images/cards/mini/${carta.metadata.card_id}_minicard.png)`">
 
     <div class="carta-mini-mask">
 
@@ -29,7 +29,14 @@
 <script>
 export default {
   name: 'deck-carta',
-  props: ['carta']
+  props: ['carta', 'edit'],
+  methods: {
+    removecarta() {
+      if (this.edit === true) {
+        this.$emit('removecarta', this.carta)
+      }
+    }
+  }
 }
 </script>
 
@@ -51,6 +58,7 @@ export default {
     background-repeat: no-repeat;
     margin-bottom: 2px;
     border-radius: 3px;
+    cursor: pointer;
 }
 
 .carta-nome {

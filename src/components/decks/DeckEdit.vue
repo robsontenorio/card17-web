@@ -38,14 +38,11 @@
     </div>
     <div class="columns">
       <div class="column">
-        <button class="button is-primary" @click="addcarta()">add</button> {{ this.deck.cartas }}
-        <br><br><br> pesquisar cartas {{ cartasSelected }}
-
-
+        <deck-pesquisar :cartas="cartas_modo" @addcarta="addcarta" @removecarta="removecarta"></deck-pesquisar>
       </div>
       <div class="column is-one-quarter">
-
-        <deck-cartas :cartas="cartasSelected"></deck-cartas>
+        <button class="button is-default" @click="deck.cartas = []">limpar deck</button>
+        <deck-cartas :edit="true" @removecarta="removecarta" :cartas="deck.cartas"></deck-cartas>
       </div>
     </div>
   </div>
@@ -66,15 +63,16 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import { deckAPI } from '@/api'
-import { DeckTipos, DeckCartas } from '@/components/decks'
+import { DeckTipos, DeckCartas, DeckPesquisar } from '@/components/decks'
 
 export default {
   name: 'deck-edit',
   components: {
     DeckTipos,
-    DeckCartas
+    DeckCartas,
+    DeckPesquisar
   },
   data() {
     return {
@@ -85,18 +83,11 @@ export default {
   },
   async mounted() {
     let params = {
-      includes: 'cartas,matchup.cores,matchup.arquetipo,matchup.tipos'
+      includes: 'modo,cartas,matchup.cores,matchup.arquetipo,matchup.tipos'
     }
 
     const response = await deckAPI.get(this.$route.params.id, params)
     this.deck = response.data
-    this.deck.cartas = this.deck.cartas.map(c => {
-      return {
-        id: c.id,
-        total: c.total
-      }
-    })
-
     this.deck.matchup.tipos = this.deck.matchup.tipos.map(t => t.id)
     this.deck.matchup.cores = this.deck.matchup.cores.map(c => c.id)
     this.deck.matchup.arquetipo_id = this.deck.matchup.arquetipo_id.toString() // TODO
@@ -105,33 +96,105 @@ export default {
     ...mapState({
       comum: state => state.comum
     }),
+    ...mapGetters([
+      'cartas_pandora',
+      'cartas_batalha'
+    ]),
     tiposSelected() {
       return this.comum.tipos.filter(t => this.deck.matchup.tipos.includes(t.id))
     },
-    cartasSelected() {
-      let cartas = this.comum.cartas.filter(c => {
-        return this.deck.cartas.map(x => x.id).includes(c.id)
-      }).map(y => {
-        y.total = this.deck.cartas.find(x => x.id === y.id).total
-        return y
-      })
-
-      cartas.splice()
-
-      return cartas
+    cartas_modo() {
+      if (this.deck.modo.chave === 'BATALHA') {
+        return this.cartas_batalha
+      } else {
+        return this.cartas_pandora
+      }
     }
   },
   methods: {
     filtrar(nome) {
       return nome.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1
     },
-    addcarta() {
-      this.deck.cartas.find(c => c.id === 6).total = 5
-      this.deck.cartas.splice()
+    validar_batalha(carta) {
+      if (carta.total === 3) {
+        this.$notify.danger({ content: 'Máximo de 3 cópias por carta' })
+        return false
+      }
 
-      // this.deck.cartas = Object.assign(this.deck.cartas, {})
-      //
-      // console.log(this.deck.cartas)
+      if (carta.metadata.rarity === 'LEGENDARY' && carta.total === 1) {
+        this.$notify.danger({ content: 'Máximo de 1 cópia por carta LENDÁRIA' })
+        return false
+      }
+    },
+    validar_pandora(carta) {
+      // Carta não permitida
+      if (carta.metadata.card_id === '350') {
+        this.$notify.danger({ content: 'Carta "3 Desejos" não é permitida no MODO PANDORA' })
+        return false
+      }
+
+      // Contagem de 3 tesouros diferentes entre si
+      if (carta.metadata.color === 'PANDORA') {
+        let totais = this.deck.cartas.map(c => {
+          if (c.metadata.color === 'PANDORA') {
+            return c.total
+          }
+        })
+
+        let soma = totais.reduce((a, b) => a + b, 0)
+        let max = Math.max(...totais)
+
+        if (soma === 3) {
+          this.$notify.danger({ content: 'O deck PANDORA deve conter EXTAMENTE 3 tesouros diferentes entre si' })
+          return false
+        }
+      }
+    },
+    addcarta(carta) {
+
+      if (this.deck.cartas.map(c => c.total).reduce((a, b) => a + b, 0) === 30) {
+        this.$notify.danger({ content: 'O deck deve conter exatamente 30 cartas' })
+        return
+      }
+
+      let c = this.deck.cartas.find(x => x.id === carta.id)
+
+      if (c !== undefined) {
+        if (this.deck.modo.chave === 'BATALHA') {
+          if (this.validar_batalha(c) === false) {
+            return
+          }
+        }
+
+        if (this.deck.modo.chave === 'PANDORA') {
+          if (this.validar_pandora(carta) === false) {
+            return
+          }
+        }
+
+        c.total++
+      } else {
+
+        if (this.deck.modo.chave === 'PANDORA') {
+          if (this.validar_pandora(carta) === false) {
+            return
+          }
+        }
+
+        carta.total = 1
+        this.deck.cartas.push(carta)
+      }
+
+      // TODO validar quantidades, max amostras
+    },
+    removecarta(carta) {
+      let c = this.deck.cartas.find(x => x.id === carta.id)
+
+      if (c.total === 1) {
+        this.deck.cartas.splice(this.deck.cartas.indexOf(carta), 1)
+      } else {
+        c.total--
+      }
     },
     async salvar() {
       // TODO ao salvar cartas user stringfy... mas perco a referencia?
