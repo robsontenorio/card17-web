@@ -6,6 +6,7 @@
       <h1 class="title">{{ deck.nome }}&nbsp;</h1>
       <div class="block" v-if="deck.matchup">
         <deck-cores :cores="deck.matchup.cores"></deck-cores>
+        <deck-modo :modo="deck.modo"></deck-modo>
         <deck-arquetipo :arquetipo="deck.matchup.arquetipo"></deck-arquetipo>
         <deck-tipos :tipos="deck.matchup.tipos"></deck-tipos>
       </div>
@@ -53,6 +54,7 @@ import { mapState } from 'vuex'
 import DeckPartidas from '@/components/decks/DeckPartidas'
 import DeckCartas from '@/components/decks/DeckCartas'
 import DeckCores from '@/components/decks/DeckCores'
+import DeckModo from '@/components/decks/DeckModo'
 import DeckTipos from '@/components/decks/DeckTipos'
 import DeckArquetipo from '@/components/decks/DeckArquetipo'
 import DeckDistribuicao from '@/components/decks/DeckDistribuicao'
@@ -68,7 +70,8 @@ export default {
     DeckPartidas,
     DeckTipos,
     DeckArquetipo,
-    EstatisticaGeral
+    EstatisticaGeral,
+    DeckModo
   },
   data() {
     return {}

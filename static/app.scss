@@ -44,6 +44,10 @@
 
 // TJDFT
 
+html{
+  overflow-y: scroll;
+  background-color: white;
+}
 
 a{
   color: #3c81df;
@@ -118,6 +122,10 @@ a.nav-item {
 
 .notification.alert .title{
   font-weight: bold;
+}
+
+.control{
+  margin-bottom: 20px;
 }
 
 .faeria {
