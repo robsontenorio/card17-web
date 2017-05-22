@@ -95,7 +95,18 @@ export default {
   },
   data() {
     return {
-      deck: null,
+      deck: {
+        id: 0,
+        custo: 0,
+        modo_id: 0,
+        modo: {},
+        cartas: [],
+        matchup: {
+          arquetipo_id: '',
+          tipos: [],
+          cores: []
+        }
+      },
       filtro: '',
       addingtipo: false
     }
@@ -105,11 +116,20 @@ export default {
       includes: 'modo,cartas,matchup.cores,matchup.arquetipo,matchup.tipos'
     }
 
-    const response = await deckAPI.get(this.$route.params.id, params)
-    this.deck = response.data
-    this.deck.matchup.tipos = this.deck.matchup.tipos.map(t => t.id)
-    this.deck.matchup.cores = this.deck.matchup.cores.map(c => c.id)
-    this.deck.matchup.arquetipo_id = this.deck.matchup.arquetipo_id.toString() // TODO
+    let id = this.$route.params.id
+
+    if (id !== '0') {
+      const response = await deckAPI.get(id, params)
+      this.deck = response.data
+      this.deck.matchup.tipos = this.deck.matchup.tipos.map(t => t.id)
+      this.deck.matchup.cores = this.deck.matchup.cores.map(c => c.id)
+      this.deck.matchup.arquetipo_id = this.deck.matchup.arquetipo_id.toString() // TODO
+    } else {
+      let chave = this.$route.query.modo
+      let modo = this.comum.modos.find(m => m.chave === chave)
+      this.deck.modo = modo
+      this.deck.modo_id = modo.id
+    }
   },
   computed: {
     ...mapState({
@@ -211,8 +231,6 @@ export default {
         carta.total = 1
         this.deck.cartas.push(carta)
       }
-
-      // TODO validar quantidades, max amostras
     },
     removecarta(carta) {
       let c = this.deck.cartas.find(x => x.id === carta.id)

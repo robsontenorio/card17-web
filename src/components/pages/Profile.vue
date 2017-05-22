@@ -3,7 +3,8 @@
   <div class="columns">
     <div class="column is-narrow">
       <div class="image is-128x128 avatar">
-        <img :src="`/static/images/users/${user.id}.jpg`">
+        <!-- <img :src="`/static/images/users/${user.id}.jpg`"> -->
+        <img :src="`/static/images/users/59.png`">
       </div>
     </div>
     <div class="column">

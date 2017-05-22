@@ -17,7 +17,8 @@
         <router-link v-if="!$auth.check()" to="/login" class="nav-item is-tab is-hidden-mobile">Entrar</router-link>
         <router-link to="/home" v-if="$auth.check()" class="nav-item is-tab">
           <figure class="image is-24x24" style="margin-right: 8px;">
-            <img :src="`/static/images/users/${$auth.user().id}.jpg`" style="border-radius: 50%">
+            <!-- <img :src="`/static/images/users/${$auth.user().id}.jpg`" style="border-radius: 50%"> -->
+            <img :src="`/static/images/users/59.png`" style="border-radius: 50%">
           </figure>
           {{ $auth.user().username }}
         </router-link>

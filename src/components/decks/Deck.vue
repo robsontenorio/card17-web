@@ -3,7 +3,17 @@
   <div class="columns">
     <!-- COLUNA ESQUERDA -->
     <div class="column">
-      <h1 class="title">{{ deck.nome }}&nbsp;</h1>
+
+      <div class="level">
+        <div class="level-left">
+          <h1 class="title">{{ deck.nome }}&nbsp;</h1>
+        </div>
+        <div class="level-right">
+          <button v-if="deck.user_id === this.$auth.user().id" class="button is-primary" @click="editar()">editar deck</button>
+        </div>
+      </div>
+
+      <!-- INFO GERAL -->
       <div class="block" v-if="deck.matchup">
         <deck-cores :cores="deck.matchup.cores"></deck-cores>
         <deck-modo :modo="deck.modo"></deck-modo>
@@ -39,7 +49,6 @@
     <!-- CARTAS -->
 
     <div class="column is-one-quarter" style="padding-top: 100px;">
-      <button v-if="deck.user_id === this.$auth.user().id" class="button is-primary" @click="editar()">editar deck</button>
       <deck-cartas :cartas="deck.cartas"></deck-cartas>
     </div>
 
