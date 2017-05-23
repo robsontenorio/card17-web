@@ -1,6 +1,7 @@
 <template>
 <div>
   <div v-for="carta in cartas">
+    <!-- TODO tenho que repassar em cadeia do component child nested até o pai? -->
     <deck-carta :edit="edit" @removecarta="$emit('removecarta', carta)" :carta="carta"></deck-carta>
   </div>
   <div class="cartas-empty" v-if="cartas.length == 0">
@@ -28,6 +29,5 @@ export default {
   padding: 20px;
   font-size: 20pt;
   color: #c3c3c3;
-  height: 600px;
 }
 </style>

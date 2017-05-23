@@ -33,11 +33,13 @@ export default new Router({
     },
     {
       path: '/decks/pandora',
-      component: load('pages/DecksPandora')
+      component: load('pages/DecksPandora'),
+      meta: { auth: true }
     },
     {
       path: '/decks/battle',
-      component: load('pages/DecksBattle')
+      component: load('pages/DecksBattle'),
+      meta: { auth: true }
     },
     {
       path: '/decks/:id',
@@ -45,7 +47,8 @@ export default new Router({
     },
     {
       path: '/decks/:id/edit',
-      component: load('decks/DeckEdit')
+      component: load('decks/DeckEdit'),
+      meta: { auth: true }
     },
     {
       path: '*',
