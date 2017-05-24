@@ -1,6 +1,8 @@
 <template>
 <div>
-  // TODO ... landpage
+
+  <h1 class="title">Versão Rascunho. Testando ... 123 ...</h1> // TODO ... fazer uma página linda aqui :)<br> Os dados podem ser apagados a qualquer momento, possivelmente sendo necessário se cadastrar novamente<br><br><br> Feedback inbox para @pedroca @orebaz
+
 </div>
 </template>
 
