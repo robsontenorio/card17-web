@@ -21,7 +21,7 @@ export default {
       carregando: true
     }
   },
-  async mounted() {
+  async created() {
     await this.carregar(this.$route.params.id)
     this.carregando = false
   },
