@@ -83,7 +83,7 @@ export default {
       addingtipo: false
     }
   },
-  async mounted() {
+  async created() {
     let params = {
       includes: 'modo,cartas,matchup.cores,matchup.arquetipo,matchup.tipos'
     }

@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@websanova/vue-auth@^2.10.2-beta":
-  version "2.10.2-beta"
-  resolved "https://registry.yarnpkg.com/@websanova/vue-auth/-/vue-auth-2.10.2-beta.tgz#08f49f65222c3f71d6514965c3b1ad383b58fa9f"
+"@websanova/vue-auth@^2.11.0-beta":
+  version "2.11.0-beta"
+  resolved "https://registry.yarnpkg.com/@websanova/vue-auth/-/vue-auth-2.11.0-beta.tgz#6470e971f3994de36417b40ae3e7a30582aabf32"
 
 abbrev@1, abbrev@1.0.x:
   version "1.0.9"
@@ -6105,7 +6105,7 @@ vue-loader@^11.3.4:
     vue-style-loader "^2.0.0"
     vue-template-es2015-compiler "^1.2.2"
 
-vue-router@^2.3.1:
+vue-router@^2.5.3:
   version "2.5.3"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-2.5.3.tgz#073783f564b6aece6c8a59c63e298dc2aabfb51b"
 

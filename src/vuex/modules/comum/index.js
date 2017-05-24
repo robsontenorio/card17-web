@@ -1,7 +1,6 @@
 import { comumAPI } from '@/api'
 
 const state = {
-  comum: []
 }
 
 // getters

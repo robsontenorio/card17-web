@@ -51,12 +51,12 @@ import { mapActions } from 'vuex'
 
 export default {
   name: 'app',
-  mounted() {
-    this.carregar()
+  created() {
+    this.carregarComum()
   },
   methods: {
     ...mapActions({
-      carregar: 'LOAD_COMUM'
+      carregarComum: 'LOAD_COMUM'
     }),
     logout() {
       this.$auth.logout({

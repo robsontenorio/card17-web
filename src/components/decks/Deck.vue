@@ -27,7 +27,7 @@
       <!-- DESCRICAO -->
       <br><br>
       <div class="block">
-        {{ deck.descricao }}
+        <i class="fa fa-quote-left"></i> &nbsp; {{ deck.descricao }}
       </div>
 
       <br>
@@ -105,4 +105,7 @@ export default {
 </script>
 
 <style scoped>
-/style>
+h2 {
+  font-weight: bold;
+}
+</style>

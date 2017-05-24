@@ -40,7 +40,7 @@ export default {
     }
   },
 
-  mounted() {
+  created() {
     //  console.log(this.$auth.redirect())
 
     // Can set query parameter here for auth redirect or just do it silently in login redirect.
@@ -51,7 +51,11 @@ export default {
       this.$auth.register({
         data: this.user,
         autoLogin: true,
-        redirect: '/home',
+        success() {
+          this.$notify.success({
+            content: 'Olá :)'
+          })
+        },
         error(error) {
           this.$notify.danger({
             content: error.response.data.errors

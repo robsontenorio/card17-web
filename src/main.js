@@ -26,7 +26,8 @@ Vue.use(VueAxios, axios)
 Vue.use(VueAuth, {
   auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
   http: require('@websanova/vue-auth/drivers/http/axios.1.x.js'),
-  router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js')
+  router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
+  loginData: {redirect: '/home'}
 })
 
 Vue.axios.defaults.baseURL = process.env.API_URL

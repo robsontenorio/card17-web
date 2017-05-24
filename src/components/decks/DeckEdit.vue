@@ -47,7 +47,7 @@
         </div>
 
         <!--- PESQUISAR CARTAS -->
-        <deck-pesquisar :cartas="cartas_modo" @addcarta="addcarta" @removecarta="removecarta"></deck-pesquisar>
+        <deck-pesquisar :cartas="cartasModo" @addcarta="addcarta" @removecarta="removecarta"></deck-pesquisar>
       </div>
       <div class="column is-one-quarter">
 
@@ -63,15 +63,15 @@
       </div>
     </div>
 
+    <!-- ASIDE TIPOS -->
     <b-aside v-if="deck" :is-show="addingtipo" :show-footer="false" title="TIPOS" placement="right" @close="addingtipo=false">
-      <h2 class="subtitle">TIPOS</h2>
       <p class="control has-icon">
         <input v-model="filtro" class="input" type="text" placeholder="filtrar...">
         <i class="fa fa-search"></i>
       </p>
       <checkbox-group v-model="deck.matchup.tipos">
-        <checkbox :key="tipo.id" :val="tipo.id" v-for="tipo in comum.tipos" v-show="filtrar(tipo.nome)">
-          <span class="tag">{{ tipo.nome }}</span>
+        <checkbox :key="tipo.id" :val="tipo.id" v-for="tipo in comum.tipos" :checked="deck.matchup.tipos.includes(tipo.id)" v-show="filtrar(tipo.nome) ">
+          <span class="tag ">{{ tipo.nome }}</span>
         </checkbox>
       </checkbox-group>
     </b-aside>
@@ -111,7 +111,7 @@ export default {
       addingtipo: false
     }
   },
-  async mounted() {
+  async created() {
     let params = {
       includes: 'modo,cartas,matchup.cores,matchup.arquetipo,matchup.tipos'
     }
@@ -152,7 +152,7 @@ export default {
     tiposSelected() {
       return this.comum.tipos.filter(t => this.deck.matchup.tipos.includes(t.id))
     },
-    cartas_modo() {
+    cartasModo() {
       if (this.deck.modo.chave === 'BATALHA') {
         return this.cartas_batalha
       } else {
@@ -253,8 +253,7 @@ export default {
       }
     },
     cancelar() {
-      let id = this.$route.params.id
-      this.$router.push(`/decks/${id}`)
+      this.$router.go(window.history.back())
     }
 
   }

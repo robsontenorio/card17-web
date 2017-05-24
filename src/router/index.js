@@ -14,45 +14,14 @@ export default new Router({
     return { x: 0, y: 0 }
   },
   routes: [
-    {
-      path: '/',
-      component: load('pages/Hello')
-    },
-    {
-      path: '/home',
-      component: load('pages/Home'),
-      meta: { auth: true }
-    },
-    {
-      path: '/login',
-      component: load('pages/Login')
-    },
-    {
-      path: '/register',
-      component: load('pages/Register')
-    },
-    {
-      path: '/decks/pandora',
-      component: load('pages/DecksPandora'),
-      meta: { auth: true }
-    },
-    {
-      path: '/decks/battle',
-      component: load('pages/DecksBattle'),
-      meta: { auth: true }
-    },
-    {
-      path: '/decks/:id',
-      component: load('pages/Deck')
-    },
-    {
-      path: '/decks/:id/edit',
-      component: load('decks/DeckEdit'),
-      meta: { auth: true }
-    },
-    {
-      path: '*',
-      component: load('pages/404')
-    }
+    { path: '/', component: load('pages/Hello') },
+    { path: '/home', component: load('pages/Home'), meta: { auth: true } },
+    { path: '/login', component: load('pages/Login') },
+    { path: '/register', component: load('pages/Register') },
+    { path: '/decks/pandora', component: load('pages/DecksPandora'), meta: { auth: true } },
+    { path: '/decks/battle', component: load('pages/DecksBattle'), meta: { auth: true } },
+    { path: '/decks/:id', component: load('pages/Deck') },
+    { path: '/decks/:id/edit', component: load('decks/DeckEdit'), meta: { auth: true } },
+    { path: '*', component: load('pages/404') }
   ]
 })
