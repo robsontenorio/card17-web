@@ -1,7 +1,7 @@
 <template>
 <div>
   <p class="control has-icon">
-    <input v-model="filtro" class="input" type="text" placeholder="Nome, texto, raridade ou tipo da carta ...">
+    <input v-model="filtro" class="input" type="text" placeholder="Nome, texto, raridade, cor ou tipo da carta ...">
     <i class="fa fa-search"></i>
   </p>
   <div class="cartas">

@@ -1,17 +1,20 @@
 import { deckAPI, partidaAPI } from '@/api'
 
 const state = {
-  vitorias: 0,
-  derrotas: 0,
-  winrate: 0,
   cartas: [],
   partidas: [],
-  desempenho: [],
-  progresso: [],
-  distribuicao: {
-    terrenos: [],
-    ferias: [],
-    tipos: []
+
+  estatisticas: {
+    vitorias: 0,
+    derrotas: 0,
+    winrate: 0,
+    progresso: [],
+    desempenho: [],
+    distribuicao: {
+      terrenos: [],
+      ferias: [],
+      tipos: []
+    }
   }
 }
 
@@ -25,7 +28,7 @@ const actions = {
   async LOAD_DECK({ commit }, id) {
     let filtros = {
       includes: 'cartas,partidas,modo,matchup.cores,matchup.arquetipo,matchup.tipos,partidas.matchup.tipos,partidas.matchup.arquetipo,partidas.matchup.cores',
-      appends: 'distribuicao,progresso'
+      appends: 'estatisticas'
     }
 
     const response = await deckAPI.get(id, filtros)

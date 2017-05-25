@@ -22,17 +22,17 @@
       </div>
 
       <!-- BLOCO ESTATISTICA GERAL -->
-      <estatistica-geral :winrate="winrate" :vitorias="vitorias" :derrotas="derrotas" :progresso="progresso"></estatistica-geral>
+      <estatistica-geral :winrate="deck.estatisticas.winrate" :vitorias="deck.estatisticas.vitorias" :derrotas="deck.estatisticas.derrotas" :progresso="deck.estatisticas.progresso"></estatistica-geral>
 
       <!-- DESCRICAO -->
       <br><br>
-      <div class="block">
+      <div class="block" v-if="deck.descricao">
         <i class="fa fa-quote-left"></i> &nbsp; {{ deck.descricao }}
       </div>
 
       <br>
       <!-- DISTRIBUICAO DAS CARTAS -->
-      <deck-distribuicao :terrenos="deck.distribuicao.terrenos" :faerias="deck.distribuicao.faerias" :tipos="deck.distribuicao.tipos"></deck-distribuicao>
+      <deck-distribuicao :terrenos="deck.estatisticas.distribuicao.terrenos" :faerias="deck.estatisticas.distribuicao.faerias" :tipos="deck.estatisticas.distribuicao.tipos"></deck-distribuicao>
 
       <br><br>
       <!-- DESEMPENHO -->
@@ -87,11 +87,7 @@ export default {
   },
   computed: {
     ...mapState({
-      deck: 'deck',
-      winrate: state => state.deck.winrate,
-      derrotas: state => state.deck.derrotas,
-      vitorias: state => state.deck.vitorias,
-      progresso: state => state.deck.progresso
+      deck: 'deck'
     })
   },
   methods: {
