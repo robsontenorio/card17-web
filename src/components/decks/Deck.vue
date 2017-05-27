@@ -9,11 +9,15 @@
           <h1 class="title">{{ deck.nome }}&nbsp;</h1>
         </div>
         <div class="level-right">
-          <button v-if="deck.user_id === this.$auth.user().id" class="button is-primary" @click="editar()">editar deck</button>
+
         </div>
       </div>
 
+      <!-- BLOCO ESTATISTICA GERAL -->
+      <estatistica-geral :winrate="deck.winrate" :vitorias="deck.vitorias" :derrotas="deck.derrotas" :progresso="deck.estatisticas.progresso"></estatistica-geral>
+
       <!-- INFO GERAL -->
+      <br><br>
       <div class="block" v-if="deck.matchup">
         <deck-cores :cores="deck.matchup.cores"></deck-cores>
         <deck-modo :modo="deck.modo"></deck-modo>
@@ -21,22 +25,20 @@
         <deck-tipos :tipos="deck.matchup.tipos"></deck-tipos>
       </div>
 
-      <!-- BLOCO ESTATISTICA GERAL -->
-      <estatistica-geral :winrate="deck.estatisticas.winrate" :vitorias="deck.estatisticas.vitorias" :derrotas="deck.estatisticas.derrotas" :progresso="deck.estatisticas.progresso"></estatistica-geral>
-
       <!-- DESCRICAO -->
-      <br><br>
+      <br>
       <div class="block" v-if="deck.descricao">
         <i class="fa fa-quote-left"></i> &nbsp; {{ deck.descricao }}
+        <br><br>
       </div>
 
-      <br>
       <!-- DISTRIBUICAO DAS CARTAS -->
+      <h2 class="subtitle">DISTRIBUIÇÃO</h2>
       <deck-distribuicao :terrenos="deck.estatisticas.distribuicao.terrenos" :faerias="deck.estatisticas.distribuicao.faerias" :tipos="deck.estatisticas.distribuicao.tipos"></deck-distribuicao>
 
       <br><br>
       <!-- DESEMPENHO -->
-      <h2 class="subtitle">DESEMPENHO</h2> [bom contra / ruim contra] 3 vitorias ou 3 derrotas definem o desempenho
+      <h2 class="subtitle">DESEMPENHO</h2> TODO ... [bom contra / ruim contra] 3 vitorias ou 3 derrotas definem o desempenho
 
       <!-- PARTIDAS -->
       <br><br><br>
@@ -48,8 +50,20 @@
 
     <!-- CARTAS -->
 
-    <div class="column is-one-quarter" style="padding-top: 100px;">
-      <deck-cartas :cartas="deck.cartas"></deck-cartas>
+    <div class="column is-one-quarter">
+      <div class="has-text-right">
+        <button v-if="deck.user_id === this.$auth.user().id" class="button is-primary" @click="editar()">
+          <span class="icon is-small">
+            <i class="fa fa-pencil"></i>
+          </span>
+          <span>editar deck</span>
+        </button>
+      </div>
+
+      <div style="padding-top: 15px;">
+        <deck-cartas :cartas="deck.cartas"></deck-cartas>
+      </div>
+
     </div>
 
   </div>

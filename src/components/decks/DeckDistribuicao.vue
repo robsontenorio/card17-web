@@ -8,7 +8,7 @@
       <estatistica-faerias v-if="faerias" :faerias="faerias"></estatistica-faerias>
     </div>
     <div class="column">
-
+      <!--  //TODO criaturas, eventos, estruturas -->
     </div>
   </div>
 </div>

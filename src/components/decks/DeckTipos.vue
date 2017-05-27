@@ -1,6 +1,6 @@
 <template>
 <span>
-  <span class="tag" v-for="tipo in tipos"> {{ tipo.nome }}</span>
+  <span style="margin-right: 4px" class="tag" v-for="tipo in tipos">{{ tipo.nome }}</span>
 </span>
 </template>
 

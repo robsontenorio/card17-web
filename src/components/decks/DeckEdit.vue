@@ -1,56 +1,77 @@
 <template>
 <div v-loading="!deck">
   <div v-if="deck">
-
     <div class="columns">
       <div class="column">
         <div class="level">
           <div class="level-left">
-            <h1 class="title">EDITAR DECK <deck-modo :modo="deck.modo"></deck-modo></h1>
+            <h1 class="title">EDITAR DECK</h1>
           </div>
           <div class="level-right">
-            <button class="button is-primary" @click="salvar()">salvar</button>
-            <button class="button is-default" @click="cancelar()">cancelar</button>
-            <button class="button is-default" @click="deck.cartas = []">limpar deck</button>
+            <!-- BOTOES -->
+            <div class="block">
+              <button class="button is-primary" @click="salvar()">
+                <span class="icon is-small">
+                  <i class="fa fa-check"></i>
+                </span>
+                <span>salvar</span>
+              </button>
+              <button class="button is-default" @click="cancelar()">cancelar</button>
+              <button class="button is-default is-outlined" @click="reset()">
+                <span class="icon is-small">
+                  <i class="fa fa-circle-o-notch"></i>
+                </span>
+                <span>limpar cartas</span>
+              </button>
+              <button class="button is-danger is-outlined" @click="excluir()">
+                <span class="icon is-small">
+                  <i class="fa fa-times"></i>
+                </span>
+                <span>excluir</span>
+              </button>
+            </div>
           </div>
         </div>
 
-        <div class="columns">
-          <div class="column">
-            <!-- NOME -->
-            <label class="label">Nome</label>
-            <p class="control">
-              <input v-model="deck.nome" class="input" type="text" placeholder="Nome do deck (Ex: Super Blue Jump)">
-            </p>
+        <div class="notification">
+          <div class="columns">
+            <div class="column is-5">
+              <!-- NOME -->
+              <label class="label">Nome</label>
+              <p class="control">
+                <input v-model="deck.nome" class="input" type="text" placeholder="Nome do deck (Ex: Super Blue Jump)">
+              </p>
 
-            <!-- ARQUETIPOS -->
-            <label class="label">Arquétipo</label>
-            <radio-group v-model="deck.matchup.arquetipo_id">
-              <radio-button key="arquetipo.id" :val="arquetipo.id.toString()" v-for="arquetipo in comum.arquetipos">{{ arquetipo.nome }}</radio-button>
-            </radio-group>
+              <!-- ARQUETIPOS -->
+              <label class="label">Arquétipo</label>
+              <radio-group v-model="deck.matchup.arquetipo_id">
+                <radio-button key="arquetipo.id" :val="arquetipo.id.toString()" v-for="arquetipo in comum.arquetipos">{{ arquetipo.nome }}</radio-button>
+              </radio-group>
 
-            <!-- TIPOS -->
-            <label class="label">Tipos</label>
+              <!-- TIPOS -->
+              <label class="label">Tipos</label>
+              <deck-tipos :tipos="tiposSelected"></deck-tipos>
+              <span class="tag selecionar-tipos" @click="addingtipo = true"><i class="fa fa-pencil"></i></span>
+              </p>
 
-            <deck-tipos :tipos="tiposSelected"></deck-tipos>
-            <span class="tag selecionar-tipos" @click="addingtipo = true"><i class="fa fa-pencil"></i></span>
-            </p>
-
-          </div>
-          <div class="column">
-            <!-- DESCRIÇÃO -->
-            <label class="label">Descrição</label>
-            <p class="control">
-              <textarea v-model="deck.descricao" class="textarea descricao" placeholder="Visão geral, muligans, estratégias ..."></textarea>
-            </p>
+            </div>
+            <div class="column">
+              <!-- DESCRIÇÃO -->
+              <label class="label">Descrição pública</label>
+              <p class="control">
+                <textarea v-model="deck.descricao" class="textarea descricao" placeholder="Visão geral, muligans, estratégias ..."></textarea>
+              </p>
+            </div>
           </div>
         </div>
 
         <!--- PESQUISAR CARTAS -->
-        <deck-pesquisar :cartas="cartasModo" @addcarta="addcarta" @removecarta="removecarta"></deck-pesquisar>
+        <div class="notification">
+          <deck-pesquisar :cartas="cartasModo" @addcarta="addcarta" @removecarta="removecarta"></deck-pesquisar>
+        </div>
+
       </div>
       <div class="column is-one-quarter">
-
         <!-- CARTAS SELECIONADAS -->
         <affix>
           <div class="has-text-right">
@@ -254,8 +275,13 @@ export default {
     },
     cancelar() {
       this.$router.go(window.history.back())
+    },
+    reset() {
+      this.deck.cartas = []
+    },
+    excluir() {
+      alert('TODO...')
     }
-
   }
 }
 </script>
@@ -268,7 +294,7 @@ export default {
 }
 
 .descricao {
-  height: 150px;
+  height: 170px;
 }
 
 .cartas-total {
@@ -292,5 +318,9 @@ export default {
 
 .faeria-total {
   font-size: 18pt;
+}
+
+h2 {
+  font-weight: bold;
 }
 </style>

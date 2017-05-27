@@ -1,14 +1,16 @@
-// $blue: #3c81df;
-// $turquoise: #00c0ef;
-// $red: #f56954;
-// $green: #6cc788;
-// $orange: #f2a654;
-// $purple: #926dde;
-// $yellow: #f39c12;
+$blue: #00c0ef;
+$turquoise: #3c81df;
+$red: #f56954;
+$green: #6cc788;
+$orange: #f2a654;
+$purple: #926dde;
+$yellow: #f39c12;
 //
 
 // import the entry file
 @import "~vue-blu/src/scss/blu";
+
+
 
 
 // TODO LAYOUT GERAL DA APLICACAO EM CSS AQUI
@@ -84,8 +86,10 @@ a.nav-item {
   border-bottom-color: #616161;
 }
 
+
 .tabs .icon:last-child, .tabs .icon:first-child{
-  margin: 0;
+  margin: inherit;
+  margin-right: 4px;
 }
 
 
@@ -116,12 +120,16 @@ a.nav-item {
   display: none;
 }
 
-.step-content .button.is-primary{
+.radio-button.is-primary{
     background-color: $info;
 }
 
 .notification.alert .title{
   font-weight: bold;
+}
+
+.notification .tag {
+  border: 1px solid #c0c0c0;
 }
 
 .control{

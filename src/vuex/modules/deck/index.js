@@ -3,11 +3,11 @@ import { deckAPI, partidaAPI } from '@/api'
 const state = {
   cartas: [],
   partidas: [],
+  vitorias: 0,
+  derrotas: 0,
+  winrate: 0,
 
   estatisticas: {
-    vitorias: 0,
-    derrotas: 0,
-    winrate: 0,
     progresso: [],
     desempenho: [],
     distribuicao: {
@@ -53,13 +53,13 @@ const mutations = {
     //  state.partidas.push(partida) TODO
 
     // TODO adicionar progresso (lembrar das limitacoes do array ser reativo, chartjs re-renderizar)
-    if (partida.evento === '1') {
-      state.vitorias++
-    } else {
-      state.derrotas++
-    }
-
-    state.winrate = Math.floor((state.vitorias / (state.vitorias + state.derrotas)) * 100)
+    // if (partida.evento === '1') {
+    //   state.vitorias++
+    // } else {
+    //   state.derrotas++
+    // }
+    //
+    // state.winrate = Math.floor((state.vitorias / (state.vitorias + state.derrotas)) * 100)
   }
 }
 

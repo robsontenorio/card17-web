@@ -1,7 +1,7 @@
 <template>
 <div>
   <!--  // TODO CSS  ANIMACAO BARRAS (EASY TRANSLATION?) -->
-  <div class="notification">
+  <div class="box">
     <div class="columns">
       <div class="column has-text-centered">
         <div class="total">{{ yellow }}</div>
@@ -102,14 +102,15 @@ export default {
 <style lang="scss" scoped>
 @import './static/variaveis.scss';
 
-.notification {
-    background-color: white;
-}
+// .notification {
+//     background-color: white;
+// }
 
 .barra {
     background-color: black;
     height: 100px;
     margin-bottom: 5px;
+    border: 1px solid #e2e2e2;
 }
 
 .fill-barra {

@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div class="notification is-default">
+  <div class="box">
     <div class="columns">
       <div class="column has-text-centered">
         <div class="total">{{ faerias[0]}}</div>
@@ -89,18 +89,19 @@ export default {
 <style lang="scss" scoped>
 @import './static/variaveis.scss';
 
-.column {
-    padding-right: 2px;
-}
+// .column {
+//     padding-right: 2px;
+// }
 
-.notification {
-    background-color: white;
-}
+// .notification {
+//     background-color: white;
+// }
 
 .barra {
     background-color: black;
     height: 100px;
     margin-bottom: 5px;
+    border: 1px solid #e2e2e2;
 }
 
 .fill-barra {

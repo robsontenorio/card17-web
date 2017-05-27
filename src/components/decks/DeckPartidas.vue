@@ -2,17 +2,12 @@
 <div v-if="partidas">
   <div class="block">
     <button @click="adding = true" class="button is-primary">
-      <span class="icon">
+      <span class="icon is-small">
         <i class="fa fa-plus"></i>
       </span>
-      <span>partida</span>
+      <span>adicionar partida</span>
     </button>
-    <button @click="filter()" class="button is-default">
-      <span class="icon">
-        <i class="fa fa-filter"></i>
-      </span>
-      <span>filtrar</span>
-    </button>
+
   </div>
   <data-table :data="partidas">
     <column label="R">

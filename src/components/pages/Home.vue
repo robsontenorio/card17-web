@@ -8,6 +8,7 @@
 
     <br><br>
     <tabs :on-tab-click="show">
+      <!-- DECKS BATALHA -->
       <tab-item label="MODO BATALHA">
         <br>
         <transition name="fade">
@@ -15,10 +16,19 @@
             <estatistica-geral cover="/static/images/modo_batalha.png" :winrate="estatisticas.batalha.winrate" :vitorias="estatisticas.batalha.vitorias" :derrotas="estatisticas.batalha.derrotas" :progresso="estatisticas.batalha.progresso"></estatistica-geral>
           </div>
         </transition>
-        <br><br>
-        <button class="button is-primary" @click="addDeck('BATALHA')">criar deck</button>
+        <br>
+        <div class="block">
+          <button @click="addDeck('BATALHA')" class="button is-primary">
+            <span class="icon is-small">
+              <i class="fa fa-plus"></i>
+            </span>
+            <span>criar deck</span>
+          </button>
+        </div>
         <deck-list @selecionado="mostrar" :decks="decks.batalha"></deck-list>
       </tab-item>
+
+      <!-- DECKS PANDORA -->
       <tab-item label="MODO PANDORA">
         <br>
         <transition name="fade">
@@ -26,8 +36,15 @@
             <estatistica-geral cover="/static/images/modo_pandora.png" :winrate="estatisticas.pandora.winrate" :vitorias="estatisticas.pandora.vitorias" :derrotas="estatisticas.pandora.derrotas" :progresso="estatisticas.pandora.progresso"></estatistica-geral>
           </div>
         </transition>
-        <br><br>
-        <button class="button is-primary" @click="addDeck('PANDORA')">criar deck</button>
+        <br>
+        <div class="block">
+          <button @click="addDeck('PANDORA')" class="button is-primary">
+            <span class="icon is-small">
+              <i class="fa fa-plus"></i>
+            </span>
+            <span>criar deck</span>
+          </button>
+        </div>
         <deck-list @selecionado="mostrar" :decks="decks.pandora"></deck-list>
       </tab-item>
     </tabs>
@@ -91,6 +108,7 @@ export default {
       appends: 'estatisticas'
     }
 
+    // TODO vuex aqui?
     // TODO aqui poderia ser com THEN mesmo , para que as chamadas fossem paralelas. Com await parecem ser serial
     let response = await userAPI.get(this.$auth.user().id, filtrosEstatisticas)
     this.estatisticas = response.data.estatisticas
