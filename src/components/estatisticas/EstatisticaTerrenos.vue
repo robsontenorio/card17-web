@@ -75,7 +75,7 @@ export default {
       return (this.terrenos.HUMAN) ? this.terrenos.HUMAN : 0
     },
     total() {
-      let t = this.blue + this.red + this.green + this.human
+      let t = this.blue + this.red + this.green + this.human + this.yellow
       t = (t === 0) ? 1 : t
       return t
     },
