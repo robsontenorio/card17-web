@@ -53,7 +53,7 @@ export default {
         autoLogin: true,
         success() {
           this.$notify.success({
-            content: this.$t('app.login.hello')
+            content: this.$t('app.login.welcome')
           })
         },
         error(error) {
