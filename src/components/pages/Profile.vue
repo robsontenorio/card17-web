@@ -43,7 +43,8 @@ export default {
   props: ['user'],
   computed: {
     winrate() {
-      let w = ((this.user.estatisticas.pandora.winrate + this.user.estatisticas.batalha.winrate) / 2)
+      let total = (this.user.estatisticas.pandora.winrate === 0 || this.user.estatisticas.batalha.winrate === 0) ? 1 : 2;
+      let w = ((this.user.estatisticas.pandora.winrate + this.user.estatisticas.batalha.winrate) / total)
       return w + '%'
     },
     vitorias() {
