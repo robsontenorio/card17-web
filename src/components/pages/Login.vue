@@ -2,23 +2,23 @@
 <div>
   <div class="columns">
     <div class="hero has-text-centered column  is-one-third  is-offset-one-third">
-      <h1 class="title">Olá :)</h1>
+      <h1 class="title"> {{ $t('app.login.welcome') }} </h1>
 
       <alert v-if="erro" type="danger">
         {{ erro }}
       </alert>
 
       <p class="control has-icon">
-        <input v-model="creds.email" class="input" type="email" placeholder="E-mail">
+        <input v-model="creds.email" class="input" type="email" :placeholder="$t('app.placeholders.email')">
         <i class="fa fa-envelope"></i>
       </p>
 
       <p class="control has-icon">
-        <input v-model="creds.password" class="input" type="password" placeholder="Senha">
+        <input v-model="creds.password" class="input" type="password" :placeholder="$t('app.placeholders.senha')">
         <i class="fa fa-lock"></i>
       </p>
       <p class="control">
-        <button @click="login()" class="button is-primary is-fullwidth">Entrar</button>
+        <button @click="login()" class="button is-primary is-fullwidth"> {{ $t('app.botoes.entrar') }} </button>
       </p>
     </div>
   </div>

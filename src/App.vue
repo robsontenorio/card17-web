@@ -13,8 +13,8 @@
       <span></span>
       </span>
       <div class="nav-right nav-menu">
-        <router-link v-if="!$auth.check()" to="/register" class="nav-item is-tab is-hidden-mobile">Cadastrar</router-link>
-        <router-link v-if="!$auth.check()" to="/login" class="nav-item is-tab is-hidden-mobile">Entrar</router-link>
+        <router-link v-if="!$auth.check()" to="/register" class="nav-item is-tab is-hidden-mobile"> {{ $t('app.menus.cadastrar') }} </router-link>
+        <router-link v-if="!$auth.check()" to="/login" class="nav-item is-tab is-hidden-mobile"> {{ $t('app.menus.entrar') }} </router-link>
         <router-link to="/home" v-if="$auth.check()" class="nav-item is-tab">
           <figure class="image is-24x24" style="margin-right: 8px;">
             <!-- <img :src="`/static/images/users/${$auth.user().id}.jpg`" style="border-radius: 50%"> -->
@@ -23,7 +23,7 @@
           {{ $auth.user().username }}
         </router-link>
         <a v-if="$auth.check()" @click="logout()" class="nav-item is-tab">
-            Sair
+            {{ $t('app.menus.sair') }}
         </a>
       </div>
     </div>

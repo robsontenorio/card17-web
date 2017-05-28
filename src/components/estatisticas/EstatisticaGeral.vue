@@ -7,7 +7,7 @@
     </div>
     <div class="column">
       <div class="notification is-warning ">
-        <span>winrate</span>
+        <span>{{ $t('deck.winrate') }}</span>
         <div class="estatistica-number has-text-centered ">
           {{ winrate }}<span style="font-size: 12pt ">%</span>
         </div>
@@ -15,7 +15,7 @@
     </div>
     <div class="column ">
       <div class="notification is-success ">
-        <span>vitórias</span>
+        <span>{{ $t('deck.vitorias') }}</span>
         <div class="estatistica-number has-text-centered ">
           {{ vitorias }}
         </div>
@@ -23,7 +23,7 @@
     </div>
     <div class="column ">
       <div class="notification is-danger ">
-        <span>derrotas</span>
+        <span>{{ $t('deck.derrotas') }}</span>
         <div class="estatistica-number has-text-centered ">
           {{ derrotas }}
         </div>
@@ -31,7 +31,7 @@
     </div>
     <div class="column is-half">
       <div class="notification">
-        <span>progresso</span>
+        <span>{{ $t('deck.progresso') }}</span>
         <div class="grafico">
           <estatistica-progresso :height="72" :options="options" :chart-data="datacollection"></estatistica-progresso>
         </div>

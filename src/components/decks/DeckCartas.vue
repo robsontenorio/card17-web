@@ -5,7 +5,7 @@
     <deck-carta :edit="edit" @removecarta="$emit('removecarta', carta)" :carta="carta"></deck-carta>
   </div>
   <div class="cartas-empty" v-if="cartas.length == 0">
-    Nenhuma carta registrada para este deck
+    {{ $t('deck.sem_cartas') }}
   </div>
 </div>
 </template>

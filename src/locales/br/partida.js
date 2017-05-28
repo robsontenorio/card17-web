@@ -5,7 +5,7 @@ const messages = {
   vitoria: 'Vitória',
   derrota: 'Derrota',
   quem_comecou: 'Quem começou?',
-  resultado: 'Resutado',
+  resultado: 'Resultado',
   cores_oponente: 'Cores do oponente',
   arquetipo_oponente: 'Arquétipo do oponente',
   detalhes_oponente: 'Detalhes do oponente',

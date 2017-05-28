@@ -97,11 +97,11 @@
     <alert-erros :titulo="erro.message" :itens="erro.errors" v-if="erro"></alert-erros>
     <br>
     <div v-if="showFooter" class="step-footer has-text-right">
-      <button class="button is-primary" @click="back()" v-show="this.currentStep === 1"> {{ $t('botoes.voltar') }} </button>
-      <button class="button is-primary" @click="next()" v-show="this.currentStep === 0">{{ $t('botoes.avancar') }}</button>
+      <button class="button is-primary" @click="back()" v-show="this.currentStep === 1"> {{ $t('app.botoes.voltar') }} </button>
+      <button class="button is-primary" @click="next()" v-show="this.currentStep === 0">{{ $t('app.botoes.avancar') }}</button>
       <button class="button is-primary" @click="salvar()" v-show="this.currentStep === 1">
         <span class="icon"><i class="fa fa-check"></i></span>
-        <span>{{ $t('botoes.salvar') }}</span>
+        <span>{{ $t('app.botoes.salvar') }}</span>
       </button>
     </div>
   </b-aside>

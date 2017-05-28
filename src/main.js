@@ -35,7 +35,7 @@ Vue.use(VueAuth, {
 })
 
 const i18n = new VueI18n({
-  locale: 'br', // set locale
+  locale: 'en', // set locale
   messages // set locale messages
 })
 

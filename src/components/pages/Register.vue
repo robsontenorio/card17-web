@@ -2,25 +2,25 @@
 <div>
   <div class="columns">
     <div class="hero has-text-centered column  is-one-third  is-offset-one-third">
-      <h1 class="title">Cadastrar :)</h1>
+      <h1 class="title"> {{ $t('app.cadastrar.welcome') }} </h1>
 
 
       <p class="control has-icon">
-        <input v-model="user.username" class="input" type="email" placeholder="Username">
+        <input v-model="user.username" class="input" type="email" :placeholder="$t('app.placeholders.username')">
         <i class="fa fa-user"></i>
       </p>
 
       <p class="control has-icon">
-        <input v-model="user.email" class="input" type="email" placeholder="E-mail">
+        <input v-model="user.email" class="input" type="email" :placeholder="$t('app.placeholders.email')">
         <i class="fa fa-envelope"></i>
       </p>
 
       <p class="control has-icon">
-        <input v-model="user.password" class="input" type="password" placeholder="Senha">
+        <input v-model="user.password" class="input" type="password" :placeholder="$t('app.placeholders.senha')">
         <i class="fa fa-lock"></i>
       </p>
       <p class="control">
-        <button @click="register()" class="button is-primary is-fullwidth">Salvar</button>
+        <button @click="register()" class="button is-primary is-fullwidth"> {{ $t('app.botoes.registrar') }} </button>
       </p>
     </div>
   </div>

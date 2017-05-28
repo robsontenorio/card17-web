@@ -14,9 +14,9 @@
                 <span class="icon is-small">
                   <i class="fa fa-check"></i>
                 </span>
-                <span>{{ $t('botoes.salvar') }}</span>
+                <span>{{ $t('app.botoes.salvar') }}</span>
               </button>
-              <button class="button is-default" @click="cancelar()">{{ $t('botoes.cancelar') }}</button>
+              <button class="button is-default" @click="cancelar()">{{ $t('app.botoes.cancelar') }}</button>
               <button class="button is-default is-outlined" @click="reset()">
                 <span class="icon is-small">
                   <i class="fa fa-circle-o-notch"></i>
@@ -27,7 +27,7 @@
                 <span class="icon is-small">
                   <i class="fa fa-times"></i>
                 </span>
-                <span>{{ $t('botoes.excluir') }}</span>
+                <span>{{ $t('app.botoes.excluir') }}</span>
               </button>
             </div>
           </div>
@@ -39,7 +39,7 @@
               <!-- NOME -->
               <label class="label">{{ $t('deck.nome') }}</label>
               <p class="control">
-                <input v-model="deck.nome" class="input" type="text" placeholder="Nome do deck (Ex: Super Blue Jump)">
+                <input v-model="deck.nome" class="input" type="text" :placeholder="$t('deck.placeholder.nome')">
               </p>
 
               <!-- ARQUETIPOS -->
@@ -61,7 +61,7 @@
               <!-- DESCRIÇÃO -->
               <label class="label">{{ $t('deck.descricao') }}</label>
               <p class="control">
-                <textarea v-model="deck.descricao" class="textarea descricao" placeholder="Visão geral, muligans, estratégias ..."></textarea>
+                <textarea v-model="deck.descricao" class="textarea descricao" :placeholder="$t('deck.placeholder.descricao')"></textarea>
               </p>
             </div>
           </div>
@@ -89,7 +89,7 @@
     <!-- ASIDE TIPOS -->
     <b-aside v-if="deck" :is-show="addingtipo" :show-footer="false" :title="$t('matchup.tipos')" placement="right" @close="addingtipo=false">
       <p class="control has-icon">
-        <input v-model="filtro" class="input" type="text" placeholder="filtrar...">
+        <input v-model="filtro" class="input" type="text" :placeholder="$t('app.placeholders.filtrar')">
         <i class="fa fa-search"></i>
       </p>
       <checkbox-group v-model="deck.matchup.tipos">
