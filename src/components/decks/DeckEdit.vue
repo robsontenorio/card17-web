@@ -5,7 +5,7 @@
       <div class="column">
         <div class="level">
           <div class="level-left">
-            <h1 class="title">EDITAR DECK</h1>
+            <h1 class="title">{{ $t('deck.editar_deck') }} </h1>
           </div>
           <div class="level-right">
             <!-- BOTOES -->
@@ -14,20 +14,20 @@
                 <span class="icon is-small">
                   <i class="fa fa-check"></i>
                 </span>
-                <span>salvar</span>
+                <span>{{ $t('botoes.salvar') }}</span>
               </button>
-              <button class="button is-default" @click="cancelar()">cancelar</button>
+              <button class="button is-default" @click="cancelar()">{{ $t('botoes.cancelar') }}</button>
               <button class="button is-default is-outlined" @click="reset()">
                 <span class="icon is-small">
                   <i class="fa fa-circle-o-notch"></i>
                 </span>
-                <span>limpar cartas</span>
+                <span>{{ $t('deck.botoes.reset_cartas') }}</span>
               </button>
-              <button class="button is-danger is-outlined" @click="excluir()">
+              <button v-if="this.deck.id" class="button is-danger is-outlined" @click="excluir()">
                 <span class="icon is-small">
                   <i class="fa fa-times"></i>
                 </span>
-                <span>excluir</span>
+                <span>{{ $t('botoes.excluir') }}</span>
               </button>
             </div>
           </div>
@@ -37,20 +37,20 @@
           <div class="columns">
             <div class="column is-5">
               <!-- NOME -->
-              <label class="label">Nome</label>
+              <label class="label">{{ $t('deck.nome') }}</label>
               <p class="control">
                 <input v-model="deck.nome" class="input" type="text" placeholder="Nome do deck (Ex: Super Blue Jump)">
               </p>
 
               <!-- ARQUETIPOS -->
-              <label class="label">Arquétipo</label>
+              <label class="label">{{ $t('matchup.arquetipo') }}</label>
               <radio-group v-model="deck.matchup.arquetipo_id">
                 <radio-button key="arquetipo.id" :val="arquetipo.id.toString()" v-for="arquetipo in comum.arquetipos">{{ arquetipo.nome }}</radio-button>
               </radio-group>
 
               <!-- TIPOS -->
               <div v-show="deck.modo.chave === 'BATALHA'">
-                <label class="label">Tipos</label>
+                <label class="label">{{ $t('matchup.tipos') }}</label>
                 <deck-tipos :tipos="tiposSelected"></deck-tipos>
                 <span class="tag selecionar-tipos" @click="addingtipo = true"><i class="fa fa-pencil"></i></span>
                 </p>
@@ -59,7 +59,7 @@
             </div>
             <div class="column">
               <!-- DESCRIÇÃO -->
-              <label class="label">Descrição pública</label>
+              <label class="label">{{ $t('deck.descricao') }}</label>
               <p class="control">
                 <textarea v-model="deck.descricao" class="textarea descricao" placeholder="Visão geral, muligans, estratégias ..."></textarea>
               </p>
@@ -87,7 +87,7 @@
     </div>
 
     <!-- ASIDE TIPOS -->
-    <b-aside v-if="deck" :is-show="addingtipo" :show-footer="false" title="TIPOS" placement="right" @close="addingtipo=false">
+    <b-aside v-if="deck" :is-show="addingtipo" :show-footer="false" :title="$t('matchup.tipos')" placement="right" @close="addingtipo=false">
       <p class="control has-icon">
         <input v-model="filtro" class="input" type="text" placeholder="filtrar...">
         <i class="fa fa-search"></i>
@@ -282,8 +282,15 @@ export default {
     reset() {
       this.deck.cartas = []
     },
-    excluir() {
-      alert('TODO...')
+    async excluir() {
+      try {
+        await deckAPI.delete(this.deck.id)
+        this.$router.push(`/home`)
+        this.$notify.success({ content: 'deck excluído' })
+      } catch (error) {
+        this.erro = error.response.data
+        this.$notify.danger({ content: error.response.data.message })
+      }
     }
   }
 }

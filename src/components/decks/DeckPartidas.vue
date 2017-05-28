@@ -5,33 +5,33 @@
       <span class="icon is-small">
         <i class="fa fa-plus"></i>
       </span>
-      <span>adicionar partida</span>
+      <span>{{ $t('partida.botoes.adicionar_partida') }}</span>
     </button>
 
   </div>
   <data-table :data="partidas">
-    <column label="R">
+    <column :label="$t('partida.r')">
       <template scope="row">
-        <div class="">
-            <deck-evento :evento="row.evento"></deck-evento>
-        </div>
+      <div class="">
+        <deck-evento :evento="row.evento"></deck-evento>
+      </div>
       </template>
     </column>
-    <column label="P">
+    <column :label="$t('partida.p')">
       <template scope="row">
-        <div class="">
-            <span v-if="row.primeiro == 1" class="icon is-small"><i class="fa fa-check"></i></span>
-        </div>
+      <div class="">
+        <span v-if="row.primeiro == 1" class="icon is-small"><i class="fa fa-check"></i></span>
+      </div>
       </template>
     </column>
-    <column label="Cores">
+    <column :label="$t('matchup.cores')">
       <template scope="row">
         <div class="">
             <deck-cores :cores="row.matchup.cores"></deck-cores>
         </div>
       </template>
     </column>
-    <column label="Tipo">
+    <column :label="$t('matchup.tipos')">
       <template scope="row">
         <div>
             <deck-arquetipo :arquetipo="row.matchup.arquetipo"></deck-arquetipo>
@@ -42,22 +42,22 @@
   </data-table>
 
   <p>
-    R = Resultado
+    {{ $t('partida.resultado_label') }}
   </p>
   <p>
-    P = Joguei primeiro
+    {{ $t('partida.primeiro_label') }}
   </p>
 
-  <b-aside :is-show="adding" :show-footer="false" title="PARTIDA" placement="right" @close="adding=false">
+  <b-aside :is-show="adding" :show-footer="false" :title="$t('partida.partida')" placement="right" @close="adding=false">
     <steps :current="currentStep" type="line" :show-footer="false" prev-text="voltar" next-text="avançar">
       <step>
-        <h2 class="subtitle">QUEM COMEÇOU?</h2>
+        <h2 class="subtitle">{{ $t('partida.quem_comecou') }}</h2>
         <radio-group v-model="partida.primeiro">
-          <radio-button val="1">Eu</radio-button>
-          <radio-button val="0">Oponente</radio-button>
+          <radio-button val="1">{{ $t('partida.eu') }}</radio-button>
+          <radio-button val="0">{{ $t('partida.oponente') }}</radio-button>
         </radio-group>
         <br />
-        <h2 class="subtitle">CORES DO OPONENTE</h2>
+        <h2 class="subtitle">{{ $t('partida.cores_oponente') }}</h2>
         <checkbox-group ref="checkCores" v-model="partida.matchup.cores">
           <checkbox key="cor.id" :val="cor.id" v-for="cor in comum.cores" v-if="cor.chave != 'HUMAN' && cor.chave != 'PANDORA'">
             <deck-cor size="32x32" :chave="cor.chave"></deck-cor>
@@ -65,21 +65,21 @@
         </checkbox-group>
 
         <br />
-        <h2 class="subtitle">ARQUÉTIPO DO OPONENTE</h2>
+        <h2 class="subtitle">{{ $t('partida.arquetipo_oponente') }}</h2>
         <radio-group v-model="partida.matchup.arquetipo_id">
           <radio-button key="arquetipo.id" :val="arquetipo.id.toString()" v-for="arquetipo in comum.arquetipos">{{ arquetipo.nome }}</radio-button>
         </radio-group>
 
         <br />
-        <h2 class="subtitle">RESULTADO</h2>
+        <h2 class="subtitle">{{ $t('partida.resultado') }}</h2>
         <radio-group v-model="partida.evento">
-          <radio-button val="1">Vitória <span class="icon"><i class="fa fa-thumbs-o-up"></i></span></radio-button>
-          <radio-button val="0">Derrota <span class="icon"><i class="fa fa-thumbs-o-down"></i></span></radio-button>
+          <radio-button val="1"> {{ $t('partida.vitoria') }} <span class="icon"><i class="fa fa-thumbs-o-up"></i></span></radio-button>
+          <radio-button val="0"> {{ $t('partida.derrota') }} <span class="icon"><i class="fa fa-thumbs-o-down"></i></span></radio-button>
         </radio-group>
 
       </step>
       <step>
-        <h2 class="subtitle">DETALHES DO OPONENTE <span class="tag">opcional</span></h2>
+        <h2 class="subtitle">{{ $t('partida.detalhes_oponente') }} <span class="tag">{{ $t('partida.opcional') }}</span></h2>
 
         <p class="control has-icon">
           <input v-model="filtro" class="input" type="text" placeholder="filtrar...">
@@ -97,11 +97,11 @@
     <alert-erros :titulo="erro.message" :itens="erro.errors" v-if="erro"></alert-erros>
     <br>
     <div v-if="showFooter" class="step-footer has-text-right">
-      <button class="button is-primary" @click="back()" v-show="this.currentStep === 1">voltar</button>
-      <button class="button is-primary" @click="next()" v-show="this.currentStep === 0">avançar</button>
+      <button class="button is-primary" @click="back()" v-show="this.currentStep === 1"> {{ $t('botoes.voltar') }} </button>
+      <button class="button is-primary" @click="next()" v-show="this.currentStep === 0">{{ $t('botoes.avancar') }}</button>
       <button class="button is-primary" @click="salvar()" v-show="this.currentStep === 1">
         <span class="icon"><i class="fa fa-check"></i></span>
-        <span>salvar</span>
+        <span>{{ $t('botoes.salvar') }}</span>
       </button>
     </div>
   </b-aside>

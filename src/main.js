@@ -6,6 +6,9 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueAuth from '@websanova/vue-auth'
 
+import VueI18n from 'vue-i18n'
+import {default as messages} from '@/locales'
+
 import { Loading } from 'element-ui'
 import 'element-ui/lib/theme-default/loading.css'
 Vue.use(Loading.directive)
@@ -21,6 +24,7 @@ Vue.config.productionTip = true
 Vue.router = router // VueAuth precisa disso
 
 Vue.component('alert-erros', AlertErros)
+Vue.use(VueI18n)
 Vue.use(VueBlu)
 Vue.use(VueAxios, axios)
 Vue.use(VueAuth, {
@@ -30,12 +34,18 @@ Vue.use(VueAuth, {
   loginData: {redirect: '/home'}
 })
 
+const i18n = new VueI18n({
+  locale: 'br', // set locale
+  messages // set locale messages
+})
+
 Vue.axios.defaults.baseURL = process.env.API_URL
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   store,
+  i18n,
   router,
   template: '<App/>',
   components: { App }

@@ -12,7 +12,7 @@
         <span class="title">{{ user.username }}</span>
 
       </p>
-      <p class="tagline"><strong>CURTE</strong> {{ adora }}</p>
+      <p class="tagline"><strong> {{ $t('profile.curte') }} </strong> {{ $t(adora) }}</p>
       <p class="social">
         <span class="icon"><i class="fa fa-twitch"></i></span>
         <span class="icon"><i class="fa fa-facebook"></i></span>
@@ -21,15 +21,15 @@
     </div>
     <div class="column is-2 followers has-text-centered">
       <p class="stat-val">{{ winrate }}</p>
-      <p class="stat-key">winrate</p>
+      <p class="stat-key"> {{ $t('profile.winrate') }} </p>
     </div>
     <div class="column is-2 followers has-text-centered">
       <p class="stat-val">{{ vitorias }}</p>
-      <p class="stat-key">vitórias</p>
+      <p class="stat-key"> {{ $t('profile.vitorias') }} </p>
     </div>
     <div class="column is-2 followers has-text-centered">
       <p class="stat-val">{{ derrotas }}</p>
-      <p class="stat-key">derrotas</p>
+      <p class="stat-key"> {{ $t('profile.derrotas') }} </p>
     </div>
   </div>
 
@@ -43,7 +43,7 @@ export default {
   props: ['user'],
   computed: {
     winrate() {
-      let total = (this.user.estatisticas.pandora.winrate === 0 || this.user.estatisticas.batalha.winrate === 0) ? 1 : 2;
+      let total = (this.user.estatisticas.pandora.winrate === 0 || this.user.estatisticas.batalha.winrate === 0) ? 1 : 2
       let w = ((this.user.estatisticas.pandora.winrate + this.user.estatisticas.batalha.winrate) / total)
       return w + '%'
     },
@@ -59,7 +59,7 @@ export default {
       let b = this.user.estatisticas.batalha.vitorias + this.user.estatisticas.batalha.derrotas
       let p = this.user.estatisticas.pandora.vitorias + this.user.estatisticas.pandora.derrotas
 
-      return (b > p) ? 'MODO BATALHA' : 'MODO PANDORA'
+      return (b > p) ? 'deck.modo_batalha' : 'deck.modo_pandora'
     }
   }
 

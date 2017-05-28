@@ -9,11 +9,11 @@
   <br> - validando MODO PANDORA e encerramento da jornada <br> - ajustes de navegação
   <br> - ajustes de layout
   <br> - distribuição de terrenos, faerias
+  <br> - Excluir deck
 
   <br><br> TODO:
   <br> - Traduzir mensagens de validação (internacionalização)
   <br> - Calcular corretamente custo faeria do deck
-  <br> - Excluir deck
   <br> - Incluir filtros de pesquisa de cartas no deckbuilder
   <br> - Calcular desempenho do deck MODO BATALHA (bom contra / ruim contra)
   <br> - Implementar conceito de temporada (resetar estatísticas por temporada)

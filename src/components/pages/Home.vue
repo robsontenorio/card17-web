@@ -9,7 +9,7 @@
     <br><br>
     <tabs :on-tab-click="show">
       <!-- DECKS BATALHA -->
-      <tab-item label="MODO BATALHA">
+      <tab-item :label="$t('deck.modo_batalha')">
         <br>
         <transition name="fade">
           <div v-if="tab == 0 && estatisticas.batalha.progresso">
@@ -22,14 +22,14 @@
             <span class="icon is-small">
               <i class="fa fa-plus"></i>
             </span>
-            <span>criar deck</span>
+            <span>{{ $t('deck.botoes.criar_deck') }}</span>
           </button>
         </div>
         <deck-list @selecionado="mostrar" :decks="decks.batalha"></deck-list>
       </tab-item>
 
       <!-- DECKS PANDORA -->
-      <tab-item label="MODO PANDORA">
+      <tab-item :label="$t('deck.modo_pandora')">
         <br>
         <transition name="fade">
           <div v-if="tab == 1 && estatisticas.pandora.progresso">
@@ -42,7 +42,7 @@
             <span class="icon is-small">
               <i class="fa fa-plus"></i>
             </span>
-            <span>criar deck</span>
+            <span>{{ $t('deck.botoes.criar_deck') }}</span>
           </button>
         </div>
         <deck-list @selecionado="mostrar" :decks="decks.pandora"></deck-list>

@@ -1,21 +1,21 @@
 <template>
 <div>
   <data-table :data="decks">
-    <column label="Nome" field="nome">
+    <column :label="$t('deck.nome')" field="nome">
       <template scope="row">
         <span>
             <a @click="mostrar(row)">{{ row.nome}}</a>
         </span>
       </template>
     </column>
-    <column label="Cores">
+    <column :label="$t('matchup.cores')">
       <template scope="row">
         <span>
             <deck-cores :cores="row.matchup.cores"></deck-cores>
         </span>
       </template>
     </column>
-    <column label="Tipo">
+    <column :label="$t('matchup.tipos')">
       <template scope="row">
         <span>
             <deck-arquetipo :arquetipo="row.matchup.arquetipo"></deck-arquetipo>
@@ -30,9 +30,9 @@
         </span>
       </template>
     </column>
-    <column label="V" field="vitorias"></column>
-    <column label="D" field="derrotas"></column>
-    <column label="Recente">
+    <column :label="$t('deck.v')" field="vitorias"></column>
+    <column :label="$t('deck.d')" field="derrotas"></column>
+    <column :label="$t('partida.recente')">
       <template scope="row">
         <span>
           <deck-evento key="partida.id" :evento="partida.evento" v-for="partida in row.partidas"></deck-evento>
@@ -42,7 +42,7 @@
   </data-table>
 
   <div v-if="decks.length == 0" class="has-text-centered">
-    Nenhum deck registrado
+    {{ $t('deck.nenhum_deck') }}
   </div>
 
 </div>
