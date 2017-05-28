@@ -190,42 +190,18 @@ export default {
     },
     validar_batalha(carta) {
       if (carta.total === 3) {
-        this.$notify.danger({ content: 'DECK BATALHA: Máximo de 3 cópias por carta' })
+        this.$notify.danger({ content: this.$t('deck.validacao.batalha_3_amostras') })
         return false
       }
 
       if (carta.metadata.rarity === 'LEGENDARY' && carta.total === 1) {
-        this.$notify.danger({ content: 'DECK BATALHA: Máximo de 1 cópia por carta LENDÁRIA' })
+        this.$notify.danger({ content: this.$t('deck.validacao.batalha_lendaria_1_copia') })
         return false
-      }
-    },
-    validar_pandora(carta) {
-      // Carta não permitida
-      if (carta.metadata.card_id === '350') {
-        this.$notify.danger({ content: 'DECK PANDORA: Carta "3 Desejos" não é permitida' })
-        return false
-      }
-
-      // Contagem de 3 tesouros diferentes entre si
-      if (carta.metadata.color === 'PANDORA') {
-        let totais = this.deck.cartas.map(c => {
-          if (c.metadata.color === 'PANDORA') {
-            return c.total
-          }
-        })
-
-        let soma = totais.reduce((a, b) => a + b, 0)
-
-        // TODO o calculo de duplicidade do tesouro está sendo feito no backend
-        if (soma === 3) {
-          this.$notify.danger({ content: 'DECK PANDORA: deve conter EXTAMENTE 3 tesouros diferentes entre si' })
-          return false
-        }
       }
     },
     addcarta(carta) {
       if (this.totalCartas === 30) {
-        this.$notify.danger({ content: '30 cartas ;)' })
+        this.$notify.danger({ content: this.$t('deck.validacao.cartas_30') })
         return
       }
 
@@ -238,20 +214,8 @@ export default {
           }
         }
 
-        if (this.deck.modo.chave === 'PANDORA') {
-          if (this.validar_pandora(carta) === false) {
-            return
-          }
-        }
-
         c.total++
       } else {
-        if (this.deck.modo.chave === 'PANDORA') {
-          if (this.validar_pandora(carta) === false) {
-            return
-          }
-        }
-
         carta.total = 1
         this.deck.cartas.push(carta)
       }
@@ -270,7 +234,7 @@ export default {
       try {
         const response = await deckAPI.salvar(this.deck)
         this.$router.push(`/decks/${response.data.id}`)
-        this.$notify.success({ content: 'deck registrado' })
+        this.$notify.success({ content: this.$t('deck.notify.registrado') })
       } catch (error) {
         this.erro = error.response.data
         this.$notify.danger({ content: error.response.data.message })
@@ -286,7 +250,7 @@ export default {
       try {
         await deckAPI.delete(this.deck.id)
         this.$router.push(`/home`)
-        this.$notify.success({ content: 'deck excluído' })
+        this.$notify.success({ content: this.$t('deck.notify.excluido') })
       } catch (error) {
         this.erro = error.response.data
         this.$notify.danger({ content: error.response.data.message })

@@ -24,6 +24,15 @@ const messages = {
     criar_deck: 'create deck',
     editar_deck: 'edit deck',
     reset_cartas: 'clear cards'
+  },
+  notify: {
+    registrado: 'deck registered',
+    excluido: 'deck deleted'
+  },
+  validacao: {
+    cartas_30: 'Max 30 cards',
+    batalha_3_amostras: 'BATTLE DECK: Max of 3 copies per card',
+    batalha_lendaria_1_copia: 'BATTLE DECK: Max of 1 copy per LEGENDARY card'
   }
 }
 

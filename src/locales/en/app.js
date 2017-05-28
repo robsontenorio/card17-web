@@ -20,7 +20,7 @@ const messages = {
     sair: 'Logout'
   },
   placeholders: {
-    username: 'nome de usuário',
+    username: 'username',
     email: 'e-mail',
     senha: 'password',
     filtrar: 'filter ...'

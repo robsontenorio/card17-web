@@ -82,7 +82,7 @@
         <h2 class="subtitle">{{ $t('partida.detalhes_oponente') }} <span class="tag">{{ $t('partida.opcional') }}</span></h2>
 
         <p class="control has-icon">
-          <input v-model="filtro" class="input" type="text" placeholder="filtrar...">
+          <input v-model="filtro" class="input" type="text" :placeholder="$t('app.placeholders.filtrar')">
           <i class="fa fa-search"></i>
         </p>
         <br>
@@ -176,11 +176,12 @@ export default {
       return nome.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1
     },
     async salvar() {
+      let avisoJornada = this.$t('partida.pandora.aviso_jornada') + this.deck.vitorias + this.$t('deck.v') + ' - ' + this.deck.derrotas + this.$t('deck.d')
       // TODO ... padronizar todos s numeros serem INT e nao string. AXIOS?
       if (this.deck.modo.chave === 'PANDORA') {
         if ((this.partida.evento === '0' && this.deck.derrotas === 2) || (this.partida.evento === '1' && this.deck.vitorias === 8)) {
           // TODO usar componente do vue-blue
-          if (!confirm('Após o registro desta partida, sua Jornada Pandora será encerrada. Placar atual : ' + this.deck.vitorias + 'V - ' + this.deck.derrotas + 'D')) {
+          if (!confirm(avisoJornada)) {
             return
           }
         }
@@ -191,7 +192,7 @@ export default {
       try {
         await this.addPartida(this.partida)
         this.reset()
-        this.$notify.success({ content: 'partida adicionada' })
+        this.$notify.success({ content: this.$t('partida.notify.adicionada') })
       } catch (error) {
         this.erro = error.response.data
         this.$notify.danger({ content: error.response.data.message, placement: 'top-left' })
