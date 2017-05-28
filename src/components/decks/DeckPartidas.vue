@@ -1,7 +1,7 @@
 <template>
 <div v-if="partidas">
   <div class="block">
-    <button @click="adding = true" class="button is-primary">
+    <button @click="adding = true" :class="{'is-hidden': jornada_encerrada}" class="button is-primary">
       <span class="icon is-small">
         <i class="fa fa-plus"></i>
       </span>
@@ -151,12 +151,20 @@ export default {
     ...mapState({
       partidas: state => state.deck.partidas,
       deck_id: state => state.deck.id,
+      deck: state => state.deck,
       comum: state => state.comum
-    })
+    }),
+    jornada_encerrada() {
+      if (this.deck.modo.chave === 'PANDORA') {
+        return (this.deck.vitorias === 9 || this.deck.derrotas === 3) ? 1 : 0
+      } else {
+        return false
+      }
+    }
   },
   methods: {
     ...mapActions({
-      add: 'ADD_PARTIDA'
+      addPartida: 'ADD_PARTIDA'
     }),
     next() {
       this.currentStep++
@@ -168,10 +176,20 @@ export default {
       return nome.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1
     },
     async salvar() {
+      // TODO ... padronizar todos s numeros serem INT e nao string. AXIOS?
+      if (this.deck.modo.chave === 'PANDORA') {
+        if ((this.partida.evento === '0' && this.deck.derrotas === 2) || (this.partida.evento === '1' && this.deck.vitorias === 8)) {
+          // TODO usar componente do vue-blue
+          if (!confirm('Após o registro desta partida, sua Jornada Pandora será encerrada. Placar atual : ' + this.deck.vitorias + 'V - ' + this.deck.derrotas + 'D')) {
+            return
+          }
+        }
+      }
+
       this.partida.deck_id = this.deck_id // TODO
 
       try {
-        await this.add(this.partida)
+        await this.addPartida(this.partida)
         this.reset()
         this.$notify.success({ content: 'partida adicionada' })
       } catch (error) {

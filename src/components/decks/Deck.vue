@@ -36,9 +36,11 @@
       <h2 class="subtitle">DISTRIBUIÇÃO</h2>
       <deck-distribuicao :terrenos="deck.estatisticas.distribuicao.terrenos" :faerias="deck.estatisticas.distribuicao.faerias" :tipos="deck.estatisticas.distribuicao.tipos"></deck-distribuicao>
 
-      <br><br>
       <!-- DESEMPENHO -->
-      <h2 class="subtitle">DESEMPENHO</h2> TODO ... [bom contra / ruim contra] 3 vitorias ou 3 derrotas definem o desempenho
+      <div v-show="deck.modo.chave === 'BATALHA'">
+        <br><br>
+        <h2 class="subtitle">DESEMPENHO</h2> TODO ... [bom contra / ruim contra] 3 vitorias ou 3 derrotas definem o desempenho
+      </div>
 
       <!-- PARTIDAS -->
       <br><br><br>

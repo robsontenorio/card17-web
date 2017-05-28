@@ -6,6 +6,7 @@ const state = {
   vitorias: 0,
   derrotas: 0,
   winrate: 0,
+  modo: {},
 
   estatisticas: {
     progresso: [],

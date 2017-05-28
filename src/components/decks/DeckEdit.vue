@@ -49,10 +49,12 @@
               </radio-group>
 
               <!-- TIPOS -->
-              <label class="label">Tipos</label>
-              <deck-tipos :tipos="tiposSelected"></deck-tipos>
-              <span class="tag selecionar-tipos" @click="addingtipo = true"><i class="fa fa-pencil"></i></span>
-              </p>
+              <div v-show="deck.modo.chave === 'BATALHA'">
+                <label class="label">Tipos</label>
+                <deck-tipos :tipos="tiposSelected"></deck-tipos>
+                <span class="tag selecionar-tipos" @click="addingtipo = true"><i class="fa fa-pencil"></i></span>
+                </p>
+              </div>
 
             </div>
             <div class="column">
@@ -164,6 +166,7 @@ export default {
       return this.deck.cartas.map(c => c.total).reduce((a, b) => a + b, 0)
     },
     mediaFaeria() {
+      // TODO ajustar calculo. está errado, provavelmente usar foreach aqui
       let total = this.deck.cartas.length || 0
       let faerias = this.deck.cartas.map(c => parseInt(c.metadata.faeria)).reduce((a, b) => a + b, 0) || 0
       let media = (total === 0 || faerias === 0) ? 0 : faerias / total
