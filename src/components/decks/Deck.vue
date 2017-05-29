@@ -38,12 +38,41 @@
 
       <!-- DESEMPENHO -->
       <div v-show="deck.modo.chave === 'BATALHA'">
-        <br><br>
-        <h2 class="subtitle">{{ $t('deck.desempenho') }} </h2> TODO ... [bom contra / ruim contra] 3 vitorias ou 3 derrotas definem o desempenho
+        <br><br><br>
+        <h2 class="subtitle">{{ $t('deck.desempenho') }} </h2>
+
+        <div class="columns desempenho">
+          <div class="column" v-if="deck.estatisticas.desempenho.bom_contra.length">
+            <h2>{{ $t('deck.bom_contra') }}</h2>
+            <div class="contra" v-for="matchup in deck.estatisticas.desempenho.bom_contra">
+              <span class="rate tag is-warning">{{ matchup.winrate }} %</span>
+              <span class="rate tag is-success">{{ matchup.vitorias }}</span>
+              <span class="rate tag is-danger">{{ matchup.derrotas }}</span>
+              <deck-cores key="matchup.hash" :cores="matchup.cores"></deck-cores>
+              <deck-arquetipo key="matchup.hash" :arquetipo="matchup.arquetipo"></deck-arquetipo>
+              <deck-tipos key="matchup.hash" :tipos="matchup.tipos"></deck-tipos>
+            </div>
+          </div>
+
+          <div class="column" v-if="deck.estatisticas.desempenho.ruim_contra.length">
+            <h2>{{ $t('deck.ruim_contra') }}</h2>
+            <div class="contra" v-for="matchup in deck.estatisticas.desempenho.ruim_contra">
+              <span class="rate tag is-warning">{{ matchup.winrate }} %</span>
+              <span class="rate tag is-success">{{ matchup.vitorias }}</span>
+              <span class="rate tag is-danger">{{ matchup.derrotas }}</span>
+              <deck-cores key="matchup.hash" :cores="matchup.cores"></deck-cores>
+              <deck-arquetipo key="matchup.hash" :arquetipo="matchup.arquetipo"></deck-arquetipo>
+              <deck-tipos key="matchup.hash" :tipos="matchup.tipos"></deck-tipos>
+            </div>
+          </div>
+        </div>
+
+        <small>O desempenho é calculado após 5 partidas contra a <strong>mesma</strong> matchup (cor + arquétipo + tipos [se houver]). Um winrate acima de 66% indica um bom desempenho. Um winrate abaixo de 40% indica um desempenho ruim.</small>
+
       </div>
 
       <!-- PARTIDAS -->
-      <br><br><br>
+      <br><br>
       <h2 class="subtitle"> {{ $t('deck.partidas') }} </h2>
       <deck-partidas></deck-partidas>
 
@@ -118,5 +147,17 @@ export default {
 <style scoped>
 h2 {
   font-weight: bold;
+}
+
+.desempenho .rate {
+  width: 45px;
+}
+
+.desempenho .contra {
+  margin-bottom: 10px;
+}
+
+.desempenho h2 {
+  margin-bottom: 15px;
 }
 </style>

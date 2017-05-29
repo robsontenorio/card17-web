@@ -10,12 +10,12 @@
   <br> - ajustes de layout
   <br> - distribuição de terrenos, faerias
   <br> - Excluir deck
+  <br> - Calcular desempenho do deck MODO BATALHA (bom contra / ruim contra)
 
   <br><br> TODO:
   <br> - Traduzir mensagens de validação (internacionalização)
   <br> - Calcular corretamente custo faeria do deck
   <br> - Incluir filtros de pesquisa de cartas no deckbuilder
-  <br> - Calcular desempenho do deck MODO BATALHA (bom contra / ruim contra)
   <br> - Implementar conceito de temporada (resetar estatísticas por temporada)
   <br> - PANDORA Tierlist
 

@@ -40,13 +40,15 @@
       </template>
     </column>
   </data-table>
+  <small>
+    <p>
+      {{ $t('partida.resultado_label') }}
+    </p>
+    <p>
+      {{ $t('partida.primeiro_label') }}
+    </p>
+  </small>
 
-  <p>
-    {{ $t('partida.resultado_label') }}
-  </p>
-  <p>
-    {{ $t('partida.primeiro_label') }}
-  </p>
 
   <b-aside :is-show="adding" :show-footer="false" :title="$t('partida.partida')" placement="right" @close="adding=false">
     <steps :current="currentStep" type="line" :show-footer="false" prev-text="voltar" next-text="avançar">

@@ -1,9 +1,9 @@
 const messages = {
   nome: 'Name',
   descricao: 'Public description',
-  partidas: 'Matches',
-  desempenho: 'Performance',
-  distribuicao: 'Card Map',
+  partidas: 'MATCHES',
+  desempenho: 'PERFORMANCE',
+  distribuicao: 'CARD MAP',
   editar_deck: 'Deck Edit',
   modo_batalha: 'BATTLE MODE',
   modo_pandora: 'PANDORA MODE',
@@ -13,6 +13,8 @@ const messages = {
   progresso: 'progress',
   v: 'W',
   d: 'L',
+  bom_contra: 'Good matchup',
+  ruim_contra: 'Bad matchup',
   nenhum_deck: 'No registered decks',
   sem_cartas: 'No registered cards for this deck',
   placeholder: {
