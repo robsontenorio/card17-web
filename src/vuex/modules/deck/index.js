@@ -10,7 +10,10 @@ const state = {
 
   estatisticas: {
     progresso: [],
-    desempenho: {},
+    desempenho: {
+      bom_contra: [],
+      ruim_contra: []
+    },
     distribuicao: {
       terrenos: [],
       ferias: [],

@@ -15,6 +15,7 @@ const messages = {
   d: 'L',
   bom_contra: 'Good matchup',
   ruim_contra: 'Bad matchup',
+  desempenho_info: 'Performance is calculated after 5 matches against <strong>same</strong> matchup (color + archetype + types [if any]). A winrate above 66% indicates good performance. A winrate below 40% indicates poor performance.',
   nenhum_deck: 'No registered decks',
   sem_cartas: 'No registered cards for this deck',
   placeholder: {

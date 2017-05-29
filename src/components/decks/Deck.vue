@@ -67,7 +67,7 @@
           </div>
         </div>
 
-        <small>O desempenho é calculado após 5 partidas contra a <strong>mesma</strong> matchup (cor + arquétipo + tipos [se houver]). Um winrate acima de 66% indica um bom desempenho. Um winrate abaixo de 40% indica um desempenho ruim.</small>
+        <small v-html="$t('deck.desempenho_info')"></small>
 
       </div>
 

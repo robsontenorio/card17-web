@@ -20,15 +20,15 @@
 
     </div>
     <div class="column is-2 followers has-text-centered">
-      <p class="stat-val">{{ winrate }}</p>
+      <p class="stat-val">{{ user.estatisticas.winrate }}%</p>
       <p class="stat-key"> {{ $t('profile.winrate') }} </p>
     </div>
     <div class="column is-2 followers has-text-centered">
-      <p class="stat-val">{{ vitorias }}</p>
+      <p class="stat-val">{{ user.estatisticas.vitorias }}</p>
       <p class="stat-key"> {{ $t('profile.vitorias') }} </p>
     </div>
     <div class="column is-2 followers has-text-centered">
-      <p class="stat-val">{{ derrotas }}</p>
+      <p class="stat-val">{{ user.estatisticas.derrotas }}</p>
       <p class="stat-key"> {{ $t('profile.derrotas') }} </p>
     </div>
   </div>
@@ -42,19 +42,6 @@ export default {
   name: 'profile',
   props: ['user'],
   computed: {
-    winrate() {
-      let total = (this.user.estatisticas.pandora.winrate === 0 || this.user.estatisticas.batalha.winrate === 0) ? 1 : 2
-      let w = ((this.user.estatisticas.pandora.winrate + this.user.estatisticas.batalha.winrate) / total)
-      return w + '%'
-    },
-    vitorias() {
-      let v = ((this.user.estatisticas.pandora.vitorias + this.user.estatisticas.batalha.vitorias))
-      return v
-    },
-    derrotas() {
-      let d = ((this.user.estatisticas.pandora.derrotas + this.user.estatisticas.batalha.derrotas))
-      return d
-    },
     adora() {
       let b = this.user.estatisticas.batalha.vitorias + this.user.estatisticas.batalha.derrotas
       let p = this.user.estatisticas.pandora.vitorias + this.user.estatisticas.pandora.derrotas
