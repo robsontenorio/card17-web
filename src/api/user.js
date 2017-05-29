@@ -17,6 +17,9 @@ export default {
   put(user) {
     return Vue.axios.put('/users/' + user.id, user)
   },
+  patch(user) {
+    return Vue.axios.patch('/users/' + user.id, user)
+  },
   delete(id) {
     return Vue.axios.delete('/users/' + id)
   }

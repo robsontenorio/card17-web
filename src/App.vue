@@ -25,18 +25,33 @@
         <a v-if="$auth.check()" @click="logout()" class="nav-item is-tab">
             {{ $t('app.menus.sair') }}
         </a>
+
+        <dropdown class="nav-item">
+          <a class="button is-primary">
+              <span><img :src="`/static/images/${locale}.png`" /></span>
+              <span class="icon is-small"><i class="fa fa-angle-down"></i></span>
+          </a>
+          <div slot="content">
+            <menus>
+              <menu-item><img @click.prevent="changeLocale('br')" :src="`/static/images/br.png`" /></menu-item>
+              <menu-item><img @click.prevent="changeLocale('en')" :src="`/static/images/en.png`" /></menu-item>
+            </menus>
+          </div>
+        </dropdown>
+
+
       </div>
     </div>
   </nav>
 
-  <section class="section">
-    <div class="container">
+  <section class="section ">
+    <div class="container ">
       <router-view></router-view>
     </div>
   </section>
-  <!-- <footer class="footer sticky">
-    <div class="container">
-      <div class="content has-text-centered">
+  <!-- <footer class="footer sticky ">
+    <div class="container ">
+      <div class="content has-text-centered ">
         <p>
           <strong>CARD17</strong> &copy; 2017
         </p>
@@ -47,22 +62,42 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'app',
   created() {
     this.carregarComum()
   },
+  watch: {
+    '$auth.watch.loaded' () {
+      this.setUser(this.$auth.user())
+      this.$i18n.locale = this.$auth.user().locale
+    }
+  },
+  computed: {
+    ...mapState({
+      user: state => state.user
+    }),
+    ...mapGetters([
+      'locale'
+    ])
+  },
   methods: {
     ...mapActions({
-      carregarComum: 'LOAD_COMUM'
+      carregarComum: 'LOAD_COMUM',
+      setUser: 'SET_USER',
+      setLocale: 'SET_LOCALE'
     }),
     logout() {
       this.$auth.logout({
         makeRequest: true,
         redirect: '/'
       })
+    },
+    changeLocale(locale) {
+      this.setLocale(locale)
+      this.$i18n.locale = locale
     }
   }
 }

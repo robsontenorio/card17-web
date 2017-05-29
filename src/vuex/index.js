@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import comum from './modules/comum'
 import deck from './modules/deck'
+import user from './modules/user'
 
 Vue.use(Vuex)
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
   // actions,  <---- caso queira criar actions genericas
   // getters,
   modules: {
+    user,
     comum,
     deck
   },

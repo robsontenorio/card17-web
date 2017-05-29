@@ -124,6 +124,11 @@ a.nav-item {
     background-color: $info;
 }
 
+
+.popper-dropdown .menu-list a
+{
+  padding: 0;
+}
 .notification.alert .title{
   font-weight: bold;
 }
