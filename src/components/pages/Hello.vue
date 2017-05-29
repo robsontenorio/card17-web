@@ -12,10 +12,13 @@
   <br> - Excluir deck
   <br> - Calcular desempenho do deck MODO BATALHA (bom contra / ruim contra)
 
-  <br><br> TODO:
+  <br><br> EM ANDAMENTO:
   <br> - Traduzir mensagens de validação (internacionalização)
   <br> - Calcular corretamente custo faeria do deck
   <br> - Incluir filtros de pesquisa de cartas no deckbuilder
+
+
+  <br><br> TODO:
   <br> - Implementar conceito de temporada (resetar estatísticas por temporada)
   <br> - PANDORA Tierlist
 
