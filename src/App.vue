@@ -17,8 +17,8 @@
         <router-link v-if="!$auth.check()" to="/login" class="nav-item is-tab is-hidden-mobile"> {{ $t('app.menus.entrar') }} </router-link>
         <router-link to="/home" v-if="$auth.check()" class="nav-item is-tab">
           <figure class="image is-24x24" style="margin-right: 8px;">
-            <!-- <img :src="`/static/images/users/${$auth.user().id}.jpg`" style="border-radius: 50%"> -->
-            <img :src="`/static/images/users/59.png`" style="border-radius: 50%">
+            <!-- <img :src="`${API_URL}/uploads/users/${$auth.user().id}.png`" style="border-radius: 50%"> -->
+            <img :src="`${API_URL}/uploads/users/0.png`" style="border-radius: 50%">
           </figure>
           {{ $auth.user().username }}
         </router-link>
@@ -28,8 +28,8 @@
 
         <dropdown class="nav-item">
           <a class="button is-primary">
-              <span><img :src="`/static/images/${locale}.png`" /></span>
-              <span class="icon is-small"><i class="fa fa-angle-down"></i></span>
+            <span><img :src="`/static/images/${locale}.png`" /></span>
+            <span class="icon is-small"><i class="fa fa-angle-down"></i></span>
           </a>
           <div slot="content">
             <menus>

@@ -4,7 +4,8 @@
     <div class="column is-narrow">
       <div class="image is-128x128 avatar">
         <!-- <img :src="`/static/images/users/${user.id}.jpg`"> -->
-        <img :src="`/static/images/users/59.png`">
+        <!-- <img :src="`${API_URL}/uploads/users/${$auth.user().id}.png`"> -->
+        <img :src="`${API_URL}/uploads/users/0.png`">
       </div>
     </div>
     <div class="column">

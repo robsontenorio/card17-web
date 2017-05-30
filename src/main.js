@@ -41,6 +41,17 @@ const i18n = new VueI18n({
 
 Vue.axios.defaults.baseURL = process.env.API_URL
 
+// TODO
+Vue.mixin({
+  data: function() {
+    return {
+      get API_URL() {
+        return process.env.API_URL
+      }
+    }
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
