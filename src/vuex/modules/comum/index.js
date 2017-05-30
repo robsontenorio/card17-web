@@ -11,9 +11,10 @@ const getters = {
 
 // actions
 const actions = {
-  async LOAD_COMUM({ commit }) {
-    const response = await comumAPI.all()
-    commit('SET_COMUM', { dados: response.data })
+  LOAD_COMUM({ commit }) {
+    comumAPI.all().then(response => {
+      commit('SET_COMUM', { dados: response.data })
+    })
   }
 }
 

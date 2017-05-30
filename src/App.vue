@@ -1,5 +1,5 @@
 <template>
-<div id="app">
+<div id="app" v-loading="!$auth.ready() || carregando">
   <nav class="nav">
     <div class="container">
       <div class="nav-left">
@@ -66,11 +66,20 @@ import { mapActions, mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'app',
+  data() {
+    return {
+      carregando: true
+    }
+  },
   created() {
+    if (!this.$auth.check()) {
+      this.carregando = false
+    }
     this.carregarComum()
   },
   watch: {
     '$auth.watch.loaded' () {
+      this.carregando = false
       this.setUser(this.$auth.user())
       this.$i18n.locale = this.$auth.user().locale
     }

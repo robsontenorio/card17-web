@@ -35,7 +35,7 @@
     <column :label="$t('partida.recente')">
       <template scope="row">
         <span>
-          <deck-evento key="partida.id" :evento="partida.evento" v-for="partida in row.partidas"></deck-evento>
+          <deck-evento key="partida.id" :evento="partida.evento" v-for="partida in row.partidas_recentes"></deck-evento>
         </span>
       </template>
     </column>

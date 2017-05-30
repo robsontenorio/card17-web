@@ -94,11 +94,8 @@
       <div style="padding-top: 15px;">
         <deck-cartas :cartas="deck.cartas"></deck-cartas>
       </div>
-
     </div>
-
   </div>
-
 </div>
 </template>
 

@@ -1,11 +1,7 @@
 <template>
 <div v-loading="!user">
-
   <div v-if="user">
-
-
     <profile :user="user"></profile>
-
     <br><br>
     <tabs :on-tab-click="show">
       <!-- DECKS BATALHA -->
@@ -94,14 +90,16 @@ export default {
   async created() {
     let filtrosBatalha = {
       user_id: this.$auth.user().id,
-      includes: 'dificuldade,modo,matchup.cores,matchup.arquetipo,matchup.tipos,partidas',
-      modo_chave: 'BATALHA'
+      includes: 'dificuldade,modo,matchup.cores,matchup.arquetipo,matchup.tipos',
+      modo_chave: 'BATALHA',
+      appends: 'partidas_recentes'
     }
 
     let filtrosPandora = {
       user_id: this.$auth.user().id,
       includes: 'dificuldade,modo,matchup.cores,matchup.arquetipo,matchup.tipos,partidas',
-      modo_chave: 'PANDORA'
+      modo_chave: 'PANDORA',
+      appends: 'partidas_recentes'
     }
 
     let filtrosEstatisticas = {
