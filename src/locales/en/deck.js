@@ -7,6 +7,8 @@ const messages = {
   editar_deck: 'Deck Edit',
   modo_batalha: 'BATTLE MODE',
   modo_pandora: 'PANDORA MODE',
+  batalha: 'BATTLE',
+  pandora: 'PANDORA',
   vitorias: 'wins',
   derrotas: 'losses',
   winrate: 'winrate',

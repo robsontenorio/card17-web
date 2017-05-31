@@ -24,7 +24,12 @@ const state = {
 
 // getters
 const getters = {
-  // checkoutStatus: state => state.checkoutStatus
+  ultimaPartida: state => {
+    console.log('utilma -->')
+    const [last] = [...state.partidas].reverse()
+    console.log(last)
+    return last
+  }
 }
 
 // actions
@@ -42,6 +47,11 @@ const actions = {
     const response = await partidaAPI.post(partida)
     commit('ADD_PARTIDA', { partida: response.data })
     dispatch('LOAD_DECK', state.id) // TODO ? LOAD_PARTIDAS
+  },
+  async DELETE_PARTIDA({ commit, dispatch }, partida) {
+    const response = await partidaAPI.delete(partida)
+    commit('DELETE_PARTIDA', { partida: response.data })
+    dispatch('LOAD_DECK', state.id) // TODO ? LOAD_PARTIDAS
   }
 
 }
@@ -52,6 +62,8 @@ const mutations = {
   SET_DECK_FULL(state, { deck }) {
     state = Object.assign(state, deck)
     // todo organizar atributos ?
+  },
+  DELETE_PARTIDA(state, { partida }) {
   },
   ADD_PARTIDA(state, { partida }) {
     //  state.partidas.push(partida) TODO

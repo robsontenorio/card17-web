@@ -11,6 +11,7 @@
   <br> - distribuição de terrenos, faerias
   <br> - Excluir deck
   <br> - Calcular desempenho do deck MODO BATALHA (bom contra / ruim contra)
+  <br> - Excluir partidas
 
   <br><br> EM ANDAMENTO:
   <br> - Traduzir mensagens de validação (internacionalização)

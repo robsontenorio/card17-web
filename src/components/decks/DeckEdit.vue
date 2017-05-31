@@ -5,7 +5,7 @@
       <div class="column">
         <div class="level">
           <div class="level-left">
-            <h1 class="title">{{ $t('deck.editar_deck') }} </h1>
+            <h1 class="title">{{ $t('deck.' + deck.modo.chave.toLowerCase()) }} - {{ $t('deck.editar_deck') }} </h1>
           </div>
           <div class="level-right">
             <!-- BOTOES -->

@@ -39,6 +39,14 @@
         </div>
       </template>
     </column>
+
+    <column>
+      <template scope="row">
+        <div>
+            <a v-if="row.id === ultimaPartida.id" @click="excluir(row.id)"><i class="fa fa-trash"></i></a>
+        </div>
+      </template>
+    </column>
   </data-table>
   <small>
     <p>
@@ -112,7 +120,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 
 import DeckCores from './DeckCores'
 import DeckCor from './DeckCor'
@@ -156,6 +164,9 @@ export default {
       deck: state => state.deck,
       comum: state => state.comum
     }),
+    ...mapGetters([
+      'ultimaPartida'
+    ]),
     jornada_encerrada() {
       if (this.deck.modo.chave === 'PANDORA') {
         return (this.deck.vitorias === 9 || this.deck.derrotas === 3) ? 1 : 0
@@ -166,7 +177,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      addPartida: 'ADD_PARTIDA'
+      addPartida: 'ADD_PARTIDA',
+      deletePartida: 'DELETE_PARTIDA'
     }),
     next() {
       this.currentStep++
@@ -198,6 +210,15 @@ export default {
       } catch (error) {
         this.erro = error.response.data
         this.$notify.danger({ content: error.response.data.message, placement: 'top-left' })
+      }
+    },
+
+    async excluir(id) {
+      try {
+        await this.deletePartida(id)
+      } catch (error) {
+        this.erro = error.response.data
+        this.$notify.danger({ content: error.response.data.message })
       }
     },
     reset() {
