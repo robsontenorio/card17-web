@@ -1,5 +1,5 @@
 <template>
-<div>
+<div v-loading="carregando">
   <div class="columns">
     <!-- COLUNA ESQUERDA -->
     <div class="column">
@@ -106,10 +106,15 @@ export default {
     DeckDesempenho
   },
   data() {
-    return {}
+    return {
+      carregando: true
+    }
   },
   created() {
-    this.LOAD_DECK(this.$route.params.id)
+    this.LOAD_DECK(this.$route.params.id).then(response => {
+      this.carregando = false
+    })
+
   },
   computed: {
     ...mapState({
