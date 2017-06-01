@@ -22,6 +22,8 @@ import DeckTipos from './DeckTipos'
 import DeckEvento from './DeckEvento'
 import DeckPesquisar from './DeckPesquisar'
 import DeckModo from './DeckModo'
+import DeckMatchup from './DeckMatchup'
+import DeckDesempenho from './DeckDesempenho'
 
 export {
   Deck,
@@ -36,5 +38,7 @@ export {
   DeckTipos,
   DeckEvento,
   DeckPesquisar,
-  DeckModo
+  DeckModo,
+  DeckMatchup,
+  DeckDesempenho
 }

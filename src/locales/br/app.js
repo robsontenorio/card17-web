@@ -9,7 +9,7 @@ const messages = {
     registrar: 'registrar'
   },
   cadastrar: {
-    welcome: 'Cadastar :)'
+    welcome: 'Cadastrar :)'
   },
   login: {
     welcome: 'Olá :)'

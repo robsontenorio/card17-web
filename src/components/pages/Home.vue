@@ -21,7 +21,7 @@
             <span>{{ $t('deck.botoes.criar_deck') }}</span>
           </button>
         </div>
-        <deck-list @selecionado="mostrar" :decks="decks.batalha"></deck-list>
+        <deck-list v-loading="loading_batalha" @selecionado="mostrar" :decks="decks.batalha"></deck-list>
       </tab-item>
 
       <!-- DECKS PANDORA -->
@@ -41,7 +41,7 @@
             <span>{{ $t('deck.botoes.criar_deck') }}</span>
           </button>
         </div>
-        <deck-list @selecionado="mostrar" :decks="decks.pandora"></deck-list>
+        <deck-list v-loading="loading_pandora" @selecionado="mostrar" :decks="decks.pandora"></deck-list>
       </tab-item>
     </tabs>
   </div>
@@ -69,6 +69,8 @@ export default {
     return {
       tab: null,
       user: null,
+      loading_pandora: true,
+      loading_batalha: true,
       decks: {
         batalha: [],
         pandora: []
@@ -106,17 +108,20 @@ export default {
       appends: 'estatisticas'
     }
 
-    // TODO vuex aqui?
-    // TODO aqui poderia ser com THEN mesmo , para que as chamadas fossem paralelas. Com await parecem ser serial
-    let response = await userAPI.get(this.$auth.user().id, filtrosEstatisticas)
-    this.estatisticas = response.data.estatisticas
-    this.user = response.data
+    userAPI.get(this.$auth.user().id, filtrosEstatisticas).then(response => {
+      this.estatisticas = response.data.estatisticas
+      this.user = response.data
+    })
 
-    response = await deckAPI.all(filtrosBatalha)
-    this.decks.batalha = response.data.data
+    deckAPI.all(filtrosBatalha).then(response => {
+      this.decks.batalha = response.data.data
+      this.loading_batalha = false
+    })
 
-    response = await deckAPI.all(filtrosPandora)
-    this.decks.pandora = response.data.data
+    deckAPI.all(filtrosPandora).then(response => {
+      this.decks.pandora = response.data.data
+      this.loading_pandora = false
+    })
   },
   methods: {
     show(i) {

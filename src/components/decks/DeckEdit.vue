@@ -5,7 +5,7 @@
       <div class="column">
         <div class="level">
           <div class="level-left">
-            <h1 class="title">{{ $t('deck.' + deck.modo.chave.toLowerCase()) }} - {{ $t('deck.editar_deck') }} </h1>
+            <h1 class="title">DECK {{ $t('deck.' + deck.modo.chave.toLowerCase()) }}</h1>
           </div>
           <div class="level-right">
             <!-- BOTOES -->
@@ -147,6 +147,10 @@ export default {
       this.deck.matchup.tipos = this.deck.matchup.tipos.map(t => t.id)
       this.deck.matchup.cores = this.deck.matchup.cores.map(c => c.id)
       this.deck.matchup.arquetipo_id = this.deck.matchup.arquetipo_id.toString() // TODO
+
+      if (this.deck.user_id !== this.$auth.user().id) {
+        this.$router.push('/home')
+      }
     } else {
       let chave = this.$route.query.modo
       let modo = this.comum.modos.find(m => m.chave === chave)

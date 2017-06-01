@@ -11,7 +11,9 @@ $yellow: #f39c12;
 @import "~vue-blu/src/scss/blu";
 
 
-
+[v-cloak] {
+    display: none;
+}
 
 // TODO LAYOUT GERAL DA APLICACAO EM CSS AQUI
 
@@ -19,30 +21,31 @@ $yellow: #f39c12;
  // TJDFT
 //
 //
-.notification{
-  background-color: #efefef !important;
-}
-
-.nav {
-  background-color: #efefef !important;
-}
-
-h2, .cover , img, .carta-mini, .notification, .title, .column{
-  opacity: 0.4 !important;
-}
-
-.blu-checkbox.on img{
-  opacity: 1 !important;
-}
-
-.tabs li.is-active a
-{
-  color: #c0c0c0 !important;
-}
-
-footer{
-  display: none;
-}
+// .notification{
+//   background-color: #efefef !important;
+// }
+//
+// .nav {
+//   background-color: #efefef !important;
+// }
+//
+// h2, .cover , img, .carta-mini, .notification, .title, .column{
+//   opacity: 0.4 !important;
+//   color: #c9c9c9 !important;
+// }
+//
+// .blu-checkbox.on img{
+//   opacity: 1 !important;
+// }
+//
+// .tabs li.is-active a
+// {
+//   color: #c0c0c0 !important;
+// }
+//
+// footer{
+//   display: none;
+// }
 
 // TJDFT
 

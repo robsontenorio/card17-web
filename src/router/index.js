@@ -20,7 +20,7 @@ export default new Router({
     { path: '/register', component: load('pages/Register') },
     { path: '/decks/pandora', component: load('pages/DecksPandora'), meta: { auth: true } },
     { path: '/decks/battle', component: load('pages/DecksBattle'), meta: { auth: true } },
-    { path: '/decks/:id', component: load('pages/Deck') },
+    { path: '/decks/:id', component: load('decks/Deck') },
     { path: '/decks/:id/edit', component: load('decks/DeckEdit'), meta: { auth: true } },
     { path: '*', component: load('pages/404') }
   ]

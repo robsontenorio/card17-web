@@ -13,16 +13,13 @@
         </div>
       </div>
 
-      <!-- BLOCO ESTATISTICA GERAL -->
+      <!-- ESTATISTICAS -->
       <estatistica-geral :winrate="deck.winrate" :vitorias="deck.vitorias" :derrotas="deck.derrotas" :progresso="deck.estatisticas.progresso"></estatistica-geral>
 
-      <!-- INFO GERAL -->
+      <!-- MATCHUP -->
       <br><br>
       <div class="block" v-if="deck.matchup">
-        <deck-cores :cores="deck.matchup.cores"></deck-cores>
-        <deck-modo :modo="deck.modo"></deck-modo>
-        <deck-arquetipo :arquetipo="deck.matchup.arquetipo"></deck-arquetipo>
-        <deck-tipos :tipos="deck.matchup.tipos"></deck-tipos>
+        <deck-matchup :modo="deck.modo" :matchup="deck.matchup"></deck-matchup>
       </div>
 
       <!-- DESCRICAO -->
@@ -40,35 +37,21 @@
       <div v-show="deck.modo.chave === 'BATALHA'">
         <br><br><br>
         <h2 class="subtitle">{{ $t('deck.desempenho') }} </h2>
-
-        <div class="columns desempenho">
+        <div class="columns">
           <div class="column" v-if="deck.estatisticas.desempenho.bom_contra.length">
             <h2>{{ $t('deck.bom_contra') }}</h2>
-            <div class="contra" v-for="matchup in deck.estatisticas.desempenho.bom_contra">
-              <span class="rate tag is-warning">{{ matchup.winrate }} %</span>
-              <span class="rate tag is-success">{{ matchup.vitorias }}</span>
-              <span class="rate tag is-danger">{{ matchup.derrotas }}</span>
-              <deck-cores key="matchup.hash" :cores="matchup.cores"></deck-cores>
-              <deck-arquetipo key="matchup.hash" :arquetipo="matchup.arquetipo"></deck-arquetipo>
-              <deck-tipos key="matchup.hash" :tipos="matchup.tipos"></deck-tipos>
+            <div v-for="matchup in deck.estatisticas.desempenho.bom_contra">
+              <deck-desempenho :matchup="matchup"></deck-desempenho>
             </div>
           </div>
-
           <div class="column" v-if="deck.estatisticas.desempenho.ruim_contra.length">
             <h2>{{ $t('deck.ruim_contra') }}</h2>
-            <div class="contra" v-for="matchup in deck.estatisticas.desempenho.ruim_contra">
-              <span class="rate tag is-warning">{{ matchup.winrate }} %</span>
-              <span class="rate tag is-success">{{ matchup.vitorias }}</span>
-              <span class="rate tag is-danger">{{ matchup.derrotas }}</span>
-              <deck-cores key="matchup.hash" :cores="matchup.cores"></deck-cores>
-              <deck-arquetipo key="matchup.hash" :arquetipo="matchup.arquetipo"></deck-arquetipo>
-              <deck-tipos key="matchup.hash" :tipos="matchup.tipos"></deck-tipos>
+            <div v-for="matchup in deck.estatisticas.desempenho.ruim_contra">
+              <deck-desempenho :matchup="matchup"></deck-desempenho>
             </div>
           </div>
         </div>
-
         <small v-html="$t('deck.desempenho_info')"></small>
-
       </div>
 
       <!-- PARTIDAS -->
@@ -83,7 +66,7 @@
 
     <div class="column is-one-quarter">
       <div class="has-text-right">
-        <button v-if="deck.user_id === this.$auth.user().id" class="button is-primary" @click="editar()">
+        <button v-if="deck.id && (deck.user_id === $auth.user().id)" class="button is-primary" @click="editar()">
           <span class="icon is-small">
             <i class="fa fa-pencil"></i>
           </span>
@@ -100,15 +83,14 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 import DeckPartidas from '@/components/decks/DeckPartidas'
 import DeckCartas from '@/components/decks/DeckCartas'
-import DeckCores from '@/components/decks/DeckCores'
 import DeckModo from '@/components/decks/DeckModo'
-import DeckTipos from '@/components/decks/DeckTipos'
-import DeckArquetipo from '@/components/decks/DeckArquetipo'
 import DeckDistribuicao from '@/components/decks/DeckDistribuicao'
+import DeckMatchup from '@/components/decks/DeckMatchup'
+import DeckDesempenho from '@/components/decks/DeckDesempenho'
 
 import { EstatisticaGeral } from '@/components/estatisticas'
 
@@ -117,15 +99,17 @@ export default {
   components: {
     DeckDistribuicao,
     DeckCartas,
-    DeckCores,
     DeckPartidas,
-    DeckTipos,
-    DeckArquetipo,
     EstatisticaGeral,
-    DeckModo
+    DeckModo,
+    DeckMatchup,
+    DeckDesempenho
   },
   data() {
     return {}
+  },
+  created() {
+    this.LOAD_DECK(this.$route.params.id)
   },
   computed: {
     ...mapState({
@@ -133,6 +117,10 @@ export default {
     })
   },
   methods: {
+    ...mapActions([
+      'LOAD_DECK'
+    ]),
+
     editar() {
       let id = this.$route.params.id
       this.$router.push(`/decks/${id}/edit`)
@@ -144,17 +132,5 @@ export default {
 <style scoped>
 h2 {
   font-weight: bold;
-}
-
-.desempenho .rate {
-  width: 45px;
-}
-
-.desempenho .contra {
-  margin-bottom: 10px;
-}
-
-.desempenho h2 {
-  margin-bottom: 15px;
 }
 </style>

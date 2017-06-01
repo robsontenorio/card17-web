@@ -7,7 +7,6 @@ const state = {
   derrotas: 0,
   winrate: 0,
   modo: {},
-
   estatisticas: {
     progresso: [],
     desempenho: {
@@ -25,9 +24,7 @@ const state = {
 // getters
 const getters = {
   ultimaPartida: state => {
-    console.log('utilma -->')
     const [last] = [...state.partidas].reverse()
-    console.log(last)
     return last
   }
 }
@@ -66,16 +63,7 @@ const mutations = {
   DELETE_PARTIDA(state, { partida }) {
   },
   ADD_PARTIDA(state, { partida }) {
-    //  state.partidas.push(partida) TODO
-
-    // TODO adicionar progresso (lembrar das limitacoes do array ser reativo, chartjs re-renderizar)
-    // if (partida.evento === '1') {
-    //   state.vitorias++
-    // } else {
-    //   state.derrotas++
-    // }
-    //
-    // state.winrate = Math.floor((state.vitorias / (state.vitorias + state.derrotas)) * 100)
+    // TODO fazer push aqui ou recarregar do servidor? atualmente usando LOAD_DECK no action
   }
 }
 

@@ -1,7 +1,7 @@
 <template>
 <div v-if="partidas">
   <div class="block">
-    <button @click="adding = true" :class="{'is-hidden': jornada_encerrada}" class="button is-primary">
+    <button v-if="deck.id && deck.user_id === this.$auth.user().id" @click="adding = true" :class="{'is-hidden': jornada_encerrada}" class="button is-primary">
       <span class="icon is-small">
         <i class="fa fa-plus"></i>
       </span>
@@ -43,7 +43,7 @@
     <column>
       <template scope="row">
         <div>
-            <a v-if="row.id === ultimaPartida.id" @click="excluir(row.id)"><i class="fa fa-trash"></i></a>
+            <a v-if="row.id === ultimaPartida.id && deck.user_id === $auth.user().id && deck.id" @click="excluir(row.id)"><i class="fa fa-trash"></i></a>
         </div>
       </template>
     </column>
