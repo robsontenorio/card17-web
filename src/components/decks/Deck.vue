@@ -114,7 +114,6 @@ export default {
     this.LOAD_DECK(this.$route.params.id).then(response => {
       this.carregando = false
     })
-
   },
   computed: {
     ...mapState({
