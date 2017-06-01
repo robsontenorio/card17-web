@@ -5,7 +5,7 @@
       <div class="column">
         <div class="level">
           <div class="level-left">
-            <h1 class="title">DECK {{ $t('deck.' + deck.modo.chave.toLowerCase()) }}</h1>
+            <h1 v-if="deck.modo.chave" class="title">DECK {{ $t('deck.' + deck.modo.chave.toLowerCase()) }}</h1>
           </div>
           <div class="level-right">
             <!-- BOTOES -->
@@ -252,9 +252,11 @@ export default {
     },
     async excluir() {
       try {
-        await deckAPI.delete(this.deck.id)
-        this.$router.push(`/home`)
-        this.$notify.success({ content: this.$t('deck.notify.excluido') })
+        if (confirm(this.$t('deck.notify.confirmar_exclusao'))) {
+          await deckAPI.delete(this.deck.id)
+          this.$router.push(`/home`)
+          this.$notify.success({ content: this.$t('deck.notify.excluido') })
+        }
       } catch (error) {
         this.erro = error.response.data
         this.$notify.danger({ content: error.response.data.message })

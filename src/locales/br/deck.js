@@ -32,7 +32,8 @@ const messages = {
   },
   notify: {
     registrado: 'deck registrado',
-    excluido: 'deck excluido'
+    excluido: 'deck excluido',
+    confirmar_exclusao: 'Tem certeza? Todas as estatísticas deste deck serão perdidas. Você não poderá desfazer esta ação!'
   },
   validacao: {
     cartas_30: 'Máximo 30 cartas',

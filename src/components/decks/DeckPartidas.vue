@@ -215,7 +215,9 @@ export default {
 
     async excluir(id) {
       try {
-        await this.deletePartida(id)
+        if (confirm(this.$t('partida.notify.confirmar_exclusao'))) {
+          await this.deletePartida(id)
+        }
       } catch (error) {
         this.erro = error.response.data
         this.$notify.danger({ content: error.response.data.message })

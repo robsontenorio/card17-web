@@ -22,7 +22,8 @@ const messages = {
     adicionar_partida: 'adicionar partida'
   },
   notify: {
-    adicionada: 'partida adicionada'
+    adicionada: 'partida adicionada',
+    confirmar_exclusao: 'Tem certeza?'
   }
 
 }
