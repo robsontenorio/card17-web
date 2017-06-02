@@ -5,7 +5,8 @@
 
   <pre>
       - <b>Os dados podem ser apagados a qualquer momento, sendo necessário se cadastrar novamente.</b>
-      - <b>Feedback inbox Discord para @pedroca @orebaz</b>
+      - <b>DISCORD <a href="https://discord.gg/R5g3PwW">https://discord.gg/R5g3PwW</a></b>
+      - <b>Feedback @pedroca @orebaz</b>
   </pre>
 
   <br><br> <strong>MELHORIAS:</strong>

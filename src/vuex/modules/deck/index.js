@@ -37,7 +37,7 @@ const actions = {
       appends: 'estatisticas'
     }
 
-    deckAPI.get(id, filtros).then(response => {
+    return deckAPI.get(id, filtros).then(response => {
       commit('SET_DECK_FULL', { deck: response.data })
     })
   },

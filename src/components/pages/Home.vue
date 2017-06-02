@@ -89,7 +89,7 @@ export default {
       }
     }
   },
-  async created() {
+  created() {
     let filtrosBatalha = {
       user_id: this.$auth.user().id,
       includes: 'dificuldade,modo,matchup.cores,matchup.arquetipo,matchup.tipos',

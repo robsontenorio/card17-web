@@ -1,6 +1,6 @@
 <template>
-<div v-loading="!deck">
-  <div v-if="deck">
+<div v-loading="carregando">
+  <div v-if="!carregando">
     <div class="columns">
       <div class="column">
         <div class="level">
@@ -9,8 +9,8 @@
           </div>
           <div class="level-right">
             <!-- BOTOES -->
-            <div class="block">
-              <button class="button is-primary" @click="salvar()">
+            <div class="block" :class="{'is-disabled': salvando || excluindo}">
+              <button class="button is-primary" :class="{'is-loading is-disabled': salvando}" @click="salvar()">
                 <span class="icon is-small">
                   <i class="fa fa-check"></i>
                 </span>
@@ -23,7 +23,7 @@
                 </span>
                 <span>{{ $t('deck.botoes.reset_cartas') }}</span>
               </button>
-              <button v-if="this.deck.id" class="button is-danger is-outlined" @click="excluir()">
+              <button v-if="this.deck.id" class="button is-danger is-outlined" :class="{'is-loading is-disabled': excluindo}" @click="excluir()">
                 <span class="icon is-small">
                   <i class="fa fa-times"></i>
                 </span>
@@ -118,6 +118,9 @@ export default {
   },
   data() {
     return {
+      carregando: true,
+      salvando: false,
+      excluindo: false,
       deck: {
         id: 0,
         custo: 0,
@@ -142,20 +145,23 @@ export default {
     let id = this.$route.params.id
 
     if (id !== '0') {
-      const response = await deckAPI.get(id, params)
-      this.deck = response.data
-      this.deck.matchup.tipos = this.deck.matchup.tipos.map(t => t.id)
-      this.deck.matchup.cores = this.deck.matchup.cores.map(c => c.id)
-      this.deck.matchup.arquetipo_id = this.deck.matchup.arquetipo_id.toString() // TODO
+      deckAPI.get(id, params).then(response => {
+        this.carregando = false
+        this.deck = response.data
+        this.deck.matchup.tipos = this.deck.matchup.tipos.map(t => t.id)
+        this.deck.matchup.cores = this.deck.matchup.cores.map(c => c.id)
+        this.deck.matchup.arquetipo_id = this.deck.matchup.arquetipo_id.toString() // TODO
 
-      if (this.deck.user_id !== this.$auth.user().id) {
-        this.$router.push('/home')
-      }
+        if (this.deck.user_id !== this.$auth.user().id) {
+          this.$router.push('/home')
+        }
+      })
     } else {
       let chave = this.$route.query.modo
       let modo = this.comum.modos.find(m => m.chave === chave)
       this.deck.modo = modo
       this.deck.modo_id = modo.id
+      this.carregando = false
     }
   },
   computed: {
@@ -235,6 +241,7 @@ export default {
     async salvar() {
       // TODO ao salvar cartas user stringfy... mas perco a referencia?
       try {
+        this.salvando = true
         const response = await deckAPI.salvar(this.deck)
         this.$router.push(`/decks/${response.data.id}`)
         this.$notify.success({ content: this.$t('deck.notify.registrado') })
@@ -242,6 +249,8 @@ export default {
         this.erro = error.response.data
         this.$notify.danger({ content: error.response.data.message })
       }
+
+      this.salvando = false
     },
     cancelar() {
       this.$router.go(window.history.back())
@@ -252,6 +261,7 @@ export default {
     async excluir() {
       try {
         if (confirm(this.$t('deck.notify.confirmar_exclusao'))) {
+          this.excluindo = true
           await deckAPI.delete(this.deck.id)
           this.$router.push(`/home`)
           this.$notify.success({ content: this.$t('deck.notify.excluido') })
@@ -260,6 +270,7 @@ export default {
         this.erro = error.response.data
         this.$notify.danger({ content: error.response.data.message })
       }
+      this.excluindo = false
     }
   }
 }

@@ -43,7 +43,7 @@
     <column>
       <template scope="row">
         <div>
-            <a v-if="row.id === ultimaPartida.id && deck.user_id === $auth.user().id && deck.id" @click="excluir(row.id)"><i class="fa fa-trash"></i></a>
+            <a v-if="row.id === ultimaPartida.id && deck.user_id === $auth.user().id && deck.id" @click="excluir(row.id)"><i class="fa" :class="{'fa-spinner': salvando , 'fa-trash': !salvando}"></i></a>
         </div>
       </template>
     </column>
@@ -109,7 +109,7 @@
     <div v-if="showFooter" class="step-footer has-text-right">
       <button class="button is-primary" @click="back()" v-show="this.currentStep === 1"> {{ $t('app.botoes.voltar') }} </button>
       <button class="button is-primary" @click="next()" v-show="this.currentStep === 0">{{ $t('app.botoes.avancar') }}</button>
-      <button class="button is-primary" @click="salvar()" v-show="this.currentStep === 1">
+      <button class="button is-primary" :class="{'is-loading is-disabled': salvando}" @click="salvar()" v-show="this.currentStep === 1">
         <span class="icon"><i class="fa fa-check"></i></span>
         <span>{{ $t('app.botoes.salvar') }}</span>
       </button>
@@ -141,6 +141,7 @@ export default {
     return {
       erro: null,
       filtro: '',
+      salvando: false,
       currentStep: 0,
       showFooter: true,
       adding: false,
@@ -204,6 +205,7 @@ export default {
       this.partida.deck_id = this.deck_id // TODO
 
       try {
+        this.salvando = true
         await this.addPartida(this.partida)
         this.reset()
         this.$notify.success({ content: this.$t('partida.notify.adicionada') })
@@ -211,12 +213,16 @@ export default {
         this.erro = error.response.data
         this.$notify.danger({ content: error.response.data.message, placement: 'top-left' })
       }
+
+      this.salvando = false
     },
 
     async excluir(id) {
       try {
         if (confirm(this.$t('partida.notify.confirmar_exclusao'))) {
+          this.salvando = true
           await this.deletePartida(id)
+          this.salvando = false
         }
       } catch (error) {
         this.erro = error.response.data

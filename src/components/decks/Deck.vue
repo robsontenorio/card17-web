@@ -1,81 +1,85 @@
 <template>
-<div v-loading="carregando">
-  <div class="columns">
-    <!-- COLUNA ESQUERDA -->
-    <div class="column">
+<div>
+  <div v-loading="carregando">
+    <div v-if="!carregando">
+      <div class="columns">
+        <!-- COLUNA ESQUERDA -->
+        <div class="column">
 
-      <div class="level">
-        <div class="level-left">
-          <h1 class="title">{{ deck.nome }}&nbsp;</h1>
-        </div>
-        <div class="level-right">
+          <div class="level">
+            <div class="level-left">
+              <h1 class="title">{{ deck.nome }}&nbsp;</h1>
+            </div>
+            <div class="level-right">
 
-        </div>
-      </div>
-
-      <!-- ESTATISTICAS -->
-      <estatistica-geral :winrate="deck.winrate" :vitorias="deck.vitorias" :derrotas="deck.derrotas" :progresso="deck.estatisticas.progresso"></estatistica-geral>
-
-      <!-- MATCHUP -->
-      <br><br>
-      <div class="block" v-if="deck.matchup">
-        <deck-matchup :modo="deck.modo" :matchup="deck.matchup"></deck-matchup>
-      </div>
-
-      <!-- DESCRICAO -->
-      <br>
-      <div class="block" v-if="deck.descricao">
-        <i class="fa fa-quote-left"></i> &nbsp; {{ deck.descricao }}
-        <br><br>
-      </div>
-
-      <!-- DISTRIBUICAO DAS CARTAS -->
-      <h2 class="subtitle"> {{ $t('deck.distribuicao') }} </h2>
-      <deck-distribuicao :terrenos="deck.estatisticas.distribuicao.terrenos" :faerias="deck.estatisticas.distribuicao.faerias" :tipos="deck.estatisticas.distribuicao.tipos"></deck-distribuicao>
-
-      <!-- DESEMPENHO -->
-      <div v-show="deck.modo.chave === 'BATALHA'">
-        <br><br><br>
-        <h2 class="subtitle">{{ $t('deck.desempenho') }} </h2>
-        <div class="columns">
-          <div class="column" v-if="deck.estatisticas.desempenho.bom_contra.length">
-            <h2>{{ $t('deck.bom_contra') }}</h2>
-            <div v-for="matchup in deck.estatisticas.desempenho.bom_contra">
-              <deck-desempenho :matchup="matchup"></deck-desempenho>
             </div>
           </div>
-          <div class="column" v-if="deck.estatisticas.desempenho.ruim_contra.length">
-            <h2>{{ $t('deck.ruim_contra') }}</h2>
-            <div v-for="matchup in deck.estatisticas.desempenho.ruim_contra">
-              <deck-desempenho :matchup="matchup"></deck-desempenho>
-            </div>
+
+          <!-- ESTATISTICAS -->
+          <estatistica-geral :winrate="deck.winrate" :vitorias="deck.vitorias" :derrotas="deck.derrotas" :progresso="deck.estatisticas.progresso"></estatistica-geral>
+
+          <!-- MATCHUP -->
+          <br><br>
+          <div class="block" v-if="deck.matchup">
+            <deck-matchup :modo="deck.modo" :matchup="deck.matchup"></deck-matchup>
           </div>
+
+          <!-- DESCRICAO -->
+          <br>
+          <div class="block" v-if="deck.descricao">
+            <i class="fa fa-quote-left"></i> &nbsp; {{ deck.descricao }}
+            <br><br>
+          </div>
+
+          <!-- DISTRIBUICAO DAS CARTAS -->
+          <h2 class="subtitle"> {{ $t('deck.distribuicao') }} </h2>
+          <deck-distribuicao :terrenos="deck.estatisticas.distribuicao.terrenos" :faerias="deck.estatisticas.distribuicao.faerias" :tipos="deck.estatisticas.distribuicao.tipos"></deck-distribuicao>
+
+          <!-- DESEMPENHO -->
+          <div v-show="deck.modo.chave === 'BATALHA'">
+            <br><br><br>
+            <h2 class="subtitle">{{ $t('deck.desempenho') }} </h2>
+            <div class="columns">
+              <div class="column" v-if="deck.estatisticas.desempenho.bom_contra.length">
+                <h2>{{ $t('deck.bom_contra') }}</h2>
+                <div v-for="matchup in deck.estatisticas.desempenho.bom_contra">
+                  <deck-desempenho :matchup="matchup"></deck-desempenho>
+                </div>
+              </div>
+              <div class="column" v-if="deck.estatisticas.desempenho.ruim_contra.length">
+                <h2>{{ $t('deck.ruim_contra') }}</h2>
+                <div v-for="matchup in deck.estatisticas.desempenho.ruim_contra">
+                  <deck-desempenho :matchup="matchup"></deck-desempenho>
+                </div>
+              </div>
+            </div>
+            <small v-html="$t('deck.desempenho_info')"></small>
+          </div>
+
+          <!-- PARTIDAS -->
+          <br><br>
+          <h2 class="subtitle"> {{ $t('deck.partidas') }} </h2>
+          <deck-partidas></deck-partidas>
+
+
         </div>
-        <small v-html="$t('deck.desempenho_info')"></small>
-      </div>
 
-      <!-- PARTIDAS -->
-      <br><br>
-      <h2 class="subtitle"> {{ $t('deck.partidas') }} </h2>
-      <deck-partidas></deck-partidas>
+        <!-- CARTAS -->
 
-
-    </div>
-
-    <!-- CARTAS -->
-
-    <div class="column is-one-quarter">
-      <div class="has-text-right">
-        <button v-if="deck.id && (deck.user_id === $auth.user().id)" class="button is-primary" @click="editar()">
+        <div class="column is-one-quarter">
+          <div class="has-text-right">
+            <button v-if="deck.id && (deck.user_id === $auth.user().id)" class="button is-primary" @click="editar()">
           <span class="icon is-small">
             <i class="fa fa-pencil"></i>
           </span>
           <span>{{ $t('deck.botoes.editar_deck') }}</span>
         </button>
-      </div>
+          </div>
 
-      <div style="padding-top: 15px;">
-        <deck-cartas :cartas="deck.cartas"></deck-cartas>
+          <div style="padding-top: 15px;">
+            <deck-cartas :cartas="deck.cartas"></deck-cartas>
+          </div>
+        </div>
       </div>
     </div>
   </div>
