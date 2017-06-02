@@ -170,9 +170,8 @@ export default {
       return this.deck.cartas.map(c => c.total).reduce((a, b) => a + b, 0)
     },
     mediaFaeria() {
-      // TODO ajustar calculo. está errado, provavelmente usar foreach aqui
-      let total = this.deck.cartas.length || 0
-      let faerias = this.deck.cartas.map(c => parseInt(c.metadata.faeria)).reduce((a, b) => a + b, 0) || 0
+      let total = this.deck.cartas.map(c => parseInt(c.total)).reduce((a, b) => a + b, 0) || 0
+      let faerias = this.deck.cartas.map(c => parseInt(c.metadata.faeria * c.total)).reduce((a, b) => a + b, 0) || 0
       let media = (total === 0 || faerias === 0) ? 0 : faerias / total
 
       return media.toFixed(1)

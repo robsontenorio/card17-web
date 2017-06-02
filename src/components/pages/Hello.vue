@@ -21,16 +21,17 @@
   <br> - Descrição do deck opcional
   <br> - Ajustes de navegação
   <br> - Ajustes de layout
+  <br> - Calcular corretamente custo faeria do deck
 
   <br><br> <strong>EM ANDAMENTO:</strong>
   <br> - Implementar conceito de TEMPORADA (resetar estatísticas por temporada)
-  <br> - Calcular corretamente custo faeria do deck
-  <br> - Transições de tela, animações de elementos de interface, progresso de transações (loading ...)
+  <br> - Transições de tela, animações de elementos de interface, progresso de transações ("loading ...")
 
 
 
   <br><br>
   <strong>A FAZER:</strong>
+  <br> - Importar decks do hub
   <br> - Incluir filtros de no deckbuilder (cor, raridade, faeria ...)
   <br> - Colocar decks recém usados no topo
   <br> - Arquivar decks
