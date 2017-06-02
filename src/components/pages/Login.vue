@@ -4,7 +4,7 @@
     <div class="hero has-text-centered column  is-one-third  is-offset-one-third">
       <h1 class="title"> {{ $t('app.login.welcome') }} </h1>
 
-      <alert v-if="erro" type="danger">
+      <alert class="has-text-left" v-if="erro" type="danger">
         {{ erro }}
       </alert>
 
@@ -18,7 +18,7 @@
         <i class="fa fa-lock"></i>
       </p>
       <p class="control">
-        <button @click="login()" class="button is-primary is-fullwidth"> {{ $t('app.botoes.entrar') }} </button>
+        <button @click="login()" class="button is-primary is-fullwidth" :class="{'is-loading is-disabled': salvando}"> {{ $t('app.botoes.entrar') }} </button>
       </p>
     </div>
   </div>
@@ -26,9 +26,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   data() {
     return {
+      salvando: false,
       creds: {
         email: '',
         password: ''
@@ -40,17 +43,23 @@ export default {
   created() {
     // Can set query parameter here for auth redirect or just do it silently in login redirect.
   },
-
+  computed: {
+    ...mapGetters([
+      'locale'
+    ])
+  },
   methods: {
     login() {
       var redirect = this.$auth.redirect()
-
+      this.salvando = true
+      this.creds.locale = this.locale
       this.$auth.login({
         data: this.creds,
         redirect: redirect ? redirect.from.fullPath : '/home',
         fetchUser: true,
         success() {},
         error(error) {
+          this.salvando = false
           this.erro = error.response.data.error
           this.$notify.danger({
             content: error.response.data.error
