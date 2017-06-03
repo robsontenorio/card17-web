@@ -15,6 +15,7 @@ const messages = {
   r: 'R',
   primeiro_label: 'F = I`ve played at first',
   resultado_label: 'R = Result',
+  jornada_encerrada: 'journey finished',
   pandora: {
     aviso_jornada: 'After recording this match your Pandora Journey will be finished. Current score : '
   },

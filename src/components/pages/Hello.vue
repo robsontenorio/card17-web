@@ -1,53 +1,78 @@
 <template>
 <div>
 
-  <h1 class="title">Versão Rascunho 0.3 - 01/06/2017</h1>
 
-  <pre>
-      - <b>Os dados podem ser apagados a qualquer momento, sendo necessário se cadastrar novamente.</b>
-      - <b>DISCORD <a href="https://discord.gg/R5g3PwW">https://discord.gg/R5g3PwW</a></b>
-      - <b>Feedback @pedroca @orebaz</b>
-  </pre>
+  <div class="columns">
+    <div class="column">
+      <div class="notification">
+        <b>CARD17 - RASTREADOR DE DESEMPENHO PESSOAL </b> <br> Anote os resultados das suas partidas e obtenha informações preciosas para aprimorar seu desempenho no <b>FAERIA</b> :)
+        <br><br>
+        <b>Feedback</b> <br> Canal Discord <a href="https://discord.gg/R5g3PwW">https://discord.gg/R5g3PwW</a> <br>@pedroca @orebaz
+      </div>
+    </div>
+    <div class="column is-2">
+      <h1 class="title">0.4-alpha <small>05/06/2017</small></h1>
+      <figure class="image is-128x128"><img src="/static/images/egg.png" /></figure>
+    </div>
+  </div>
 
-  <br><br> <strong>MELHORIAS:</strong>
   <br>
-  <br> - Desempenho do deck MODO BATALHA (bom contra / ruim contra)
-  <br> - Distribuição de terrenos, faerias
-  <br> - Excluir deck
-  <br> - Excluir partidas
-  <br> - Validando MODO PANDORA e encerramento da jornada
-  <br> - Validando todos os cálculos de winrate, vitorias, derrotas
-  <br> - Confirmação de exclusão deck/partidas
-  <br> - Traduzir mensagens de validação (internacionalização)
-  <br> - Descrição do deck opcional
-  <br> - Ajustes de navegação
-  <br> - Ajustes de layout
-  <br> - Calcular corretamente custo faeria do deck
 
-  <br><br> <strong>EM ANDAMENTO:</strong>
-  <br> - Implementar conceito de TEMPORADA (resetar estatísticas por temporada)
-  <br> - Transições de tela, animações de elementos de interface, progresso de transações ("loading ...")
+  <h2 class="subtitle">ESTATÍSTICAS</h2>
+  <progress-bar :percent="90" type="success" :showinfo="true"></progress-bar>
 
-
+  <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Anotação de partidas</p>
+  <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Winrate, vitórias, derrotas</p>
+  <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Desempenho do deck MODO BATALHA (bom contra / ruim contra)</p>
+  <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Jornada PANDORA</p>
+  <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Distribuição de terrenos, faerias</p>
+  <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Excluir decks, partidas</p>
+  <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Internacionalização</p>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> Temporada: resetar estatísticas por temporada</p>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> Colocar decks recém usados no topo</p>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> Arquivar decks</p>
 
   <br><br>
-  <strong>A FAZER:</strong>
-  <br> - Importar decks do hub
-  <br> - Incluir filtros de no deckbuilder (cor, raridade, faeria ...)
-  <br> - Colocar decks recém usados no topo
-  <br> - Arquivar decks
-  <br> - Editar perfil
-  <br> - Deckbuilder em PT-BR (arquivo base CSV traduzido em PT-BR @pedroca)
-  <br> - Exportar imagem do deck
-
+  <h2 class="subtitle">DECKBUILDER</h2>
+  <progress-bar :percent="70" type="success" :showinfo="true"></progress-bar>
+  <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Validação deck BATALHA e PANDORA</p>
+  <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Pesquisa de cartas</p>
+  <p><span class="icon"><i class="fa fa-check-square-o "></i></span> EN</p>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> BR</p>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> Filtros: cor, raridade, faeria ...</p>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> Novas cartas</p>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> Importar decks do Faeria HUB</p>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> Exportar imagem do deck</p>
 
   <br><br>
-  <strong>PLANEJADO:</strong>
-  <br> - Login com ID ABRAKAM (@pedroca)
-  <br> - Integração com ABRAKAM (@pedroca)
-  <br> - PANDORA TIERLIST: estatística automatizada de desempenho das cartas no MODO PANDORA
-  <br> - COMUNIDADE CARD17: estatísticas globais consolidadas, top decks, tierlist, perfil público...
-  <br> - CAMPEONATOS: comunidade online de torneios de Faeria
+  <h2 class="subtitle">PANDORA TIERLIST</h2>
+  <progress-bar :percent="0" type="success" :showinfo="true"></progress-bar>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> Estatística automatizada dos valores das cartas do MODO PANDORA </p>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> Quadro resumo</p>
+
+  <br><br>
+  <h2 class="subtitle">COMUNIDADE</h2>
+  <progress-bar :percent="0" type="success" :showinfo="true"></progress-bar>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> Editar perfil</p>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> Perfil público</p>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> Mini blog</p>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> Top decks</p>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> Estatística global consolidada MODO BATALHA</p>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> Estatística global consolidada MODO PANDORA</p>
+
+  <br><br>
+  <h2 class="subtitle">CAMPEONATOS</h2>
+  <progress-bar :percent="0" type="success" :showinfo="true"></progress-bar>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> Gerenciamento de torneios online</p>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> TEAMS: grupo de jogadores de um clã</p>
+
+  <br><br>
+  <h2 class="subtitle">BÔNUS !</h2>
+  <small>Depende de interesse da ABRAKAM em colaborar com o projeto</small>
+  <br><br>
+  <p><span class="icon"><span class="icon"><i class="fa fa-square-o "></i></span></span> Login com ID ABRAKAM / Dados oficiais básicos do seu perfil Faeria</p>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> Decktracker / envio de estatística automática ao CARD17</p>
+
 
 
 </div>
@@ -59,4 +84,7 @@ export default {}
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+h2 {
+  font-weight: bold;
+}
 </style>

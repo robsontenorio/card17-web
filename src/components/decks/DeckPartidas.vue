@@ -1,6 +1,7 @@
 <template>
 <div v-if="partidas">
   <div class="block">
+    <span v-if="jornada_encerrada" class="tag is-danger"> {{ $t('partida.jornada_encerrada') }}</span>
     <button v-if="deck.id && deck.user_id === this.$auth.user().id" @click="adding = true" :class="{'is-hidden': jornada_encerrada}" class="button is-primary">
       <span class="icon is-small">
         <i class="fa fa-plus"></i>
@@ -43,7 +44,7 @@
     <column>
       <template scope="row">
         <div>
-            <a v-if="row.id === ultimaPartida.id && deck.user_id === $auth.user().id && deck.id" @click="excluir(row.id)"><i class="fa" :class="{'fa-spinner': salvando , 'fa-trash': !salvando}"></i></a>
+            <a v-if="permiteExcluir(row.id)" @click="excluir(row.id)"><i class="fa" :class="{'fa-spinner': salvando , 'fa-trash': !salvando}"></i></a>
         </div>
       </template>
     </column>
@@ -166,21 +167,25 @@ export default {
       comum: state => state.comum
     }),
     ...mapGetters([
-      'ultimaPartida'
-    ]),
-    jornada_encerrada() {
-      if (this.deck.modo.chave === 'PANDORA') {
-        return (this.deck.vitorias === 9 || this.deck.derrotas === 3) ? 1 : 0
-      } else {
-        return false
-      }
-    }
+      'ultima_partida',
+      'jornada_encerrada'
+    ])
   },
   methods: {
     ...mapActions({
       addPartida: 'ADD_PARTIDA',
       deletePartida: 'DELETE_PARTIDA'
     }),
+    permiteExcluir(id) {
+      // ultima partida, dono do deck, deck carregado
+      let p = (id === this.ultima_partida.id && this.deck.user_id === this.$auth.user().id && this.deck.id)
+
+      if (this.deck.modo.chave === 'PANDORA') {
+        p = p && !this.jornada_encerrada
+      }
+
+      return p
+    },
     next() {
       this.currentStep++
     },

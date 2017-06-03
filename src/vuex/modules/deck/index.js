@@ -23,9 +23,16 @@ const state = {
 
 // getters
 const getters = {
-  ultimaPartida: state => {
+  ultima_partida: state => {
     const [last] = [...state.partidas].reverse()
     return last
+  },
+  jornada_encerrada: state => {
+    if (state.modo.chave === 'PANDORA') {
+      return (state.vitorias === 9 || state.derrotas === 3) ? 1 : 0
+    } else {
+      return false
+    }
   }
 }
 

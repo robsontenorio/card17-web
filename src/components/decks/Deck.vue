@@ -58,7 +58,7 @@
 
           <!-- PARTIDAS -->
           <br><br>
-          <h2 class="subtitle"> {{ $t('deck.partidas') }} </h2>
+          <h2 class="subtitle"> {{ $t('deck.partidas') }}</h2>
           <deck-partidas></deck-partidas>
 
 
@@ -68,7 +68,7 @@
 
         <div class="column is-one-quarter">
           <div class="has-text-right">
-            <button v-if="deck.id && (deck.user_id === $auth.user().id)" class="button is-primary" @click="editar()">
+            <button v-if="permiteEditar" class="button is-primary" @click="editar()">
           <span class="icon is-small">
             <i class="fa fa-pencil"></i>
           </span>
@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
 
 import DeckPartidas from '@/components/decks/DeckPartidas'
 import DeckCartas from '@/components/decks/DeckCartas'
@@ -122,7 +122,20 @@ export default {
   computed: {
     ...mapState({
       deck: 'deck'
-    })
+    }),
+    ...mapGetters([
+      'jornada_encerrada'
+    ]),
+    permiteEditar() {
+      // ultima partida, dono do deck, deck carregado
+      let p = (this.deck.user_id === this.$auth.user().id && this.deck.id)
+
+      if (this.deck.modo.chave === 'PANDORA') {
+        p = p && !this.jornada_encerrada
+      }
+
+      return p
+    }
   },
   methods: {
     ...mapActions([

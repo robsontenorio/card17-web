@@ -15,6 +15,7 @@ const messages = {
   r: 'R',
   primeiro_label: 'P = Joguei Primeiro',
   resultado_label: 'R = Resultado',
+  jornada_encerrada: 'jornada encerrada',
   pandora: {
     aviso_jornada: 'Após o registro desta partida sua Jornada Pandora será encerrada. Placar atual : '
   },
