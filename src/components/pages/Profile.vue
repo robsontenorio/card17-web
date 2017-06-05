@@ -17,19 +17,20 @@
       <p class="social">
         <span class="icon"><i class="fa fa-twitch"></i></span>
         <span class="icon"><i class="fa fa-facebook"></i></span>
+        <span class="icon"><img src="/static/images/discord.png" /></span>
       </p>
 
     </div>
     <div class="column is-2 followers has-text-centered">
-      <p class="stat-val">{{ user.estatisticas.winrate }}%</p>
+      <p class="stat-val">{{ user.winrate }}%</p>
       <p class="stat-key"> {{ $t('profile.winrate') }} </p>
     </div>
     <div class="column is-2 followers has-text-centered">
-      <p class="stat-val">{{ user.estatisticas.vitorias }}</p>
+      <p class="stat-val">{{ user.vitorias }}</p>
       <p class="stat-key"> {{ $t('profile.vitorias') }} </p>
     </div>
     <div class="column is-2 followers has-text-centered">
-      <p class="stat-val">{{ user.estatisticas.derrotas }}</p>
+      <p class="stat-val">{{ user.derrotas }}</p>
       <p class="stat-key"> {{ $t('profile.derrotas') }} </p>
     </div>
   </div>

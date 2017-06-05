@@ -1,6 +1,13 @@
 <template>
-<div v-loading="!user">
+<div v-loading="!user || carregando">
   <div v-if="user">
+
+    <radio-group v-model="temporada" :on-change="carregar">
+      <radio-button val="todas">todas temporadas</radio-button>
+      <radio-button val="anterior">anterior</radio-button>
+      <radio-button val="atual">atual</radio-button>
+    </radio-group>
+
     <profile :user="user"></profile>
     <br><br>
     <tabs :on-tab-click="show">
@@ -67,10 +74,12 @@ export default {
   },
   data() {
     return {
+      temporada: '',
       tab: null,
       user: null,
       loading_pandora: true,
       loading_batalha: true,
+      carregando: true,
       decks: {
         batalha: [],
         pandora: []
@@ -90,40 +99,49 @@ export default {
     }
   },
   created() {
-    let filtrosBatalha = {
-      user_id: this.$auth.user().id,
-      includes: 'dificuldade,modo,matchup.cores,matchup.arquetipo,matchup.tipos',
-      modo_chave: 'BATALHA',
-      appends: 'partidas_recentes'
-    }
-
-    let filtrosPandora = {
-      user_id: this.$auth.user().id,
-      includes: 'dificuldade,modo,matchup.cores,matchup.arquetipo,matchup.tipos,partidas',
-      modo_chave: 'PANDORA',
-      appends: 'partidas_recentes'
-    }
-
-    let filtrosEstatisticas = {
-      appends: 'estatisticas'
-    }
-
-    userAPI.get(this.$auth.user().id, filtrosEstatisticas).then(response => {
-      this.estatisticas = response.data.estatisticas
-      this.user = response.data
-    })
-
-    deckAPI.all(filtrosBatalha).then(response => {
-      this.decks.batalha = response.data.data
-      this.loading_batalha = false
-    })
-
-    deckAPI.all(filtrosPandora).then(response => {
-      this.decks.pandora = response.data.data
-      this.loading_pandora = false
-    })
+    this.carregar()
   },
   methods: {
+    carregar() {
+      let filtrosBatalha = {
+        user_id: this.$auth.user().id,
+        temporada: this.temporada,
+        includes: 'dificuldade,modo,matchup.cores,matchup.arquetipo,matchup.tipos,temporadas',
+        modo_chave: 'BATALHA',
+        appends: 'partidas_recentes'
+      }
+
+      let filtrosPandora = {
+        user_id: this.$auth.user().id,
+        temporada: this.temporada,
+        includes: 'dificuldade,modo,matchup.cores,matchup.arquetipo,matchup.tipos,partidas,temporadas',
+        modo_chave: 'PANDORA',
+        appends: 'partidas_recentes'
+      }
+
+      let filtrosEstatisticas = {
+        appends: 'estatisticas',
+        temporada: this.temporada
+      }
+
+      this.carregando = true
+      userAPI.get(this.$auth.user().id, filtrosEstatisticas).then(response => {
+        this.estatisticas = response.data.estatisticas
+        this.user = response.data
+        this.carregando = false
+      })
+
+      deckAPI.all(filtrosBatalha).then(response => {
+        this.decks.batalha = response.data.data
+        this.loading_batalha = false
+      })
+
+      deckAPI.all(filtrosPandora).then(response => {
+        this.decks.pandora = response.data.data
+        this.loading_pandora = false
+
+      })
+    },
     show(i) {
       this.tab = i
     },
