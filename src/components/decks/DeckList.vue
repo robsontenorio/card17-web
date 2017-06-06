@@ -26,7 +26,7 @@
     <column label="%">
       <template scope="row">
         <span>
-              <span class="tag is-default is-small">{{row.winrate}} %</span>
+              <span class="tag is-warning is-small">{{row.winrate}} %</span>
         </span>
       </template>
     </column>

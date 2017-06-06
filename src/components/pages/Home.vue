@@ -2,14 +2,15 @@
 <div v-loading="!user || carregando">
   <div v-if="user">
 
-    <radio-group v-model="temporada" :on-change="carregar">
-      <radio-button val="todas">todas temporadas</radio-button>
-      <radio-button val="anterior">anterior</radio-button>
-      <radio-button val="atual">atual</radio-button>
-    </radio-group>
-
     <profile :user="user"></profile>
-    <br><br>
+    <div class="temporada-select">
+      <radio-group v-model="temporada" :on-change="carregar" class="is-small">
+        <radio-button class="is-small" val="todas">todas temporadas</radio-button>
+        <radio-button class="is-small" val="anterior" v-if="user.temporadas.length > 1">anterior</radio-button>
+        <radio-button class="is-small" val="atual">atual</radio-button>
+      </radio-group>
+    </div>
+
     <tabs :on-tab-click="show">
       <!-- DECKS BATALHA -->
       <tab-item :label="$t('deck.modo_batalha')">
@@ -222,6 +223,15 @@ export default {
 
 .temporada .rate {
   width: 45px;
+}
+
+.temporada-select .control {
+  text-align: right;
+  display: inherit;
+}
+
+.temporada-select .button {
+  margin-left: -5px;
 }
 
 h2 {

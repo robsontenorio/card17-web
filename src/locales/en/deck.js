@@ -37,7 +37,7 @@ const messages = {
     registrado: 'deck registered',
     excluido: 'deck deleted',
     confirmar_exclusao: 'Are you sure? All statistics from this deck will be lost. You can not undo this operation!',
-    encerrar_temporada: 'At the end of this season a new season will be created automatically with zeroed statistics.',
+    encerrar_temporada: 'At the end of this season a new season will be created automatically with zeroed statistics for your decks.',
     excluir_temporada: 'By excluding this season the previous season will be reopened',
     nova_temporada: 'New season started'
   },
