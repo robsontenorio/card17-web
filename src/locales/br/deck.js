@@ -7,6 +7,7 @@ const messages = {
   editar_deck: 'Editar deck',
   modo_batalha: 'MODO BATALHA',
   modo_pandora: 'MODO PANDORA',
+  temporadas: 'TEMPORADAS',
   batalha: 'BATALHA',
   pandora: 'PANDORA',
   vitorias: 'vitórias',
@@ -23,22 +24,27 @@ const messages = {
   placeholder: {
     search: 'Nome, texto, raridade, cor ou tipo da carta ...',
     nome: 'Nome do deck (Ex: Super Blue Jump)',
-    descricao: 'Visão geral, muligans, estratégias ...'
+    descricao: 'Visão geral, muligans, estratégias ...',
+    nome_temporada: 'Nome da nova temporada'
   },
   botoes: {
     criar_deck: 'criar deck',
     editar_deck: 'editar deck',
-    reset_cartas: 'limpar cartas'
+    reset_cartas: 'limpar cartas',
+    encerrar_temporada: 'encerrar temporada'
   },
   notify: {
     registrado: 'deck registrado',
     excluido: 'deck excluido',
-    confirmar_exclusao: 'Tem certeza? Todas as estatísticas deste deck serão perdidas. Você não poderá desfazer esta ação!'
+    confirmar_exclusao: 'Tem certeza? Todas as estatísticas deste deck serão perdidas. Você não poderá desfazer esta ação!',
+    encerrar_temporada: 'Ao encerrar esta temporada uma nova temporada será criada automaticamente com estatísticas zeradas.',
+    nova_temporada: 'Nova temporada iniciada'
   },
   validacao: {
     cartas_30: 'Máximo 30 cartas',
     batalha_3_amostras: 'DECK BATALHA: Máximo de 3 cópias por carta',
-    batalha_lendaria_1_copia: 'DECK BATALHA: Máximo de 1 cópia por carta LENDÁRIA'
+    batalha_lendaria_1_copia: 'DECK BATALHA: Máximo de 1 cópia por carta LENDÁRIA',
+    nome_temporada: 'Informe o nome da nova temporada'
   }
 }
 

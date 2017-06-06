@@ -6,6 +6,7 @@ const messages = {
     avancar: 'avançar',
     voltar: 'voltar',
     entrar: 'entrar',
+    confirmar: 'confirmar',
     registrar: 'registrar'
   },
   cadastrar: {
@@ -24,6 +25,10 @@ const messages = {
     email: 'e-mail',
     senha: 'senha',
     filtrar: 'filtrar ...'
+  },
+  notify: {
+    importante: 'Importante',
+    certeza: 'Tem certeza?'
   }
 
 }

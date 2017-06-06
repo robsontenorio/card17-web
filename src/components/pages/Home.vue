@@ -50,6 +50,33 @@
         </div>
         <deck-list v-loading="loading_pandora" @selecionado="mostrar" :decks="decks.pandora"></deck-list>
       </tab-item>
+
+      <!-- TEMPORADAS -->
+      <!--  TODO criar componente -->
+      <tab-item :label="$t('deck.temporadas')">
+        <br>
+        <transition name="fade">
+          <div v-if="tab == 2">
+            <div v-for="temporada in user.temporadas" class="temporada">
+              <h2 class="subtitle">{{ temporada.nome }}</h2>
+              <span class="tag rate is-warning">{{ temporada.winrate }}%</span>
+              <span class="tag rate is-success">{{ temporada.vitorias }}</span>
+              <span class="tag rate is-danger">{{ temporada.derrotas }}</span>
+              <button v-if="temporada.aberta" class="button is-small" @click="showModal=true"> {{ $t('deck.botoes.encerrar_temporada') }}</button>
+            </div>
+          </div>
+        </transition>
+
+        <modal :title="$t('app.notify.certeza')" :on-ok="encerrar_temporada" :ok-text="$t('app.botoes.confirmar')" :ok-loading="true" :is-show="showModal" @close="showModal=false">
+          <p>{{ $t('deck.notify.encerrar_temporada') }}</p>
+          <br>
+          <p class="control has-icon">
+            <input v-model="nome_temporada" class="input" :placeholder="$t('deck.placeholder.nome_temporada')">
+            <i class="fa fa-pencil"></i>
+          </p>
+        </modal>
+
+      </tab-item>
     </tabs>
   </div>
 </div>
@@ -58,7 +85,8 @@
 <script>
 import {
   deckAPI,
-  userAPI
+  userAPI,
+  temporadaAPI
 } from '@/api'
 
 import Profile from '@/components/pages/Profile'
@@ -74,7 +102,9 @@ export default {
   },
   data() {
     return {
-      temporada: '',
+      temporada: 'atual',
+      nome_temporada: '',
+      showModal: false,
       tab: null,
       user: null,
       loading_pandora: true,
@@ -121,6 +151,7 @@ export default {
 
       let filtrosEstatisticas = {
         appends: 'estatisticas',
+        includes: 'temporadas',
         temporada: this.temporada
       }
 
@@ -139,7 +170,6 @@ export default {
       deckAPI.all(filtrosPandora).then(response => {
         this.decks.pandora = response.data.data
         this.loading_pandora = false
-
       })
     },
     show(i) {
@@ -150,7 +180,41 @@ export default {
     },
     mostrar(id) {
       this.$router.push(`/decks/${id}`)
+    },
+    encerrar_temporada() {
+      if (this.nome_temporada === '') {
+        alert(this.$t('deck.validacao.nome_temporada'))
+        return
+      }
+
+      temporadaAPI.encerrar(this.nome_temporada).then(response => {
+        this.showModal = false
+        this.temporada_nome = ''
+        this.carregar()
+        this.$notify.open({
+          type: 'success',
+          content: this.$t('deck.notify.nova_temporada')
+        })
+        // TODO não consegui fechar o modal
+        // window.location = '/home'
+      })
     }
   }
 }
 </script>
+
+<style scoped>
+/* TODO mover para componente*/
+
+.temporada {
+  margin-bottom: 20px;
+}
+
+.temporada .rate {
+  width: 45px;
+}
+
+h2 {
+  font-weight: bold;
+}
+</style>
