@@ -57,12 +57,15 @@
         <br>
         <transition name="fade">
           <div v-if="tab == 2">
-            <div v-for="temporada in user.temporadas" class="temporada">
+            <div v-for="(temporada, index) in user.temporadas" class="temporada">
               <h2 class="subtitle">{{ temporada.nome }}</h2>
               <span class="tag rate is-warning">{{ temporada.winrate }}%</span>
               <span class="tag rate is-success">{{ temporada.vitorias }}</span>
               <span class="tag rate is-danger">{{ temporada.derrotas }}</span>
               <button v-if="temporada.aberta" class="button is-small" @click="showModal=true"> {{ $t('deck.botoes.encerrar_temporada') }}</button>
+              <!--  TODO não pode excluir a unica temporada-->
+              <button v-if="user.temporadas.length > 1 && user.temporadas.length - 1  === index" class="button is-small is-danger" @click="excluir_temporada_confirm(temporada.id)"> {{ $t('app.botoes.excluir') }}</button>
+
             </div>
           </div>
         </transition>
@@ -180,6 +183,13 @@ export default {
     },
     mostrar(id) {
       this.$router.push(`/decks/${id}`)
+    },
+    excluir_temporada_confirm(id) {
+      if (confirm(this.$t('deck.notify.excluir_temporada'))) {
+        temporadaAPI.delete(id).then(response => {
+          this.carregar()
+        })
+      }
     },
     encerrar_temporada() {
       if (this.nome_temporada === '') {

@@ -38,6 +38,7 @@ const messages = {
     excluido: 'deck excluido',
     confirmar_exclusao: 'Tem certeza? Todas as estatísticas deste deck serão perdidas. Você não poderá desfazer esta ação!',
     encerrar_temporada: 'Ao encerrar esta temporada uma nova temporada será criada automaticamente com estatísticas zeradas.',
+    excluir_temporada: 'Ao excluir esta temporada a temporada anterior será reaberta',
     nova_temporada: 'Nova temporada iniciada'
   },
   validacao: {
