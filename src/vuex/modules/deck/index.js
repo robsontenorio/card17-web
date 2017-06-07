@@ -52,12 +52,12 @@ const actions = {
   async ADD_PARTIDA({ commit, dispatch }, partida) {
     const response = await partidaAPI.post(partida)
     commit('ADD_PARTIDA', { partida: response.data })
-    dispatch('LOAD_DECK', state.id) // TODO ? LOAD_PARTIDAS
+    dispatch('LOAD_DECK', {id: state.id}) // TODO ? LOAD_PARTIDAS
   },
   async DELETE_PARTIDA({ commit, dispatch }, partida) {
     const response = await partidaAPI.delete(partida)
     commit('DELETE_PARTIDA', { partida: response.data })
-    dispatch('LOAD_DECK', state.id) // TODO ? LOAD_PARTIDAS
+    dispatch('LOAD_DECK', {id: state.id}) // TODO ? LOAD_PARTIDAS
   }
 
 }
