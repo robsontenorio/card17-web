@@ -38,13 +38,14 @@ const getters = {
 
 // actions
 const actions = {
-  LOAD_DECK({ commit }, id) {
+  LOAD_DECK({ commit, state }, deck) {
     let filtros = {
-      includes: 'cartas,partidas,modo,matchup.cores,matchup.arquetipo,matchup.tipos,partidas.matchup.tipos,partidas.matchup.arquetipo,partidas.matchup.cores',
-      appends: 'estatisticas'
+      includes: 'cartas,modo,matchup.cores,matchup.arquetipo,matchup.tipos',
+      appends: 'estatisticas,partidas',
+      temporada: deck.temporada
     }
 
-    return deckAPI.get(id, filtros).then(response => {
+    return deckAPI.get(deck.id, filtros).then(response => {
       commit('SET_DECK_FULL', { deck: response.data })
     })
   },

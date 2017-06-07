@@ -11,7 +11,13 @@
               <h1 class="title">{{ deck.nome }}&nbsp;</h1>
             </div>
             <div class="level-right">
-
+              <div class="temporada-select">
+                <radio-group v-model="temporada" :on-change="carregar" class="is-small">
+                  <radio-button class="is-small" val="todas">todas temporadas</radio-button>
+                  <radio-button class="is-small" val="anterior" v-if="deck.temporadas.length > 1">anterior</radio-button>
+                  <radio-button class="is-small" val="atual">atual</radio-button>
+                </radio-group>
+              </div>
             </div>
           </div>
 
@@ -111,13 +117,12 @@ export default {
   },
   data() {
     return {
-      carregando: true
+      carregando: true,
+      temporada: 'atual'
     }
   },
   created() {
-    this.LOAD_DECK(this.$route.params.id).then(response => {
-      this.carregando = false
-    })
+    this.carregar()
   },
   computed: {
     ...mapState({
@@ -141,7 +146,12 @@ export default {
     ...mapActions([
       'LOAD_DECK'
     ]),
-
+    carregar() {
+      this.carregando = true
+      this.LOAD_DECK({ id: this.$route.params.id, temporada: this.temporada }).then(response => {
+        this.carregando = false
+      })
+    },
     editar() {
       let id = this.$route.params.id
       this.$router.push(`/decks/${id}/edit`)
@@ -153,5 +163,14 @@ export default {
 <style scoped>
 h2 {
   font-weight: bold;
+}
+
+.temporada-select .control {
+  text-align: right;
+  display: inherit;
+}
+
+.temporada-select .button {
+  margin-left: -5px;
 }
 </style>
