@@ -2,15 +2,15 @@
 <div v-loading="!user || carregando">
   <div v-if="user">
 
+    <!-- PERFIL -->
     <profile :user="user"></profile>
+
+    <!-- TEMPORADA -->
     <div class="temporada-select">
-      <radio-group v-model="temporada" :on-change="carregar" class="is-small">
-        <radio-button class="is-small" val="todas">todas temporadas</radio-button>
-        <radio-button class="is-small" val="anterior" v-if="user.temporadas.length > 1">anterior</radio-button>
-        <radio-button class="is-small" val="atual">atual</radio-button>
-      </radio-group>
+      <temporada-select @temporada-selecionada="selecionar_temporada" :temporadas="user.temporadas"></temporada-select>
     </div>
 
+    <!-- ABAS -->
     <tabs :on-tab-click="show">
       <!-- DECKS BATALHA -->
       <tab-item :label="$t('deck.modo_batalha')">
@@ -96,13 +96,15 @@ import {
 import Profile from '@/components/pages/Profile'
 import { DeckList } from '@/components/decks'
 import { EstatisticaGeral } from '@/components/estatisticas'
+import TemporadaSelect from '@/components/html/TemporadaSelect'
 
 export default {
   name: 'pages-home',
   components: {
     DeckList,
     EstatisticaGeral,
-    Profile
+    Profile,
+    TemporadaSelect
   },
   data() {
     return {
@@ -185,6 +187,10 @@ export default {
     mostrar(id) {
       this.$router.push(`/decks/${id}`)
     },
+    selecionar_temporada(s) {
+      this.temporada = s
+      this.carregar()
+    },
     excluir_temporada_confirm(id) {
       if (confirm(this.$t('deck.notify.excluir_temporada'))) {
         temporadaAPI.delete(id).then(response => {
@@ -223,15 +229,6 @@ export default {
 
 .temporada .rate {
   width: 45px;
-}
-
-.temporada-select .control {
-  text-align: right;
-  display: inherit;
-}
-
-.temporada-select .button {
-  margin-left: -5px;
 }
 
 h2 {

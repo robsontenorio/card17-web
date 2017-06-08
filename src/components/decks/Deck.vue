@@ -1,7 +1,7 @@
 <template>
 <div>
   <div v-loading="carregando">
-    <div v-if="!carregando">
+    <div v-if="deck.id">
       <div class="columns">
         <!-- COLUNA ESQUERDA -->
         <div class="column">
@@ -12,11 +12,7 @@
             </div>
             <div class="level-right">
               <div class="temporada-select">
-                <radio-group v-model="temporada" :on-change="carregar" class="is-small">
-                  <radio-button class="is-small" val="todas">todas temporadas</radio-button>
-                  <radio-button class="is-small" val="anterior" v-if="deck.temporadas.length > 1">anterior</radio-button>
-                  <radio-button class="is-small" val="atual">atual</radio-button>
-                </radio-group>
+                <temporada-select :temporadas="deck.temporadas" @temporada-selecionada="selecionar_temporada"></temporada-select>
               </div>
             </div>
           </div>
@@ -101,6 +97,7 @@ import DeckModo from '@/components/decks/DeckModo'
 import DeckDistribuicao from '@/components/decks/DeckDistribuicao'
 import DeckMatchup from '@/components/decks/DeckMatchup'
 import DeckDesempenho from '@/components/decks/DeckDesempenho'
+import TemporadaSelect from '@/components/html/TemporadaSelect'
 
 import { EstatisticaGeral } from '@/components/estatisticas'
 
@@ -113,7 +110,8 @@ export default {
     EstatisticaGeral,
     DeckModo,
     DeckMatchup,
-    DeckDesempenho
+    DeckDesempenho,
+    TemporadaSelect
   },
   data() {
     return {
@@ -155,6 +153,10 @@ export default {
     editar() {
       let id = this.$route.params.id
       this.$router.push(`/decks/${id}/edit`)
+    },
+    selecionar_temporada(s) {
+      this.temporada = s
+      this.carregar()
     }
   }
 }
