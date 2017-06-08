@@ -1,6 +1,7 @@
 import { comumAPI } from '@/api'
 
 const state = {
+  cartas: {}
 }
 
 // getters
@@ -11,10 +12,9 @@ const getters = {
 
 // actions
 const actions = {
-  LOAD_COMUM({ commit }) {
-    comumAPI.all().then(response => {
-      commit('SET_COMUM', { dados: response.data })
-    })
+  async LOAD_COMUM({ commit }) {
+    const response = await comumAPI.all()
+    commit('SET_COMUM', { dados: response.data })
   }
 }
 

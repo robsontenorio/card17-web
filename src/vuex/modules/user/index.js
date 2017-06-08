@@ -7,7 +7,22 @@ const state = {
 
 // getters
 const getters = {
-  locale: (state) => { return (state.locale === '') ? 'br' : state.locale }
+  locale: (state) => {
+    let l
+
+    if (state.locale === '') {
+      l = localStorage.getItem('locale')
+      if (l === null) {
+        // TODO redirecionar pra selecao de liguagem em Appvue
+        localStorage.setItem('locale', 'br')
+        l = 'br'
+      }
+    } else {
+      l = state.locale
+    }
+
+    return l
+  }
 }
 
 // actions
@@ -31,6 +46,7 @@ const mutations = {
     // todo organizar atributos ?
   },
   SET_LOCALE(state, { locale }) {
+    localStorage.setItem('locale', locale)
     state.locale = locale
   }
 }

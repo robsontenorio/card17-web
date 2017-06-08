@@ -71,11 +71,14 @@ export default {
       carregando: true
     }
   },
-  created() {
+  async created() {
+    this.carregando = true
+    await this.carregarComum()
+    this.carregando = false
+
     if (!this.$auth.check()) {
       this.carregando = false
     }
-    this.carregarComum()
   },
   watch: {
     '$auth.watch.loaded' () {
@@ -86,7 +89,8 @@ export default {
   },
   computed: {
     ...mapState({
-      user: state => state.user
+      user: state => state.user,
+      comum: state => state.comum
     }),
     ...mapGetters([
       'locale'
@@ -106,10 +110,12 @@ export default {
     },
     async changeLocale(locale) {
       await this.setLocale(locale)
-      if (this.$auth.user().id) {
+      if (this.$auth.check()) {
         window.location = this.$route.fullPath
       } else {
+        // TODO gravar na session local?
         this.$i18n.locale = locale
+        localStorage.setItem('locale', locale)
       }
     }
   }
