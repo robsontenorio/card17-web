@@ -59,7 +59,7 @@
   </small>
 
 
-  <b-aside :is-show="adding" :show-footer="false" :title="$t('partida.partida')" placement="right" @close="adding=false">
+  <b-aside v-if="comum.tipos.length" :is-show="adding" :show-footer="false" :title="$t('partida.partida')" placement="right" @close="adding=false">
     <steps :current="currentStep" type="line" :show-footer="false" prev-text="voltar" next-text="avançar">
       <step>
         <h2 class="subtitle">{{ $t('partida.quem_comecou') }}</h2>

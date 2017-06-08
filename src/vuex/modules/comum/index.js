@@ -1,7 +1,10 @@
 import { comumAPI } from '@/api'
 
 const state = {
-  cartas: {}
+  cartas: [],
+  tipos: [],
+  arquetipos: [],
+  modos: []
 }
 
 // getters

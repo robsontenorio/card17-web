@@ -6,7 +6,7 @@
   </p>
   <div class="cartas">
     <figure class="image carta" v-for="carta in cartas" v-show="filtrar(carta)">
-      <img @click="$emit('addcarta', carta)" :src="`/static/images/cards/en/${carta.metadata.card_id}.png`">
+      <img @click="$emit('addcarta', carta)" :src="`/static/images/cards/${locale}/${carta.metadata.card_id}.png`">
     </figure>
     <!-- <div class="cartas-empty has-text-centered">
       Nenhuma carta encontrada
@@ -16,21 +16,31 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'welcome',
+  name: 'deck-pesquisar',
   props: ['cartas'],
   data() {
     return {
       filtro: ''
     }
   },
+  computed: {
+    ...mapGetters([
+      'locale'
+    ])
+  },
   methods: {
     filtrar(carta) {
-      return (carta.metadata.card_name.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1 ||
-        carta.metadata.text.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1 ||
-        carta.metadata.card_type.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1 ||
-        carta.metadata.rarity.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1 ||
-        carta.metadata.color.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1)
+      return (carta.nome.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1 ||
+        carta.texto.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1)
+
+      // return (carta.metadata.card_name.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1 ||
+      //   carta.metadata.text.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1 ||
+      //   carta.metadata.card_type.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1 ||
+      //   carta.metadata.rarity.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1 ||
+      //   carta.metadata.color.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1)
     }
   }
 }
