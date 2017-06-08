@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="column is-2">
-      <h1 class="title">0.4-alpha <small>05/06/2017</small></h1>
+      <h1 class="title">0.8-alpha <small>14/06/2017</small></h1>
       <figure class="image is-128x128"><img src="/static/images/egg.png" /></figure>
     </div>
   </div>
@@ -38,7 +38,7 @@
   <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Validação deck BATALHA e PANDORA</p>
   <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Pesquisa de cartas</p>
   <p><span class="icon"><i class="fa fa-check-square-o "></i></span> EN</p>
-  <p><span class="icon"><i class="fa fa-square-o "></i></span> BR</p>
+  <p><span class="icon"><i class="fa fa-check-square-o "></i></span> BR</p>
   <p><span class="icon"><i class="fa fa-square-o "></i></span> Filtros: cor, raridade, faeria ...</p>
   <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Novas cartas</p>
   <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Importar decks do Faeria HUB</p>

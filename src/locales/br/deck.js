@@ -22,7 +22,7 @@ const messages = {
   nenhum_deck: 'Nenhum deck registrado',
   sem_cartas: 'Nenhuma carta registrada para este deck',
   placeholder: {
-    search: 'Nome, texto, raridade, cor ou tipo da carta ...',
+    search: 'Nome ou texto da carta ...',
     nome: 'Nome do deck (Ex: Super Blue Jump)',
     descricao: 'Visão geral, muligans, estratégias ...',
     nome_temporada: 'Nome da nova temporada'

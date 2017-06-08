@@ -109,11 +109,13 @@ export default {
       })
     },
     async changeLocale(locale) {
+      this.carregando = true
       await this.setLocale(locale)
       if (this.$auth.check()) {
         window.location = this.$route.fullPath
       } else {
         // TODO gravar na session local?
+        this.carregando = false
         this.$i18n.locale = locale
         localStorage.setItem('locale', locale)
       }
