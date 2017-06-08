@@ -19,7 +19,7 @@
   <br>
 
   <h2 class="subtitle">ESTATÍSTICAS</h2>
-  <progress-bar :percent="90" type="success" :showinfo="true"></progress-bar>
+  <progress-bar :percent="95" type="success" :showinfo="true"></progress-bar>
 
   <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Anotação de partidas</p>
   <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Winrate, vitórias, derrotas</p>
@@ -28,20 +28,20 @@
   <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Distribuição de terrenos, faerias</p>
   <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Excluir decks, partidas</p>
   <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Internacionalização</p>
-  <p><span class="icon"><i class="fa fa-square-o "></i></span> Temporada: resetar estatísticas por temporada</p>
+  <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Temporada: resetar estatísticas por temporada</p>
   <p><span class="icon"><i class="fa fa-square-o "></i></span> Colocar decks recém usados no topo</p>
   <p><span class="icon"><i class="fa fa-square-o "></i></span> Arquivar decks</p>
 
   <br><br>
   <h2 class="subtitle">DECKBUILDER</h2>
-  <progress-bar :percent="70" type="success" :showinfo="true"></progress-bar>
+  <progress-bar :percent="85" type="success" :showinfo="true"></progress-bar>
   <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Validação deck BATALHA e PANDORA</p>
   <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Pesquisa de cartas</p>
   <p><span class="icon"><i class="fa fa-check-square-o "></i></span> EN</p>
   <p><span class="icon"><i class="fa fa-square-o "></i></span> BR</p>
   <p><span class="icon"><i class="fa fa-square-o "></i></span> Filtros: cor, raridade, faeria ...</p>
-  <p><span class="icon"><i class="fa fa-square-o "></i></span> Novas cartas</p>
-  <p><span class="icon"><i class="fa fa-square-o "></i></span> Importar decks do Faeria HUB</p>
+  <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Novas cartas</p>
+  <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Importar decks do Faeria HUB</p>
   <p><span class="icon"><i class="fa fa-square-o "></i></span> Exportar imagem do deck</p>
 
   <br><br>

@@ -38,7 +38,7 @@ const messages = {
     excluido: 'deck deleted',
     confirmar_exclusao: 'Are you sure? All statistics from this deck will be lost. You can not undo this operation!',
     encerrar_temporada: 'At the end of this season a new season will be created automatically with zeroed statistics for your decks.',
-    excluir_temporada: 'By excluding this season the previous season will be reopened',
+    excluir_temporada: 'By excluding this season the previous season will be reopened. Matches of the excluded season will be booked in the previous season.',
     nova_temporada: 'New season started'
   },
   validacao: {

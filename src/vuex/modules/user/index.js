@@ -15,11 +15,11 @@ const actions = {
   SET_USER({ commit }, u) {
     commit('SET_USER', { user: u })
   },
-  SET_LOCALE({ commit, state }, l) {
+  async SET_LOCALE({ commit, state }, l) {
     commit('SET_LOCALE', { locale: l })
 
     if (state.id !== 0) {
-      userAPI.patch(state)
+      await userAPI.patch(state)
     }
   }
 }

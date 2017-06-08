@@ -104,9 +104,13 @@ export default {
         redirect: '/'
       })
     },
-    changeLocale(locale) {
-      this.setLocale(locale)
-      this.$i18n.locale = locale
+    async changeLocale(locale) {
+      await this.setLocale(locale)
+      if (this.$auth.user().id) {
+        window.location = this.$route.fullPath
+      } else {
+        this.$i18n.locale = locale
+      }
     }
   }
 }
