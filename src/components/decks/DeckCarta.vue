@@ -13,7 +13,7 @@
           <span class="land mountain" v-if="carta.metadata.mountain">{{ carta.metadata.mountain }}</span>
           <span class="land lake" v-if="carta.metadata.lake">{{ carta.metadata.lake }}</span>
           <span class="land forest" v-if="carta.metadata.forest">{{ carta.metadata.forest }}</span>
-          <span class="carta-nome">{{ carta.metadata.card_name }}</span>
+          <span class="carta-nome">{{ carta.nome }}</span>
           </span>
 
         </div>
