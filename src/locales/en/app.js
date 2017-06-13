@@ -16,9 +16,9 @@ const messages = {
     welcome: 'Hello :)'
   },
   menus: {
-    entrar: 'Login',
-    cadastrar: 'Register',
-    sair: 'Logout'
+    entrar: 'login',
+    cadastrar: 'register',
+    sair: 'logout'
   },
   placeholders: {
     username: 'username',

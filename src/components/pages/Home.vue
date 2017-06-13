@@ -144,7 +144,8 @@ export default {
         temporada: this.temporada,
         includes: 'dificuldade,modo,matchup.cores,matchup.arquetipo,matchup.tipos,temporadas',
         modo_chave: 'BATALHA',
-        appends: 'partidas_recentes'
+        appends: 'partidas_recentes',
+        order_by: 'updated_at,desc'
       }
 
       let filtrosPandora = {
@@ -152,7 +153,8 @@ export default {
         temporada: this.temporada,
         includes: 'dificuldade,modo,matchup.cores,matchup.arquetipo,matchup.tipos,partidas,temporadas',
         modo_chave: 'PANDORA',
-        appends: 'partidas_recentes'
+        appends: 'partidas_recentes',
+        order_by: 'updated_at,desc'
       }
 
       let filtrosEstatisticas = {

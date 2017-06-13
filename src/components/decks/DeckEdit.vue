@@ -82,7 +82,7 @@
           <div class="cartas">
             <deck-cartas :edit="true" @removecarta="removecarta" :cartas="deck.cartas"></deck-cartas>
             <br>
-            <deck-import v-if="!deck.cartas.length" @importacao-concluida="importar"></deck-import>
+            <deck-import v-if="!deck.cartas.length && deck.modo.chave === 'BATALHA'" @importacao-concluida="importar"></deck-import>
           </div>
         </affix>
       </div>

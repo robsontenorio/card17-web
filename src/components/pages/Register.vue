@@ -5,7 +5,7 @@
       <h1 class="title"> {{ $t('app.cadastrar.welcome') }} </h1>
 
       <alert-erros class="has-text-left" :titulo="erro.message" :itens="erro.errors" v-if="erro"></alert-erros>
-      <br>
+
       <p class="control has-icon">
         <input v-model="user.username" class="input" type="email" :placeholder="$t('app.placeholders.username')">
         <i class="fa fa-user"></i>

@@ -15,6 +15,7 @@ export default new Router({
   },
   routes: [
     { path: '/', component: load('pages/Hello') },
+    { path: '/version', component: load('pages/Version') },
     { path: '/home', component: load('pages/Home'), meta: { auth: true } },
     { path: '/login', component: load('pages/Login') },
     { path: '/register', component: load('pages/Register') },

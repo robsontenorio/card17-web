@@ -41,7 +41,7 @@ const messages = {
     excluido: 'deck excluido',
     confirmar_exclusao: 'Tem certeza? Todas as estatísticas deste deck serão perdidas. Você não poderá desfazer esta ação!',
     encerrar_temporada: 'Ao encerrar esta temporada uma nova temporada será criada automaticamente com estatísticas zeradas para seus decks.',
-    excluir_temporada: 'Ao excluir esta temporada a temporada anterior será reaberta. As partidas da temporada excluída serão contabilizadas na temporada anterior.',
+    excluir_temporada: 'Ao excluir esta temporada a temporada anterior será reaberta. As partidas da temporada excluída serão apagadas.',
     nova_temporada: 'Nova temporada iniciada',
     cartas_importadas: 'Cartas importadas',
     importar_cartas: 'Informe o link de um deck do Faeria Hub para importar as cartas para seu novo deck.'
