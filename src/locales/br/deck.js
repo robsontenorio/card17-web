@@ -21,17 +21,20 @@ const messages = {
   d: 'D',
   nenhum_deck: 'Nenhum deck registrado',
   sem_cartas: 'Nenhuma carta registrada para este deck',
+  importar_cartas: 'Importar cartas',
   placeholder: {
     search: 'Nome ou texto da carta ...',
     nome: 'Nome do deck (Ex: Super Blue Jump)',
     descricao: 'Visão geral, muligans, estratégias ...',
-    nome_temporada: 'Nome da nova temporada'
+    nome_temporada: 'Nome da nova temporada',
+    link_importar: 'Link do deck no Faeria HUB ...'
   },
   botoes: {
     criar_deck: 'criar deck',
     editar_deck: 'editar deck',
     reset_cartas: 'limpar cartas',
-    encerrar_temporada: 'encerrar temporada'
+    encerrar_temporada: 'encerrar temporada',
+    importar_cartas: 'importar cartas do Hub'
   },
   notify: {
     registrado: 'deck registrado',
@@ -39,7 +42,9 @@ const messages = {
     confirmar_exclusao: 'Tem certeza? Todas as estatísticas deste deck serão perdidas. Você não poderá desfazer esta ação!',
     encerrar_temporada: 'Ao encerrar esta temporada uma nova temporada será criada automaticamente com estatísticas zeradas para seus decks.',
     excluir_temporada: 'Ao excluir esta temporada a temporada anterior será reaberta. As partidas da temporada excluída serão contabilizadas na temporada anterior.',
-    nova_temporada: 'Nova temporada iniciada'
+    nova_temporada: 'Nova temporada iniciada',
+    cartas_importadas: 'Cartas importadas',
+    importar_cartas: 'Informe o link de um deck do Faeria Hub para importar as cartas para seu novo deck.'
   },
   validacao: {
     cartas_30: 'Máximo 30 cartas',

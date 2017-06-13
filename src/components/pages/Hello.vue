@@ -41,7 +41,7 @@
   <p><span class="icon"><i class="fa fa-check-square-o "></i></span> BR</p>
   <p><span class="icon"><i class="fa fa-square-o "></i></span> Filtros: cor, raridade, faeria ...</p>
   <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Novas cartas</p>
-  <p><span class="icon"><i class="fa fa-square-o "></i></span> Importar decks do Faeria HUB</p>
+  <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Importar decks do Faeria HUB</p>
   <p><span class="icon"><i class="fa fa-square-o "></i></span> Exportar imagem do deck</p>
 
   <br><br>

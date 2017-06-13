@@ -81,6 +81,8 @@
           </div>
           <div class="cartas">
             <deck-cartas :edit="true" @removecarta="removecarta" :cartas="deck.cartas"></deck-cartas>
+            <br>
+            <deck-import v-if="!deck.cartas.length" @importacao-concluida="importar"></deck-import>
           </div>
         </affix>
       </div>
@@ -105,7 +107,7 @@
 <script>
 import { mapState, mapGetters } from 'vuex'
 import { deckAPI } from '@/api'
-import { DeckTipos, DeckModo, DeckArquetipo, DeckCartas, DeckPesquisar } from '@/components/decks'
+import { DeckTipos, DeckModo, DeckArquetipo, DeckCartas, DeckPesquisar, DeckImport } from '@/components/decks'
 
 export default {
   name: 'deck-edit',
@@ -114,7 +116,8 @@ export default {
     DeckCartas,
     DeckPesquisar,
     DeckArquetipo,
-    DeckModo
+    DeckModo,
+    DeckImport
   },
   data() {
     return {
@@ -194,6 +197,14 @@ export default {
     }
   },
   methods: {
+    importar(lista) {
+      for (let carta of lista) {
+        console.log(carta.id + '-' + carta.total)
+        let c = this.cartasModo.find(x => x.id === carta.id)
+        c.total = carta.total
+        this.deck.cartas.push(c)
+      }
+    },
     filtrar(nome) {
       return nome.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1
     },
@@ -281,6 +292,7 @@ export default {
   max-height: 550px;
   overflow-y: scroll;
   margin-top: 10px;
+  padding-right: 10px;
 }
 
 .descricao {

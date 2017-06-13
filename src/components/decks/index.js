@@ -24,6 +24,7 @@ import DeckPesquisar from './DeckPesquisar'
 import DeckModo from './DeckModo'
 import DeckMatchup from './DeckMatchup'
 import DeckDesempenho from './DeckDesempenho'
+import DeckImport from './DeckImport'
 
 export {
   Deck,
@@ -40,5 +41,6 @@ export {
   DeckPesquisar,
   DeckModo,
   DeckMatchup,
-  DeckDesempenho
+  DeckDesempenho,
+  DeckImport
 }

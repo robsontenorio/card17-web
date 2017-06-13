@@ -19,5 +19,10 @@ export default {
   },
   delete(id) {
     return Vue.axios.delete('/decks/' + id)
+  },
+
+  importar(url) {
+    return Vue.axios.get('/decks/importar', {params: { url: url }})
   }
+
 }
