@@ -1,7 +1,7 @@
 <template>
 <div class="has-text-centered">
   <br><br><br><br>
-  <img width="200px" src="/static/images/egg.png" /> <img src="/static/images/pulse.png" />
+  <img width="200px" src="/static/images/egg.png" />
 
   <small>Trabalho em andamento ...</small>
 </div>

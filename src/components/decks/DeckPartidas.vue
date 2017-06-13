@@ -2,6 +2,8 @@
 <div v-if="partidas">
   <div class="block">
     <span v-if="jornada_encerrada" class="tag is-danger"> {{ $t('partida.jornada_encerrada') }}</span>
+
+    <!-- TODO deveria aparecer somente este botao e de exclusao caso o seletor de temporadas seja ATUAL. Colocar na store? -->
     <button v-if="deck.id && deck.user_id === this.$auth.user().id" @click="adding = true" :class="{'is-hidden': jornada_encerrada}" class="button is-primary">
       <span class="icon is-small">
         <i class="fa fa-plus"></i>
