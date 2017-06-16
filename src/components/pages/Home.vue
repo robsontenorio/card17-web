@@ -87,11 +87,7 @@
 </template>
 
 <script>
-import {
-  deckAPI,
-  userAPI,
-  temporadaAPI
-} from '@/api'
+import { deckAPI, userAPI, temporadaAPI } from '@/api'
 
 import Profile from '@/components/pages/Profile'
 import { DeckList } from '@/components/decks'

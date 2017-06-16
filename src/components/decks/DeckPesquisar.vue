@@ -6,7 +6,7 @@
   </p>
   <div class="cartas">
     <figure class="image carta" v-for="carta in cartas" v-show="filtrar(carta)">
-      <img @click="$emit('addcarta', carta)" :src="`/static/images/cards/${locale}/${carta.metadata.card_id}.png`">
+      <img @click="$emit('addcarta', carta)" :src="`/static/images/cards/${user.locale}/${carta.metadata.card_id}.png`">
     </figure>
     <!-- <div class="cartas-empty has-text-centered">
       Nenhuma carta encontrada
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'deck-pesquisar',
@@ -27,8 +27,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'locale'
+    ...mapState([
+      'user'
     ])
   },
   methods: {

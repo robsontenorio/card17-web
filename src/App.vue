@@ -12,7 +12,7 @@
       <span></span>
       <span></span>
       </span>
-      <div class="nav-right nav-menu">
+      <div class="nav-right nav-menu" v-if="user.locale">
         <router-link style="color: yellow" to="/version" class="nav-item is-tab is-hidden-mobile">
           <i class="fa fa-tasks"></i> alpha
         </router-link>
@@ -36,7 +36,7 @@
 
         <dropdown class="nav-item">
           <a class="button is-primary">
-            <span><img :src="`/static/images/${locale}.png`" /></span>
+            <span><img :src="`/static/images/${user.locale}.png`" /></span>
             <span class="icon is-small"><i class="fa fa-angle-down"></i></span>
           </a>
           <div slot="content">
@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import { mapActions, mapState, mapGetters } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'app',
@@ -81,36 +81,37 @@ export default {
   },
   async created() {
     this.carregando = true
-    await this.carregarComum()
-    this.carregando = false
+    await this.LOAD_COMUM()
 
-    if (!this.$auth.check()) {
-      this.carregando = false
+    let locale = localStorage.getItem('locale')
+    if (locale !== null) {
+      await this.SET_LOCALE(locale)
     }
+
+    this.$i18n.locale = locale
+    this.carregando = false
   },
   watch: {
     '$auth.watch.loaded' () {
-      this.carregando = false
-      this.setUser(this.$auth.user())
-      this.$i18n.locale = this.$auth.user().locale
+      let user = this.$auth.user()
+      this.SET_USER(user)
+      this.$i18n.locale = user.locale
     }
   },
   computed: {
     ...mapState({
       user: state => state.user,
       comum: state => state.comum
-    }),
-    ...mapGetters([
-      'locale'
-    ])
+    })
   },
   methods: {
-    ...mapActions({
-      carregarComum: 'LOAD_COMUM',
-      setUser: 'SET_USER',
-      setLocale: 'SET_LOCALE'
-    }),
+    ...mapActions([
+      'LOAD_COMUM',
+      'SET_USER',
+      'SET_LOCALE'
+    ]),
     logout() {
+      this.SET_USER(null)
       this.$auth.logout({
         makeRequest: true,
         redirect: '/'
@@ -118,15 +119,8 @@ export default {
     },
     async changeLocale(locale) {
       this.carregando = true
-      await this.setLocale(locale)
-      if (this.$auth.check()) {
-        window.location = this.$route.fullPath
-      } else {
-        // TODO gravar na session local?
-        this.carregando = false
-        this.$i18n.locale = locale
-        localStorage.setItem('locale', locale)
-      }
+      await this.SET_LOCALE(locale)
+      window.location = this.$route.fullPath
     }
   }
 }

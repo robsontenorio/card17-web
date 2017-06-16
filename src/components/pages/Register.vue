@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   data() {
@@ -44,11 +44,6 @@ export default {
       }
     }
   },
-  computed: {
-    ...mapGetters([
-      'locale'
-    ])
-  },
   created() {
     //  console.log(this.$auth.redirect())
 
@@ -56,13 +51,22 @@ export default {
   },
 
   methods: {
+    ...mapActions([
+      'SET_USER',
+      'LOAD_COMUM'
+    ]),
     register() {
       this.user.locale = this.locale
       this.salvando = true
       this.$auth.register({
         data: this.user,
         autoLogin: true,
-        success() {
+        async success() {
+          let user = this.$auth.user()
+          this.SET_USER(user)
+          this.$i18n.locale = user.locale
+          await this.LOAD_COMUM()
+
           this.salvando = false
           this.$notify.success({
             content: this.$t('app.login.welcome')

@@ -7,14 +7,16 @@ function load(name) {
   return (resolve) => require([`../components/${name}.vue`], resolve)
 }
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   // linkActiveClass: 'is-active',
+
   scrollBehavior(to, from, savedPosition) {
     return { x: 0, y: 0 }
   },
   routes: [
     { path: '/', component: load('pages/Hello') },
+    { path: '/locale', component: load('pages/Locale') },
     { path: '/version', component: load('pages/Version') },
     { path: '/home', component: load('pages/Home'), meta: { auth: true } },
     { path: '/login', component: load('pages/Login') },
@@ -26,3 +28,13 @@ export default new Router({
     { path: '*', component: load('pages/404') }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (localStorage.getItem('locale') === null && to.path !== '/locale') {
+    localStorage.setItem('redirected_from', to.path)
+    router.push('/locale')
+  }
+  next()
+})
+
+export default router

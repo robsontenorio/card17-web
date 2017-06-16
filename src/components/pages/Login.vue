@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   data() {
@@ -43,12 +43,11 @@ export default {
   created() {
     // Can set query parameter here for auth redirect or just do it silently in login redirect.
   },
-  computed: {
-    ...mapGetters([
-      'locale'
-    ])
-  },
   methods: {
+    ...mapActions([
+      'SET_USER',
+      'LOAD_COMUM'
+    ]),
     login() {
       var redirect = this.$auth.redirect()
       this.salvando = true
@@ -57,7 +56,12 @@ export default {
         data: this.creds,
         redirect: redirect ? redirect.from.fullPath : '/home',
         fetchUser: true,
-        success() {},
+        async success() {
+          let user = this.$auth.user()
+          this.SET_USER(user)
+          this.$i18n.locale = user.locale
+          await this.LOAD_COMUM()
+        },
         error(error) {
           this.salvando = false
           this.erro = error.response.data.error
