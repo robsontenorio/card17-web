@@ -18,7 +18,8 @@ const router = new Router({
     { path: '/', component: load('pages/Hello') },
     { path: '/locale', component: load('pages/Locale') },
     { path: '/version', component: load('pages/Version') },
-    { path: '/home', component: load('pages/Home'), meta: { auth: true } },
+    { path: '/home', component: load('pages/PreHome'), meta: { auth: true } },
+    { path: '/@:username', component: load('pages/Home') },
     { path: '/login', component: load('pages/Login') },
     { path: '/register', component: load('pages/Register') },
     { path: '/decks/pandora', component: load('pages/DecksPandora'), meta: { auth: true } },
@@ -32,7 +33,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (localStorage.getItem('locale') === null && to.path !== '/locale') {
     localStorage.setItem('redirected_from', to.path)
-    router.push('/locale')
+    router.redirect('/locale')
   }
   next()
 })

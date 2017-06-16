@@ -56,7 +56,7 @@ export default {
       'LOAD_COMUM'
     ]),
     register() {
-      this.user.locale = this.locale
+      this.user.locale = localStorage.getItem('locale')
       this.salvando = true
       this.$auth.register({
         data: this.user,

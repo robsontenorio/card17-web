@@ -51,7 +51,7 @@ export default {
     login() {
       var redirect = this.$auth.redirect()
       this.salvando = true
-      this.creds.locale = this.locale
+      this.creds.locale = localStorage.getItem('locale')
       this.$auth.login({
         data: this.creds,
         redirect: redirect ? redirect.from.fullPath : '/home',

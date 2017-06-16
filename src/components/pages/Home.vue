@@ -22,7 +22,7 @@
         </transition>
         <br>
         <div class="block">
-          <button @click="addDeck('BATALHA')" class="button is-primary">
+          <button @click="addDeck('BATALHA')" class="button is-primary" v-if="$auth.user().id == user_id">
             <span class="icon is-small">
               <i class="fa fa-plus"></i>
             </span>
@@ -42,7 +42,7 @@
         </transition>
         <br>
         <div class="block">
-          <button @click="addDeck('PANDORA')" class="button is-primary">
+          <button @click="addDeck('PANDORA')" class="button is-primary" v-if="$auth.user().id == user_id">
             <span class="icon is-small">
               <i class="fa fa-plus"></i>
             </span>
@@ -63,9 +63,9 @@
               <span class="tag rate is-warning">{{ temporada.winrate }}%</span>
               <span class="tag rate is-success">{{ temporada.vitorias }}</span>
               <span class="tag rate is-danger">{{ temporada.derrotas }}</span>
-              <button v-if="temporada.aberta" class="button is-small" @click="showModal=true"> {{ $t('deck.botoes.encerrar_temporada') }}</button>
+              <button v-if="temporada.aberta && $auth.user().id == user_id" class="button is-small" @click="showModal=true"> {{ $t('deck.botoes.encerrar_temporada') }}</button>
               <!--  TODO não pode excluir a unica temporada-->
-              <button v-if="user.temporadas.length > 1 && user.temporadas.length - 1  === index" class="button is-small is-danger" @click="excluir_temporada_confirm(temporada.id)"> {{ $t('app.botoes.excluir') }}</button>
+              <button v-if="user.temporadas.length > 1 && user.temporadas.length - 1  === index && $auth.user().id == user_id" class="button is-small is-danger" @click="excluir_temporada_confirm(temporada.id)"> {{ $t('app.botoes.excluir') }}</button>
 
             </div>
           </div>
@@ -104,6 +104,7 @@ export default {
   },
   data() {
     return {
+      user_id: 0,
       temporada: 'atual',
       nome_temporada: '',
       showModal: false,
@@ -130,13 +131,22 @@ export default {
       }
     }
   },
-  created() {
+  async created() {
+    try {
+      await userAPI.get('@' + this.$route.params.username).then(response => {
+        this.user_id = response.data.id
+      })
+    } catch (error) {
+      this.$router.push('/404')
+      return
+    }
+
     this.carregar()
   },
   methods: {
     carregar() {
       let filtrosBatalha = {
-        user_id: this.$auth.user().id,
+        user_id: this.user_id,
         temporada: this.temporada,
         includes: 'dificuldade,modo,matchup.cores,matchup.arquetipo,matchup.tipos,temporadas',
         modo_chave: 'BATALHA',
@@ -145,7 +155,7 @@ export default {
       }
 
       let filtrosPandora = {
-        user_id: this.$auth.user().id,
+        user_id: this.user_id,
         temporada: this.temporada,
         includes: 'dificuldade,modo,matchup.cores,matchup.arquetipo,matchup.tipos,partidas,temporadas',
         modo_chave: 'PANDORA',
@@ -160,7 +170,7 @@ export default {
       }
 
       this.carregando = true
-      userAPI.get(this.$auth.user().id, filtrosEstatisticas).then(response => {
+      userAPI.get(this.user_id, filtrosEstatisticas).then(response => {
         this.estatisticas = response.data.estatisticas
         this.user = response.data
         this.carregando = false
