@@ -11,20 +11,20 @@ const getters = {}
 
 // actions
 const actions = {
-  SET_USER({ commit }, u) {
+  async SET_USER({ commit }, u) {
     commit('SET_USER', { user: u })
     if (u !== null) {
       commit('SET_LOCALE', { locale: u.locale })
       if (state.id !== 0) {
-        userAPI.patch(state)
+        await userAPI.patch(state)
       }
     }
   },
-  SET_LOCALE({ commit, state }, l) {
+  async SET_LOCALE({ commit, state }, l) {
     commit('SET_LOCALE', { locale: l })
 
     if (state.id !== 0) {
-      userAPI.patch(state)
+      await userAPI.patch(state)
     }
   }
 }

@@ -118,6 +118,7 @@ export default {
     },
     async changeLocale(locale) {
       this.carregando = true
+      this.$i18n.locale = locale
       await this.SET_LOCALE(locale)
       window.location = this.$route.fullPath
     }

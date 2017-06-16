@@ -26,6 +26,7 @@ export default {
       'SET_LOCALE'
     ]),
     async setLocale(locale) {
+      this.$i18n.locale = locale
       await this.SET_LOCALE(locale)
       window.location = localStorage.getItem('redirected_from')
     }
