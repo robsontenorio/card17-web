@@ -15,10 +15,17 @@ const actions = {
     commit('SET_USER', { user: u })
     if (u !== null) {
       commit('SET_LOCALE', { locale: u.locale })
+      if (state.id !== 0) {
+        userAPI.patch(state)
+      }
     }
   },
   SET_LOCALE({ commit, state }, l) {
     commit('SET_LOCALE', { locale: l })
+
+    if (state.id !== 0) {
+      userAPI.patch(state)
+    }
   }
 }
 
@@ -36,10 +43,6 @@ const mutations = {
   SET_LOCALE(state, { locale }) {
     localStorage.setItem('locale', locale)
     state.locale = locale
-
-    if (state.id !== 0) {
-      userAPI.patch(state)
-    }
   }
 }
 

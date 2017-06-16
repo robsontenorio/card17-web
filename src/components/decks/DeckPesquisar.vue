@@ -33,8 +33,8 @@ export default {
   },
   methods: {
     filtrar(carta) {
-      return (carta.nome.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1 ||
-        carta.texto.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1)
+      return (carta.nome.toLowerCase().includes(this.filtro.toLowerCase()) ||
+        carta.texto.toLowerCase().includes(this.filtro.toLowerCase()))
 
       // return (carta.metadata.card_name.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1 ||
       //   carta.metadata.text.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1 ||

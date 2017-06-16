@@ -95,7 +95,6 @@ export default {
     '$auth.watch.loaded' () {
       let user = this.$auth.user()
       this.SET_USER(user)
-      this.$i18n.locale = user.locale
     }
   },
   computed: {
