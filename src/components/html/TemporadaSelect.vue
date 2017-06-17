@@ -1,9 +1,9 @@
 <template>
 <div>
   <radio-group :on-change="selecionada" class="is-small" value="atual">
-    <radio-button class="is-small" val="todas">todas temporadas</radio-button>
-    <radio-button class="is-small" val="anterior" v-if="temporadas.length > 1">anterior</radio-button>
-    <radio-button class="is-small" val="atual" :checked="true">atual</radio-button>
+    <radio-button class="is-small" val="todas">{{ $t('app.todas_temporadas') }}</radio-button>
+    <radio-button class="is-small" val="anterior" v-if="temporadas.length > 1">{{ $t('app.temporada_anterior') }}</radio-button>
+    <radio-button class="is-small" val="atual" :checked="true">{{ $t('app.temporada_atual') }}</radio-button>
   </radio-group>
 </div>
 </template>

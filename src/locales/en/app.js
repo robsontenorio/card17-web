@@ -11,6 +11,9 @@ const messages = {
   batalha: 'Battle',
   pandora: 'Pandora',
   geral: 'General',
+  todas_temporadas: 'all seasons',
+  temporada_anterior: 'previous',
+  temporada_atual: 'current',
   botoes: {
     salvar: 'save',
     cancelar: 'cancel',
