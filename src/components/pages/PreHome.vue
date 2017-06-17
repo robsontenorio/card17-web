@@ -8,7 +8,7 @@
 export default {
   name: 'pre-home-page',
   async created() {
-    this.$router.push('@' + this.$auth.user().username)
+    this.$router.replace('@' + this.$auth.user().username)
   }
 }
 </script>

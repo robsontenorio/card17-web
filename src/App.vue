@@ -13,8 +13,8 @@
       <span></span>
       </span>
       <div class="nav-right nav-menu" v-if="user.locale">
-        <router-link style="color: yellow" to="/version" class="nav-item is-tab is-hidden-mobile">
-          <i class="fa fa-tasks"></i> alpha
+        <router-link style="color: #fffd34" to="/version" class="nav-item is-tab is-hidden-mobile">
+          <i class="fa fa-star"></i> beta
         </router-link>
         <router-link v-if="!$auth.check()" to="/register" class="nav-item is-tab is-hidden-mobile">
           <i class="fa fa-user-plus"></i> {{ $t('app.menus.cadastrar') }}
@@ -25,7 +25,7 @@
         <router-link to="/home" v-if="$auth.check()" class="nav-item is-tab">
           <figure class="image is-24x24" style="margin-right: 8px;">
             <!-- <img :src="`${API_URL}/uploads/users/${$auth.user().id}.png`" style="border-radius: 50%"> -->
-            <img :src="`${API_URL}/uploads/users/0.png`" style="border-radius: 50%">
+            <img :src="`${API_URL}/uploads/users/${user.avatar}.png`" style="border-radius: 50%">
           </figure>
           {{ $auth.user().username }}
         </router-link>

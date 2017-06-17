@@ -98,7 +98,17 @@ a.nav-item {
   height: 20px;
 }
 
+.tag.is-warning{
+  background-color: #efbf73;
+}
 
+.tag.is-success{
+    background-color: #93c5a3;
+}
+
+.tag.is-danger{
+  background-color: #ec8e80;
+}
 
 .tabs td a{
   justify-content: inherit;

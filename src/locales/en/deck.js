@@ -34,7 +34,7 @@ const messages = {
     editar_deck: 'edit deck',
     reset_cartas: 'clear cards',
     encerrar_temporada: 'finish season',
-    importar_cartas: 'import cards'
+    importar_cartas: 'import cards from Hub'
   },
   notify: {
     registrado: 'deck registered',

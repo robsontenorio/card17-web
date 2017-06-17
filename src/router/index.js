@@ -33,7 +33,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (localStorage.getItem('locale') === null && to.path !== '/locale') {
     localStorage.setItem('redirected_from', to.path)
-    router.redirect('/locale')
+    router.replace('/locale')
   }
   next()
 })

@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="column is-2">
-      <h1 class="title">0.9-alpha <small>14/06/2017</small></h1>
+      <h1 class="title">0.1-beta <small>18/06/2017</small></h1>
       <figure class="image is-128x128"><img src="/static/images/egg.png" /></figure>
     </div>
   </div>
@@ -45,20 +45,20 @@
   <p><span class="icon"><i class="fa fa-square-o "></i></span> Exportar imagem do deck</p>
 
   <br><br>
+  <h2 class="subtitle">COMUNIDADE</h2>
+  <progress-bar :percent="70" type="success" :showinfo="true"></progress-bar>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> Editar perfil</p>
+  <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Perfil público</p>
+  <p><span class="icon"><i class="fa fa-square-o "></i></span> Mini blog</p>
+  <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Estatística geral</p>
+  <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Estatística global consolidada MODO BATALHA</p>
+  <p><span class="icon"><i class="fa fa-check-square-o "></i></span> Estatística global consolidada MODO PANDORA</p>
+
+  <br><br>
   <h2 class="subtitle">PANDORA TIERLIST</h2>
   <progress-bar :percent="0" type="success" :showinfo="true"></progress-bar>
   <p><span class="icon"><i class="fa fa-square-o "></i></span> Estatística automatizada dos valores das cartas do MODO PANDORA </p>
   <p><span class="icon"><i class="fa fa-square-o "></i></span> Quadro resumo</p>
-
-  <br><br>
-  <h2 class="subtitle">COMUNIDADE</h2>
-  <progress-bar :percent="0" type="success" :showinfo="true"></progress-bar>
-  <p><span class="icon"><i class="fa fa-square-o "></i></span> Editar perfil</p>
-  <p><span class="icon"><i class="fa fa-square-o "></i></span> Perfil público</p>
-  <p><span class="icon"><i class="fa fa-square-o "></i></span> Mini blog</p>
-  <p><span class="icon"><i class="fa fa-square-o "></i></span> Top decks</p>
-  <p><span class="icon"><i class="fa fa-square-o "></i></span> Estatística global consolidada MODO BATALHA</p>
-  <p><span class="icon"><i class="fa fa-square-o "></i></span> Estatística global consolidada MODO PANDORA</p>
 
   <br><br>
   <h2 class="subtitle">CAMPEONATOS</h2>

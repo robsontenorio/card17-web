@@ -1,17 +1,219 @@
 <template>
-<div class="has-text-centered">
-  <br><br><br><br>
-  <img width="200px" src="/static/images/egg.png" />
+<div>
+  <section class="hero is-medium is-bold">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 class="title">{{ $t('app.titulo') }}</h1>
+        <h2 class="subtitle">{{ $t('app.subtitulo') }}</h2>
+        <button class="button is-large is-primary" @click="$router.push(`/register`)"> {{ $t('app.menus.cadastrar') }} </button>
+        <button class="button is-large is-white is-outlined" @click="$router.push(`/login`)"> {{ $t('app.menus.entrar') }} </button>
+      </div>
+    </div>
+  </section>
+  <br><br>
+  <h1 class=" title"> TOP 10 </h1>
+  <div class="columns ">
+    <div class="column ">
+      <data-table :data="usuarios_winrate ">
+        <column :label="$t( 'app.jogadores') ">
+          <template scope="row ">
+            <div>
+                <router-link :to="`/@${row.username}` ">
+                  <span class="icon">
+                    <img :src="`${API_URL}/uploads/users/${row.avatar}.png`" />
+                  </span>
+                    {{ row.username }}
+                </router-link>
+            </div>
+          </template>
+        </column>
+        <column>
+          <template scope="row">
+            <div>
+              <span class="rate tag is-warning is-small ">{{ row.winrate }} %</span>
+              <span class="rate tag is-success is-small ">{{ row.vitorias }}</span>
+              <span class="rate tag is-danger is-small ">{{ row.derrotas }}</span>
+            </div>
+          </template>
+        </column>
+        <column>
+          <template scope="row">
+            <span> <strong>{{ row.vitorias + row.derrotas }}</strong> <small> {{ $t('app.partidas') }}</small></span>
+          </template>
+        </column>
+      </data-table>
+    </div>
+    <div class="column ">
+      <data-table :data="decks_winrate ">
+        <column :label="$t( 'app.decks') ">
+          <template scope="row ">
+            <div>
+                <router-link :to="`/decks/${row.id}` "> {{ row.nome }}</router-link>
+            </div>
+          </template>
+        </column>
+        </column>
+        <column>
+          <template scope="row ">
+            <div>
+                <span class="rate tag is-warning is-small ">{{ row.winrate }} %</span>
+                <span class="rate tag is-success is-small ">{{ row.vitorias }}</span>
+                <span class="rate tag is-danger is-small ">{{ row.derrotas }}</span>
+            </div>
+          </template>
+        </column>
+        <column>
+          <template scope="row ">
+            <div>
+              <deck-cores :cores="row.matchup.cores "></deck-cores>
+            </div>
+            </template>
+        </column>
+        <column>
+          <template scope="row">
+            <span> <strong>{{ row.vitorias + row.derrotas }}</strong> <small> {{ $t('app.partidas') }}</small></span>
+          </template>
+        </column>
+      </data-table>
+    </div>
+  </div>
 
-  <small>Trabalho em andamento ...</small>
+  <h1 class="title " v-html="$t( 'app.recente') "></h1>
+  <div class="columns ">
+    <div class="column ">
+      <data-table :data="decks_recentes">
+        <column :label="$t( 'app.decks') ">
+          <template scope="row ">
+          <div>
+              <router-link :to="`/decks/${row.id}` "> {{ row.nome }}</router-link>
+          </div>
+        </template>
+        </column>
+        <column>
+          <template scope="row ">
+          <div>
+            <deck-matchup :matchup="row.matchup "></deck-matchup>
+          </div>
+          </template>
+        </column>
+      </data-table>
+    </div>
+    <div class="column ">
+      <data-table :data="usuarios_recentes ">
+        <column :label="$t( 'app.jogadores') ">
+          <template scope="row ">
+          <div>
+              <router-link :to="`/@${row.username}` ">
+                <span class="icon">
+                  <img :src="`${API_URL}/uploads/users/${row.avatar}.png`" />
+                </span>
+                  {{ row.username }}
+              </router-link>
+          </div>
+        </template>
+        </column>
+        <column>
+          <template scope="row ">
+          <div>
+          </div>
+          </template>
+        </column>
+      </data-table>
+    </div>
+  </div>
+
 </div>
 </template>
 
 <script>
+import { deckAPI, userAPI } from '@/api'
+import { DeckMatchup } from '@/components/decks'
+import DeckCores from '@/components/decks/DeckCores'
+
 export default {
-  name: 'page-hello'
+  name: 'page-hello',
+  components: {
+    DeckMatchup,
+    DeckCores
+  },
+  data() {
+    return {
+      usuarios_recentes: [],
+      usuarios_winrate: [],
+      decks_recentes: [],
+      decks_winrate: []
+    }
+  },
+  async created() {
+    let decksRecentesParams = {
+      order_by: 'id,desc',
+      includes: 'matchup.cores,matchup.arquetipo,matchup.tipos,user',
+      modo_chave: 'BATALHA',
+      limit: 10
+    }
+
+    let usuariosRecentesParams = {
+      order_by: 'id,desc',
+      limit: 10
+    }
+
+    let decksWinrateParams = {
+      ordem: 'winrate_geral',
+      includes: 'matchup.cores,matchup.arquetipo,matchup.tipos',
+      modo_chave: 'BATALHA',
+      limit: 10
+    }
+
+    let usuariosWinrateParams = {
+      ordem: 'winrate_geral',
+      limit: 10
+    }
+
+    deckAPI.all(decksRecentesParams).then(response => {
+      this.decks_recentes = response.data.data
+    })
+
+    userAPI.all(usuariosRecentesParams).then(response => {
+      this.usuarios_recentes = response.data.data
+    })
+
+    deckAPI.all(decksWinrateParams).then(response => {
+      this.decks_winrate = response.data.data
+    })
+
+    userAPI.all(usuariosWinrateParams).then(response => {
+      this.usuarios_winrate = response.data.data
+    })
+  }
 }
 </script>
 
 <style scoped>
+h1 {}
+
+.title {
+  font-size: 25pt;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.hero-body {
+  padding-bottom: 80px;
+  padding-top: 80px;
+}
+
+.hero .title,
+.hero .subtitle {
+  color: white;
+}
+
+.hero-body {
+  background-image: url('/static/images/card17_background.jpg');
+  background-position-y: -100px;
+}
+
+.button {
+  margin-right: 10px;
+  font-weight: bold;
+}
 </style>

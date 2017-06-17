@@ -5,7 +5,7 @@
       <div class="image is-128x128 avatar">
         <!-- <img :src="`/static/images/users/${user.id}.jpg`"> -->
         <!-- <img :src="`${API_URL}/uploads/users/${$auth.user().id}.png`"> -->
-        <img :src="`${API_URL}/uploads/users/0.png`">
+        <img :src="`${API_URL}/uploads/users/${user.avatar}.png`">
       </div>
     </div>
     <div class="column">

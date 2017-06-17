@@ -1,4 +1,16 @@
 const messages = {
+  decks: 'Decks',
+  jogadores: 'Players',
+  recente: 'RECENT',
+  winrate: 'Winrate',
+  titulo: 'Share your statistics',
+  subtitulo: 'Write down your matches. Get precious information. Improve your performance!',
+  partidas: 'matches',
+  melhor_winrate: 'Best winrate',
+  mais_jogados: 'Most played',
+  batalha: 'Battle',
+  pandora: 'Pandora',
+  geral: 'General',
   botoes: {
     salvar: 'save',
     cancelar: 'cancel',
