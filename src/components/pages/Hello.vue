@@ -1,5 +1,6 @@
 <template>
-<div>
+<div v-loading="carregando">
+
   <section class="hero is-medium is-bold">
     <div class="hero-body">
       <div class="container has-text-centered">
@@ -10,6 +11,43 @@
       </div>
     </div>
   </section>
+  <br><br>
+  <nav class="level">
+
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading"> <span class="icon"><i class="fa fa-fire"></i></span><br> {{ $t('app.partidas') }}</p>
+        <p class="title"> {{ welcome.partidas }}</p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading"> <span class="icon"><i class="fa fa-fire"></i></span><br> {{ $t('app.pandora') }}</p>
+        <p class="title"> {{ welcome.partidas_pandora }}</p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading"> <span class="icon"><i class="fa fa-fire"></i></span><br> {{ $t('app.batalha') }}</p>
+        <p class="title"> {{ welcome.partidas_batalha }}</p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">
+          <span class="icon"><i class="fa fa-th"></i></span><br> {{ $t('app.decks') }}
+        </p>
+        <p class="title"> {{ welcome.decks }}</p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading"> <span class="icon"><i class="fa fa-user"></i></span><br> {{ $t('app.jogadores') }}</p>
+        <p class="title"> {{ welcome.users }}</p>
+      </div>
+    </div>
+  </nav>
+
   <br><br>
   <h1 class=" title"> TOP 10 </h1>
   <div class="columns ">
@@ -126,7 +164,7 @@
 </template>
 
 <script>
-import { deckAPI, userAPI } from '@/api'
+import { deckAPI, userAPI, comumAPI } from '@/api'
 import { DeckMatchup } from '@/components/decks'
 import DeckCores from '@/components/decks/DeckCores'
 
@@ -138,10 +176,12 @@ export default {
   },
   data() {
     return {
+      carregando: true,
       usuarios_recentes: [],
       usuarios_winrate: [],
       decks_recentes: [],
-      decks_winrate: []
+      decks_winrate: [],
+      welcome: []
     }
   },
   async created() {
@@ -184,6 +224,11 @@ export default {
     userAPI.all(usuariosWinrateParams).then(response => {
       this.usuarios_winrate = response.data.data
     })
+
+    await comumAPI.welcome().then(response => {
+      this.carregando = false
+      this.welcome = response.data
+    })
   }
 }
 </script>
@@ -215,5 +260,10 @@ h1 {}
 .button {
   margin-right: 10px;
   font-weight: bold;
+}
+
+.level,
+.level .title {
+  color: #456a9c;
 }
 </style>
