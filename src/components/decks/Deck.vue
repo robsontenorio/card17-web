@@ -8,7 +8,7 @@
 
           <div class="level">
             <div class="level-left">
-              <h1 class="title">{{ deck.nome }}&nbsp;</h1>
+              <h1 class="title">{{ deck.nome }}</h1>
             </div>
             <div class="level-right">
               <div class="temporada-select">
@@ -24,6 +24,9 @@
           <br><br>
           <div class="block" v-if="deck.matchup">
             <deck-matchup :modo="deck.modo" :matchup="deck.matchup"></deck-matchup>
+            <small class="autor"> {{ $t('app.criado_por') }}
+              <router-link :to="`/@${deck.user.username}`"> @{{ deck.user.username }} </router-link>
+            </small>
           </div>
 
           <!-- DESCRICAO -->
@@ -165,6 +168,13 @@ export default {
 <style scoped>
 h2 {
   font-weight: bold;
+}
+
+.autor {
+  font-size: 10pt;
+  padding-left: 10px;
+  /*font-weight: bold;*/
+  color: #c0c0c0;
 }
 
 .temporada-select .control {

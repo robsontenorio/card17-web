@@ -40,7 +40,7 @@ const getters = {
 const actions = {
   LOAD_DECK({ commit, state }, deck) {
     let filtros = {
-      includes: 'cartas,modo,matchup.cores,matchup.arquetipo,matchup.tipos',
+      includes: 'cartas,modo,matchup.cores,matchup.arquetipo,matchup.tipos,user',
       appends: 'estatisticas,partidas',
       temporada: deck.temporada
     }

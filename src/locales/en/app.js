@@ -14,6 +14,7 @@ const messages = {
   todas_temporadas: 'all seasons',
   temporada_anterior: 'previous',
   temporada_atual: 'current',
+  criado_por: 'created by',
   botoes: {
     salvar: 'save',
     cancelar: 'cancel',
