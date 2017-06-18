@@ -8,7 +8,7 @@
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
-    "deploy": "zip -r -X dist.zip dist/ && scp dist.zip robson@card17.com:/var/www/card17-web/ && ssh robson@card17.com \"cd /var/www/card17-web/ && unzip -o dist.zip && cp -r dist/* . && rm dist.zip && rm -rf dist/\"",
+    "deploy": "rm -f dist/dist.zip && zip -Xr dist/dist.zip dist/ && scp dist/dist.zip robson@card17.com:/var/www/card17-web/ && ssh robson@card17.com \"cd /var/www/card17-web/ && unzip -o dist.zip && cp -r dist/* . && rm dist.zip && rm -rf dist/\" && rm -f dist/dist.zip",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
