@@ -24,6 +24,7 @@ export default {
 .temporada-select .control {
   text-align: right;
   display: inherit;
+  margin-bottom: 0;
 }
 
 .temporada-select .button {

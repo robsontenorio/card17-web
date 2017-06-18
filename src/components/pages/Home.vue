@@ -11,7 +11,7 @@
     </div>
 
     <!-- ABAS -->
-    <tabs :on-tab-click="show">
+    <tabs :on-tab-click="show" style="margin-top: 20px">
       <!-- DECKS BATALHA -->
       <tab-item :label="$t('deck.modo_batalha')">
         <br>
