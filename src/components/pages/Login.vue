@@ -56,6 +56,7 @@ export default {
         data: this.creds,
         redirect: redirect ? redirect.from.fullPath : '/home',
         fetchUser: true,
+        rememberMe: true,
         async success() {
           let user = this.$auth.user()
           this.SET_USER(user)

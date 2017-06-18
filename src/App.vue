@@ -94,7 +94,9 @@ export default {
   watch: {
     '$auth.watch.loaded' () {
       let user = this.$auth.user()
-      this.SET_USER(user)
+      if (this.$auth.check()) {
+        this.SET_USER(user)
+      }
     }
   },
   computed: {

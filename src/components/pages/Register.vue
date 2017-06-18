@@ -61,6 +61,7 @@ export default {
       this.$auth.register({
         data: this.user,
         autoLogin: true,
+        rememberMe: true,
         async success() {
           let user = this.$auth.user()
           this.SET_USER(user)
