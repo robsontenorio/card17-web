@@ -1,7 +1,6 @@
 <template>
 <div>
 
-  <!-- //TODO PROFILE AQUI EM CIMA CASO NÃO SEJA O DONO -->
   <deck v-loading="carregando"></deck>
 
 </div>

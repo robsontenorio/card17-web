@@ -64,7 +64,6 @@
               <span class="tag rate is-success">{{ temporada.vitorias }}</span>
               <span class="tag rate is-danger">{{ temporada.derrotas }}</span>
               <button v-if="temporada.aberta && $auth.user().id == user_id" class="button is-small" @click="showModal=true"> {{ $t('deck.botoes.encerrar_temporada') }}</button>
-              <!--  TODO não pode excluir a unica temporada-->
               <button v-if="user.temporadas.length > 1 && user.temporadas.length - 1  === index && $auth.user().id == user_id" class="button is-small is-danger" @click="excluir_temporada_confirm(temporada.id)"> {{ $t('app.botoes.excluir') }}</button>
 
             </div>
@@ -220,8 +219,6 @@ export default {
           type: 'success',
           content: this.$t('deck.notify.nova_temporada')
         })
-        // TODO não consegui fechar o modal
-        // window.location = '/home'
       })
     }
   }
