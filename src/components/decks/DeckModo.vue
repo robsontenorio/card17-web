@@ -1,6 +1,6 @@
 <template>
 <span>
-  <span v-if="modo" class="tag is-dark"> {{ $t('deck.' + deck.modo.chave.toLowerCase()) }} </span>
+  <span v-if="modo" class="tag is-dark"> {{ $t('deck.' + modo.chave.toLowerCase()).toLowerCase() }} </span>
 </span>
 </template>
 
