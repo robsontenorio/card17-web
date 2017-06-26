@@ -5,9 +5,9 @@
   <div class="columns">
     <div class="column">
       <div class="notification">
-        <b>CARD17</b> <br> Trabalho em andamento ...
+        <b>CARD17</b> <br> Trabalho em andamento ... Work in progress...
         <br><br>
-        <b>Feedback</b> <br> Canal Discord <a href="https://discord.gg/R5g3PwW">https://discord.gg/R5g3PwW</a> <br>@pedroca @orebaz
+        <b>Feedback</b> <br>Discord <a href="https://discord.gg/R5g3PwW">https://discord.gg/R5g3PwW</a> <br>@pedroca @orebaz
       </div>
     </div>
     <div class="column is-2">
