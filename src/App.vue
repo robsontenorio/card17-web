@@ -81,7 +81,6 @@ export default {
   },
   async created() {
     this.carregando = true
-    await this.LOAD_COMUM()
 
     let locale = localStorage.getItem('locale')
     if (locale !== null) {
@@ -89,6 +88,8 @@ export default {
     }
 
     this.$i18n.locale = locale
+
+    await this.LOAD_COMUM()
     this.carregando = false
   },
   watch: {

@@ -53,7 +53,7 @@
   <div class="columns ">
     <div class="column ">
       <data-table :data="usuarios_winrate ">
-        <column :label="$t( 'app.jogadores') ">
+        <column :label="$t('app.jogadores') ">
           <template scope="row ">
             <div>
                 <router-link :to="`/@${row.username}` ">
@@ -83,7 +83,7 @@
     </div>
     <div class="column ">
       <data-table :data="decks_winrate ">
-        <column :label="$t( 'app.decks') ">
+        <column :label="$t('app.decks') ">
           <template scope="row ">
             <div>
                 <router-link :to="`/decks/${row.id}` "> {{ row.nome }}</router-link>
@@ -116,11 +116,11 @@
     </div>
   </div>
 
-  <h1 class="title " v-html="$t( 'app.recente') "></h1>
+  <h1 class="title " v-html="$t('app.recente') "></h1>
   <div class="columns ">
     <div class="column ">
       <data-table :data="decks_recentes">
-        <column :label="$t( 'app.decks') ">
+        <column :label="$t('app.decks') ">
           <template scope="row ">
           <div>
               <router-link :to="`/decks/${row.id}` "> {{ row.nome }}</router-link>
@@ -138,7 +138,7 @@
     </div>
     <div class="column ">
       <data-table :data="usuarios_recentes ">
-        <column :label="$t( 'app.jogadores') ">
+        <column :label="$t('app.jogadores') ">
           <template scope="row ">
           <div>
               <router-link :to="`/@${row.username}` ">
