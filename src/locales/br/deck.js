@@ -16,7 +16,7 @@ const messages = {
   progresso: 'progresso',
   bom_contra: 'Bom contra',
   ruim_contra: 'Ruim contra',
-  desempenho_info: 'O desempenho é calculado após 5 partidas contra a <strong>mesma</strong> matchup (cor + arquétipo + tipos [se houver]). Um winrate acima de 66% indica um bom desempenho. Um winrate abaixo de 40% indica um desempenho ruim.',
+  desempenho_info: 'O desempenho é calculado após 5 partidas contra a <strong>mesma</strong> matchup. Um winrate acima de 66% indica um bom desempenho. Um winrate abaixo de 40% indica um desempenho ruim.',
   v: 'V',
   d: 'D',
   nenhum_deck: 'Nenhum deck registrado',

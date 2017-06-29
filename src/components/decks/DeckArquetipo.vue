@@ -1,6 +1,6 @@
 <template>
 <span>
-  <span class="tag info"> {{ arquetipo.nome }}</span>
+  <span class="tag info" v-if="arquetipo"> {{ arquetipo.nome }}</span>
 </span>
 </template>
 
