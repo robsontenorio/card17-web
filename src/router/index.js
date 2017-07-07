@@ -18,6 +18,7 @@ const router = new Router({
     { path: '/', component: load('pages/Hello') },
     { path: '/locale', component: load('pages/Locale') },
     { path: '/version', component: load('pages/Version') },
+    { path: '/stats', component: load('pages/Stats') },
     { path: '/home', component: load('pages/PreHome'), meta: { auth: true } },
     { path: '/@:username', component: load('pages/Home') },
     { path: '/login', component: load('pages/Login') },

@@ -199,6 +199,7 @@ export default {
 
     let decksWinrateParams = {
       ordem: 'winrate_geral',
+      temporada: 'todas',
       includes: 'matchup.cores,matchup.arquetipo,matchup.tipos',
       modo_chave: 'BATALHA',
       limit: 10
@@ -206,6 +207,7 @@ export default {
 
     let usuariosWinrateParams = {
       ordem: 'winrate_geral',
+      temporada: 'todas',
       limit: 10
     }
 

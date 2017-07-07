@@ -8,6 +8,7 @@ const messages = {
   partidas: 'matches',
   melhor_winrate: 'Best winrate',
   mais_jogados: 'Most played',
+  partidas_jogadas: 'matches played',
   batalha: 'Battle',
   pandora: 'Pandora',
   geral: 'General',

@@ -16,6 +16,9 @@
         <router-link style="color: #fffd34" to="/version" class="nav-item is-tab is-hidden-mobile">
           <i class="fa fa-star"></i> beta
         </router-link>
+        <!-- <router-link to="/stats" class="nav-item is-tab is-hidden-mobile">
+          <i class="fa fa-line-chart"></i> stats
+        </router-link> -->
         <router-link v-if="!$auth.check()" to="/register" class="nav-item is-tab is-hidden-mobile">
           <i class="fa fa-user-plus"></i> {{ $t('app.menus.cadastrar') }}
         </router-link>
