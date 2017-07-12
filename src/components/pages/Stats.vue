@@ -22,6 +22,7 @@
     </div>
     <div class="column">
       <estatistica-vert-bar :height="110" :chart-data="melhorWinrate"></estatistica-vert-bar>
+      <small> {{ $t('app.partidas_jogadas') }}</small>
     </div>
   </div>
 </div>
@@ -64,11 +65,11 @@ export default {
       return {
         labels: total,
         datasets: [{
-          backgroundColor: 'green',
+          backgroundColor: '#93c5a3',
           // label: this.$t('app.vitorias'),
           data: vitorias
         }, {
-          backgroundColor: 'red',
+          backgroundColor: '#ec8e80',
           // label: this.$t('app.derrotas'),
           data: derrotas
         }]

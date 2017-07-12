@@ -9,6 +9,7 @@ export default HorizontalBar.extend({
   mounted() {
     let options = {
       // responsive: true
+      hover: { mode: null },
       tooltips: {
         enabled: false
       },

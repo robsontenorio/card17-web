@@ -7,7 +7,7 @@
         <h1 class="title">{{ $t('app.titulo') }}</h1>
         <h2 class="subtitle">{{ $t('app.subtitulo') }}</h2>
         <button class="button is-large is-primary" @click="$router.push(`/register`)"> {{ $t('app.menus.cadastrar') }} </button>
-        <button class="button is-large is-white is-outlined" @click="$router.push(`/login`)"> {{ $t('app.menus.entrar') }} </button>
+        <button class="button is-large is-white is-outlined" @click="$router.push(`/home`)"> {{ $t('app.menus.entrar') }} </button>
       </div>
     </div>
   </section>
