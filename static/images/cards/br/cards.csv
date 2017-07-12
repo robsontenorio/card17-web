@@ -187,7 +187,7 @@
 120.name;Maré Mutável
 120.text;{options|Mova um terreno|Compra uma carta}\n- Mova um terreno.\n- Compra uma carta.
 121.name;Profeta das Marés
-121.text;{gift} - Mova duas vezes um terreno que você controla.
+121.text;{gift} - Mova duas vezes o terreno desta criatura.
 122.name;Visão da Humildade
 122.text;Reduz o Ataque base e Vida base da criatura pela metade (arredondado para cima).
 123.name;Arauto Ancião
@@ -537,7 +537,7 @@
 362.name;Era das Lendas
 362.text;Compra a próxima carta lendária do seu baralho. Se não há lendárias para atender ao chamado, {options|Embaralha uma lendária aleatória verde no seu baralho|Embaralha uma lendária aleatória azul no seu baralho|Embaralha uma lendária aleatória vermelha no seu baralho|Embaralha uma lendária aleatória amarela no seu baralho}<b>a</b> cor. Embaralhe uma lendária aleatória dessa cor no seu baralho.
 363.name;Treinador Anfíbio
-363.text;{jump}\n{gift} - Dá +2/+2 à proxima criatura com {jump} que você invocar.
+363.text;{jump}\n{gift} - Dá +2/+0 à proxima criatura com {jump} que você invocar.
 364.name;Voz da Verdade
 364.text;{gift} - Restaura o Ataque e a Vida originais de uma criatura.
 365.name;Arauto da Guerra
