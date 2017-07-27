@@ -23,6 +23,7 @@ const router = new Router({
     { path: '/@:username', component: load('pages/Home') },
     { path: '/login', component: load('pages/Login') },
     { path: '/register', component: load('pages/Register') },
+    { path: '/tracker', component: load('pages/Tracker') },
     { path: '/decks/pandora', component: load('pages/DecksPandora'), meta: { auth: true } },
     { path: '/decks/battle', component: load('pages/DecksBattle'), meta: { auth: true } },
     { path: '/decks/:id', component: load('decks/Deck') },
