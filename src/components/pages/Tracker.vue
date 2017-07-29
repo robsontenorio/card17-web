@@ -24,7 +24,7 @@
   <br><br>
   <div class="has-text-centered">
     <h1 class="title">... O <b>DECKTRACKER!</b></h1>
-    <h2 class="subtitle">Exclusivo para jogadores com a memória fraca</h2>
+    <h2 class="subtitle">Exclusivo para jogadores com memória fraca</h2>
   </div>
   <br>
 
@@ -33,8 +33,8 @@
   <div class="info">
     <h1 class="title">Como funciona?</h1>
     <p>
-      O DECKTRACKER "escuta" por padrões de comunicação de rede enquanto você joga FAERIA, identificando quais cartas foram reveladas. Portanto, a medida que as cartas são compradas por você ou são reveladas pelo oponente elas são contabilizadas. Note que não
-      é possível saber em hipótese alguma qual carta o oponente comprou até que ela seja revelada. Mesmo se fosse possível, nós não revelaríamos a você :)
+      O DECKTRACKER "escuta" por padrões de comunicação durante a partida, identificando quais cartas foram reveladas. Portanto, a medida que as cartas são compradas por você ou são reveladas pelo oponente elas são contabilizadas. Note que não é possível saber
+      em hipótese alguma qual carta o oponente comprou até que ela seja revelada. Mesmo se fosse possível, nós não revelaríamos a você :)
     </p>
     <br><br>
     <h1 class="title">Isto é experimental</h1>
