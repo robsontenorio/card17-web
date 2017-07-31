@@ -50,7 +50,7 @@
   <div class="columns download has-text-centered">
     <div class="column">
       <span class="sistema windows"><i class="fa fa-windows"></i></span><br>
-      <a class="button" href="/card17-tracker-windows.zip"><span class="icon"><i class="fa fa-download"></i></span><span>Download</span></a>
+      <a class="button" href="/card17-tracker-windows.zip"><span class="icon"><i class="fa fa-download"></i></span><span>Download v1.0.2</span></a>
       <br><br>
 
       <p>
@@ -60,7 +60,7 @@
     </div>
     <div class="column">
       <span class="sistema osx"><i class="fa fa-apple"></i></span><br>
-      <a class="button" href="/card17-tracker-osx.zip"><span class="icon"><i class="fa fa-download"></i></span><span>Download</span></a>
+      <a class="button" href="/card17-tracker-osx.zip"><span class="icon"><i class="fa fa-download"></i></span><span>Download v1.0.2</span></a>
       <br><br>
       <p>
         <span class="tag is-warning is-small">{{ $t('tracker.nota') }}</span>
@@ -69,7 +69,7 @@
     </div>
     <div class="column">
       <span class="sistema linux"><i class="fa fa-linux"></i></span><br>
-      <a class="button" href="/card17-tracker-linux.zip"><span class="icon"><i class="fa fa-download"></i></span><span>Download</span></a>
+      <a class="button" href="/card17-tracker-linux.zip"><span class="icon"><i class="fa fa-download"></i></span><span>Download v1.0.2</span></a>
       <br><br>
       <p>
         <span class="tag is-warning is-small">{{ $t('tracker.nota') }}</span>
