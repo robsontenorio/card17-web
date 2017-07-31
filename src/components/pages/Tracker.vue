@@ -1,21 +1,21 @@
 <template>
 <div>
-  <h1 class="title"><b>CONTEMPLEM....</b></h1>
+  <h1 class="title"><b>{{ $t('tracker.contemplem') }}</b></h1>
   <br>
 
   <section class="hero is-dark is-bold">
     <div class="hero-body">
       <div class="container">
-        <br><br>
+        <br>
         <div class="columns has-text-centered">
           <div class="column">
-            <img src="static/images/decktracker1.png">
+            <img :src="`static/images/c0_${$i18n.locale}.png`">
           </div>
           <div class="column">
-            <img src="static/images/decktracker2.png">
+            <img :src="`static/images/c1_${$i18n.locale}.png`">
           </div>
           <div class="column">
-            <img src="static/images/decktracker3.png">
+            <img :src="`static/images/c2_${$i18n.locale}.png`">
           </div>
         </div>
       </div>
@@ -23,27 +23,27 @@
   </section>
   <br><br>
   <div class="has-text-centered">
-    <h1 class="title">... O <b>DECKTRACKER!</b></h1>
-    <h2 class="subtitle">Exclusivo para jogadores com memória fraca</h2>
+    <h1 class="title" v-html="$t('tracker.o_decktracker')"></h1>
+    <h2 class="subtitle">{{ $t('tracker.exclusivo') }}</h2>
   </div>
   <br>
 
   <br><br><br>
 
   <div class="info">
-    <h1 class="title">Como funciona?</h1>
+    <h1 class="title"> {{ $t('tracker.como_funciona') }} </h1>
     <p>
-      O DECKTRACKER "escuta" por padrões de comunicação durante a partida, identificando quais cartas foram reveladas. Portanto, a medida que as cartas são compradas por você ou são reveladas pelo oponente elas são contabilizadas. Note que não é possível saber
-      em hipótese alguma qual carta o oponente comprou até que ela seja revelada. Mesmo se fosse possível, nós não revelaríamos a você :)
+      {{ $t('tracker.como_funciona_info') }}
     </p>
     <br><br>
-    <h1 class="title">Isto é experimental</h1>
-    <p>
-      Como dissemos, o DECKTRACKER procura por padrões de comunicação de rede enquanto joga FAERIA. Desta forma, caso o FAERIA seja reconstruído ou o padrão seja modificado, o DECKTRACKER não funcionará. Além disso, cartas recém lançadas não constarão na lista.
-      Pois, precisamos de ajuda de alguns Yaks para atualizar o DECKTRACKER frequentemente. Você pode colaborar reportando bugs no Canal Discord <a href="https://discord.gg/R5g3PwW">#card17</a>
-    </p>
+    <h1 class="title">{{ $t('tracker.experimental') }}</h1>
+    <p v-html="$t('tracker.experimental_info')"></p>
     <br><br>
-    <h1 class="title">Ok, entendi ...</h1>
+    <h1 class="title">{{ $t('tracker.problemas') }}</h1>
+    <p v-html="$t('tracker.problemas_info')"></p>
+
+    <br><br>
+    <h1 class="title">{{ $t('tracker.entendi') }}</h1>
     <br><br>
   </div>
 
@@ -54,8 +54,8 @@
       <br><br>
 
       <p>
-        <span class="tag is-warning is-small">Nota</span>
-        <p>Você deve instalar <a href="http://www.win10pcap.org/download/Win10Pcap-v10.2-5002.msi">Win10Pcap</a> <br> <b>antes</b> do Deck Tracker</p>
+        <span class="tag is-warning is-small">{{ $t('tracker.nota') }}</span>
+        <p v-html="$t('tracker.nota_win')"></p>
       </p>
     </div>
     <div class="column">
@@ -63,8 +63,8 @@
       <a class="button" href="/card17-tracker-osx.zip"><span class="icon"><i class="fa fa-download"></i></span><span>Download</span></a>
       <br><br>
       <p>
-        <span class="tag is-warning is-small">Nota</span>
-        <p>Atualmente funciona somente<br> no "modo janela"</p>
+        <span class="tag is-warning is-small">{{ $t('tracker.nota') }}</span>
+        <p v-html="$t('tracker.nota_osx')"></p>
       </p>
     </div>
     <div class="column">
@@ -72,8 +72,8 @@
       <a class="button" href="/card17-tracker-linux.zip"><span class="icon"><i class="fa fa-download"></i></span><span>Download</span></a>
       <br><br>
       <p>
-        <span class="tag is-warning is-small">Nota</span>
-        <p>Vamos jogar? <br> :)</p>
+        <span class="tag is-warning is-small">{{ $t('tracker.nota') }}</span>
+        <p v-html="$t('tracker.nota_linux')"></p>
       </p>
     </div>
   </div>

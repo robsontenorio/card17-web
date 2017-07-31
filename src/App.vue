@@ -19,6 +19,9 @@
         <router-link to="/stats" class="nav-item is-tab is-hidden-mobile">
           <i class="fa fa-line-chart"></i> stats
         </router-link>
+        <router-link to="/tracker" class="nav-item is-tab is-hidden-mobile">
+          <i class="fa fa-play"></i> tracker
+        </router-link>
         <router-link v-if="!$auth.check()" to="/register" class="nav-item is-tab is-hidden-mobile">
           <i class="fa fa-user-plus"></i> {{ $t('app.menus.cadastrar') }}
         </router-link>
@@ -26,11 +29,8 @@
           <i class="fa fa-sign-in"></i> {{ $t('app.menus.entrar') }}
         </router-link>
         <router-link to="/home" v-if="$auth.check()" class="nav-item is-tab">
-          <figure class="image is-24x24" style="margin-right: 8px;">
-            <!-- <img :src="`${API_URL}/uploads/users/${$auth.user().id}.png`" style="border-radius: 50%"> -->
-            <img :src="`${API_URL}/uploads/users/${user.avatar}.png`" style="border-radius: 50%">
-          </figure>
-          {{ $auth.user().username }}
+          <!-- <img :src="`${API_URL}/uploads/users/${$auth.user().id}.png`" style="border-radius: 50%"> -->
+          <i class="fa fa-user-circle"></i> {{ $auth.user().username }}
         </router-link>
         <a v-if="$auth.check()" @click="logout()" class="nav-item is-tab">
             <i class="fa fa-power-off"></i>
