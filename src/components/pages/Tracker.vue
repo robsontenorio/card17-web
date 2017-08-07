@@ -3,7 +3,7 @@
   <h1 class="title"><b>{{ $t('tracker.contemplem') }}</b></h1>
   <br>
 
-  <section class="hero is-dark is-bold">
+  <section class="hero is-light is-bold">
     <div class="hero-body">
       <div class="container">
         <br>
@@ -103,6 +103,10 @@ export default {
   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
   -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
   box-shadow: rgba(0, 0, 0, 0.3) 0 1px 5px;
+}
+
+.hero-body {
+  background: url('/static/images/board.jpg') no-repeat;
 }
 
 .subtitle {
