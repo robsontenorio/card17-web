@@ -9,13 +9,13 @@
         <br>
         <div class="columns has-text-centered">
           <div class="column">
-            <img :src="`static/images/c0_${$i18n.locale}.png`">
+            <img :src="`static/images/c0_${$i18n.locale}.png?x=123`">
           </div>
           <div class="column">
-            <img :src="`static/images/c1_${$i18n.locale}.png`">
+            <img :src="`static/images/c1_${$i18n.locale}.png?x=121`">
           </div>
           <div class="column">
-            <img :src="`static/images/c2_${$i18n.locale}.png`">
+            <img :src="`static/images/c2_${$i18n.locale}.png?x=122`">
           </div>
         </div>
       </div>
