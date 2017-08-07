@@ -107,6 +107,7 @@ export default {
 
 .hero-body {
   background: url('/static/images/board.jpg') no-repeat;
+  background-size: cover;
 }
 
 .subtitle {
