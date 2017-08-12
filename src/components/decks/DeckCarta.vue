@@ -1,7 +1,7 @@
 <template>
 <div>
 
-  <div @click="removecarta" class="carta-mini" :style="`background-image: url(/static/images/cards/mini/${carta.metadata.card_id}_minicard.png)`">
+  <div @click="removecarta" class="carta-mini" :style="`background-image: url(${API_URL}/cards/mini/${carta.metadata.card_id}_minicard.png)`">
 
     <div class="carta-mini-mask">
 
