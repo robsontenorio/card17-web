@@ -50,20 +50,20 @@
   <div class="columns download has-text-centered">
     <div class="column">
       <span class="sistema windows"><i class="fa fa-windows"></i></span><br>
-      <a class="button" href="/card17-tracker-windows.zip"><span class="icon"><i class="fa fa-download"></i></span><span>Download v1.2.0</span></a>
+      <a class="button" href="/card17-tracker-windows.zip"><span class="icon"><i class="fa fa-download"></i></span><span>Download</span></a>
       <br><br>
 
       <p>
-        <span class="tag is-warning is-small">{{ $t('tracker.nota') }}</span>
+        <span class="tag is-danger is-small">{{ $t('tracker.nota') }}</span>
         <p v-html="$t('tracker.nota_win')"></p>
       </p>
     </div>
     <div class="column">
       <span class="sistema osx"><i class="fa fa-apple"></i></span><br>
-      <a class="button" href="/card17-tracker-osx.zip"><span class="icon"><i class="fa fa-download"></i></span><span>Download v1.2.0</span></a>
+      <a class="button" href="/card17-tracker-osx.zip"><span class="icon"><i class="fa fa-download"></i></span><span>Download</span></a>
       <br><br>
       <p>
-        <span class="tag is-warning is-small">{{ $t('tracker.nota') }}</span>
+        <span class="tag is-danger is-small">{{ $t('tracker.nota') }}</span>
         <p v-html="$t('tracker.nota_osx')"></p>
       </p>
     </div>
@@ -72,7 +72,7 @@
       <a class="button" href="/card17-tracker-linux.zip"><span class="icon"><i class="fa fa-download"></i></span><span>Download v1.2.0</span></a>
       <br><br>
       <p>
-        <span class="tag is-warning is-small">{{ $t('tracker.nota') }}</span>
+        <span class="tag is-danger is-small">{{ $t('tracker.nota') }}</span>
         <p v-html="$t('tracker.nota_linux')"></p>
       </p>
     </div>
