@@ -9,7 +9,8 @@
         <div class="level-left">
           <span class="faeria">{{ carta.metadata.faeria }}</span>
           <span class="lands">
-            <span class="land desert" v-if="carta.metadata.desert">{{ carta.metadata.desert }}</span>
+            <span class="land wild" v-if="carta.metadata.gold">{{ carta.metadata.gold }}</span>
+          <span class="land desert" v-if="carta.metadata.desert">{{ carta.metadata.desert }}</span>
           <span class="land mountain" v-if="carta.metadata.mountain">{{ carta.metadata.mountain }}</span>
           <span class="land lake" v-if="carta.metadata.lake">{{ carta.metadata.lake }}</span>
           <span class="land forest" v-if="carta.metadata.forest">{{ carta.metadata.forest }}</span>
@@ -113,5 +114,12 @@ export default {
 .lake {
     color: $lake;
     background-image: url("/static/images/lands/card_cost_blue.png");
+}
+
+.wild {
+    background-image: url("/static/images/lands/card_cost_wild.png");
+    color: white;
+    background-size: initial;
+    padding: 7px 5px;
 }
 </style>
